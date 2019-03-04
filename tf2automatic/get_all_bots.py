@@ -2,7 +2,7 @@ import requests
 import json
 
 data = []
-file = 'data.json'
+file = 'bots.json'
 
 r = requests.get('https://api.tf2automatic.com/v1/bots').json()
 
