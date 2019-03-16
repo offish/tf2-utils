@@ -27,6 +27,17 @@ def get_lowest_listing_price(result, intent):
     elif intent == 0:
         return i[len(i)-1]['currencies']['metal']
 
+def get_highest_listing_price(result, intent):
+    amt = -1
+    l = result['listings']
+    for i in l:
+        if i['intent'] == 1:
+            amt += 1
+    if intent == sell:
+        return l[amt]['currencies']['metal']
+    elif intent == buy:
+        return l[len(l)-2-amt]['currencies']['metal']
+
 def get_steamids(result, intent):
     ids = []
     for i in result['listings']:
@@ -61,6 +72,7 @@ if r['success'] == True:
     print(get_steamids(r, sell))
     print(get_value_from_id(r, '76561198307684149'))
     print(is_automatic(r, '76561198307684149'))
+    print(get_highest_listing_price(r, buy))
 else:
     print('There was an error when trying to access the API. Success: {}'.format(r['success']))
 
