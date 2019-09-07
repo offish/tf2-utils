@@ -28,7 +28,7 @@ def get_bots():
     '''Fetch a list of all Marketplace.tf bot SteamIDs'''
 
     bots = 'https://marketplace.tf/api/Bots/GetBots/v1'
-    return request(bots, {})
+    return request(bots)
 
 
 def get_user_ban(steamid: str):
