@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def request(url: str, params: dict, headers: dict = {}):
+def request(url: str, params: dict = {}, headers: dict = {}):
     r = requests.get(url, params=params, headers=headers)
 
     if r.ok or r.status_code in range(400, 499):
