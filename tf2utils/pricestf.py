@@ -66,7 +66,7 @@ class Snapshots:
 
         url = self.items.format(sku)
         data = {'source': 'bptf'}
-        return post(url, headers=headers, data=data)
+        return post(url, headers, data)
 
     def get_snapshot(self, sku: str) -> dict:
         '''Gets most recent snapshot of an item\n
@@ -97,4 +97,4 @@ class Snapshots:
         `sku` - The SKU of the item'''
 
         url = self.items.format(sku) + '/snapshot'
-        return post(url, headers=headers)
+        return post(url, headers)
