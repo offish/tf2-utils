@@ -17,7 +17,7 @@ class Prices:
     def get_schema(self) -> dict:
         '''Gets all items recorded'''
 
-        return request(self.schema, {}, headers)
+        return request(self.schema, {}, headers, True)
 
     def get_pricelist(self, src: str, cur: str) -> dict:
         '''Gets all suggested prices\n
@@ -26,7 +26,7 @@ class Prices:
 
         url = self.items.format('?')
         params = {'src': src, 'cur': cur.upper()}
-        return request(url, params, headers)
+        return request(url, params, headers, True)
 
     def get_prices(self, sku: str, src: str, cur: str) -> dict:
         '''Gets the suggested price of an item\n
@@ -36,7 +36,7 @@ class Prices:
 
         url = self.items.format(sku) + '?'
         params = {'src': src, 'cur': cur.upper()}
-        return request(url, params, headers)
+        return request(url, params, headers, True)
 
     def get_price_history(self, sku: str, src: str, cur: str) -> dict:
         '''Gets the history of suggested prices\n
@@ -46,7 +46,7 @@ class Prices:
 
         params = {'src': src, 'cur': cur.upper()}
         url = self.items.format(sku) + '/history?'
-        return request(url, params, headers)
+        return request(url, params, headers, True)
 
     
 class Snapshots:
@@ -66,14 +66,14 @@ class Snapshots:
 
         url = self.items.format(sku)
         data = {'source': 'bptf'}
-        return post(url, headers, data)
+        return post(url, headers, data, True)
 
     def get_snapshot(self, sku: str) -> dict:
         '''Gets most recent snapshot of an item\n
         `sku` - The SKU of the item'''
 
         url = self.items.format(sku) + '/snapshot'
-        return request(url, {}, headers)
+        return request(url, {}, headers, True)
 
     def get_all_snapshot(self, empty: bool, listings: bool, sku: str) -> dict:
         '''Gets all snapshots of an item\n
@@ -83,18 +83,18 @@ class Snapshots:
 
         url = self.items.format(sku) + '/snapshots?'
         params = {'empty': empty, 'listings': listings}
-        return request(url, params, headers)
+        return request(url, params, headers, True)
 
     def get_single_snapshot(self, listing_id: str) -> dict:
         '''Gets a single snapshot with listings\n
         `listing_id` - Listing id to search for (5c7c222f3857c355db65f4ee)'''
 
         url = self.snapshot.format(listing_id)
-        return request(url, {}, headers)
+        return request(url, {}, headers, True)
 
     def request_new_snapshot(self, sku: str) -> dict:
         '''Requests a new snapshot to be taken of an item\n
         `sku` - The SKU of the item'''
 
         url = self.items.format(sku) + '/snapshot'
-        return post(url, headers)
+        return post(url, headers, {}, True)
