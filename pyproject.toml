@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tf2-utils"
+authors = [
+  { name="offish", email="overutilization@gmail.com" },
+]
+description = "Tools and utilities for TF2 trading"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["tf2", "utils", "sku"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["tf2-sku", "requests", "websocket-client"]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/offish/tf2-utils"
+"Bug Tracker" = "https://github.com/offish/tf2-utils/issues"
+
+[tool.setuptools_scm]
