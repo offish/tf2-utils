@@ -1,6 +1,6 @@
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 __license__ = "MIT"
 
 from .schema import Schema, IEconItems
