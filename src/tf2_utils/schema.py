@@ -32,7 +32,7 @@ class Schema:
 
         self.schema = schema
 
-    def set_effects(self) -> list[dict]:
+    def set_effects(self) -> dict:
         path = _get_json_path("effects")
         effects = self.schema["result"]["attribute_controlled_attached_particles"]
 
@@ -49,7 +49,7 @@ class Schema:
         write_json_file(path, data)
         return data
 
-    def set_qualities(self) -> None:
+    def set_qualities(self) -> dict:
         path = _get_json_path("qualities")
         qualtiy_ids = self.schema["result"]["qualities"]
         qualtiy_names = self.schema["result"]["qualityNames"]

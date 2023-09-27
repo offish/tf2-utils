@@ -53,19 +53,19 @@ for item in inventory:
 ### BackpackTF Websocket
 #### Handle one listing at a time
 ```python
-from tf2_utils import BackpackTFWebsocket
+from tf2_utils import BackpackTFSocket
 
 def my_function(data: dict):
     print("got data!", data)
 
-socket = BackpackTFWebsocket(my_function)
+socket = BackpackTFSocket(my_function)
 
 socket.listen()
 ```
 
 #### Handle list of listings at a time
 ```python
-from tf2_utils import BackpackTFWebsocket
+from tf2_utils import BackpackTFSocket
 
 def my_function(data: list[dict]):
     print("got listings")
@@ -73,7 +73,19 @@ def my_function(data: list[dict]):
     for listing in data:
         print("listing", listing)
 
-socket = BackpackTFWebsocket(my_function, solo_entries=False)
+socket = BackpackTFSocket(my_function, solo_entries=False)
+
+socket.listen()
+```
+
+### PricesTF Websocket
+```python
+from tf2_utils import PricesTFSocket
+
+def my_function(data: dict):
+    print("got data!", data)
+
+socket = PricesTFSocket(my_function)
 
 socket.listen()
 ```
@@ -88,8 +100,8 @@ python -m pip install tf2-utils
 
 ### Upgrade
 ```bash
-pip upgrade tf2-utils
+pip install upgrade tf2-utils
 # or 
-python -m pip upgrade tf2-utils
+python -m pip install upgrade tf2-utils
 ```
 
