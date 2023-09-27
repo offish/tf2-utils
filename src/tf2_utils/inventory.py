@@ -14,13 +14,11 @@ def map_inventory(inventory: dict, add_skus: bool = False) -> list[dict]:
     for asset in inventory["assets"]:
         for desc in inventory["descriptions"]:
             if (
-                desc["tradable"] != 1
-                or asset["classid"] != desc["classid"]
+                asset["classid"] != desc["classid"]
                 or asset["instanceid"] != desc["instanceid"]
             ):
                 continue
 
-            # ok, match
             if add_skus:
                 mapped_inventory.append({"sku": get_sku(desc), **asset, **desc})
             else:

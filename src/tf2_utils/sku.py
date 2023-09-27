@@ -8,18 +8,26 @@ from tf2_sku import to_sku
 def get_sku_properties(item_description: dict) -> dict:
     item = Item(item_description)
 
-    effect = item.get_effect()
     quality = ITEM_QUALITIES[item.get_quality()]
+    effect = item.get_effect()
 
-    return {
+    sku_properties = {
         "defindex": item.get_defindex(),
         "quality": quality,
-        "effect": EFFECTS[effect] if effect else -1,
         "craftable": item.is_craftable(),
         "australium": item.is_australium(),
-        "strange": item.is_strange() if quality != 11 else False
-        # TODO: add rest...
     }
+
+    if effect:
+        sku_properties["effect"] = EFFECTS[effect]
+
+    # e.g. strange unusual
+    if quality != 11:
+        sku_properties["strange"] = item.is_strange()
+
+    # TODO: add rest
+
+    return sku_properties
 
     # to_sku(
     #     {
@@ -38,7 +46,6 @@ def get_sku_properties(item_description: dict) -> dict:
     #         "crate_number": -1,
     #         "output_defindex": -1,
     #         "output_quality": -1,
-    #         "paint": -1,
     #     }
     # )
 
