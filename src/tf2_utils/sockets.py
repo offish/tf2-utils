@@ -71,7 +71,6 @@ class PricesTFSocket:
         self.settings = settings
 
     def process_message(self, message: str) -> None:
-        print(type(message))
         data = json.loads(message)
         self.callback(data)
 

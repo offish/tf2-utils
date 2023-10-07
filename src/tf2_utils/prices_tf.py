@@ -19,7 +19,7 @@ class EmptyResponse(PricesTFError):
 
 
 class PricesTF:
-    URI = "https://api2.prices.tf"
+    URL = "https://api2.prices.tf"
 
     def __init__(self) -> None:
         self.access_token = ""
@@ -41,7 +41,7 @@ class PricesTF:
             raise RateLimited("currently ratelimited")
 
     def _get(self, endpoint: str, params: dict = {}) -> dict:
-        response = requests.get(self.URI + endpoint, headers=self.header, params=params)
+        response = requests.get(self.URL + endpoint, headers=self.header, params=params)
 
         res = response.json()
 
@@ -49,7 +49,7 @@ class PricesTF:
         return res
 
     def _post(self, endpoint: str) -> tuple[dict, int]:
-        response = requests.post(self.URI + endpoint, headers=self.header)
+        response = requests.post(self.URL + endpoint, headers=self.header)
 
         res = response.json()
 

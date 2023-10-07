@@ -12,7 +12,29 @@ Tools and utilities for TF2 trading. Use 3rd party inventory providers, get SKUs
 - BTC: `bc1qntlxs7v76j0zpgkwm62f6z0spsvyezhcmsp0z2`
 - [Steam Trade Offer](https://steamcommunity.com/tradeoffer/new/?partner=293059984&token=0-l_idZR)
 
+## Features
+* Get SKUs directly from inventories/offers
+* Fetch inventories using 3rd party providers (avoid being rate-limited)
+* Listen for Backpack.TF websocket events
+* Listen for Prices.TF websocket events
+
+## Setup
+### Install
+```bash
+pip install tf2-utils
+# or 
+python -m pip install tf2-utils
+```
+
+### Upgrade
+```bash
+pip install --upgrade tf2-utils
+# or 
+python -m pip install --upgrade tf2-utils
+```
+
 ## Usage
+See [examples](/examples/) or [tests](/tests/) for more usage examples.
 
 ### Inventory fetching
 ```python
@@ -90,18 +112,8 @@ socket = PricesTFSocket(my_function)
 socket.listen()
 ```
 
-## Setup
-### Install
+## Testing
 ```bash
-pip install tf2-utils
-# or 
-python -m pip install tf2-utils
+# tf2-utils/
+python -m unittest
 ```
-
-### Upgrade
-```bash
-pip install upgrade tf2-utils
-# or 
-python -m pip install upgrade tf2-utils
-```
-

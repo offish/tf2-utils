@@ -21,3 +21,7 @@ def to_refined(scrap: int) -> float:
 
 def refinedify(value: float) -> float:
     return math.floor((round(value * 9, 0) * 100) / 9) / 100
+
+
+def account_id_to_steam_id(account_id: int | str) -> str:
+    return str(76561197960265728 + int(account_id))
