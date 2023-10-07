@@ -6,17 +6,17 @@ import os
 import requests
 
 
-def _get_json_path(name: str) -> str:
+def get_json_path(name: str) -> str:
     return os.path.abspath(__file__).replace("schema.py", "") + f"/json/{name}.json"
 
 
-def _use_local_json(name: str) -> dict | list:
-    return read_json_file(_get_json_path(name))
+def use_local_json(name: str) -> dict | list:
+    return read_json_file(get_json_path(name))
 
 
-SCHEMA_PATH = _get_json_path("schema")
-ITEM_QUALITIES = _use_local_json("qualities")
-EFFECTS = _use_local_json("effects")
+SCHEMA_PATH = get_json_path("schema")
+ITEM_QUALITIES = use_local_json("qualities")
+EFFECTS = use_local_json("effects")
 
 
 class Schema:
@@ -33,7 +33,7 @@ class Schema:
         self.schema = schema
 
     def set_effects(self) -> dict:
-        path = _get_json_path("effects")
+        path = get_json_path("effects")
         effects = self.schema["result"]["attribute_controlled_attached_particles"]
 
         data = {}
@@ -50,7 +50,7 @@ class Schema:
         return data
 
     def set_qualities(self) -> dict:
-        path = _get_json_path("qualities")
+        path = get_json_path("qualities")
         qualtiy_ids = self.schema["result"]["qualities"]
         qualtiy_names = self.schema["result"]["qualityNames"]
 
@@ -69,13 +69,12 @@ class Schema:
 
 
 class IEconItems:
-    PLAYER_ITEMS = "http://api.steampowered.com/IEconItems_440/GetPlayerItems/v0001"
-    SCHEMA_ITEMS = "https://api.steampowered.com/IEconItems_440/GetSchemaItems/v1"
-    SCHEMA_OVERVIEW = (
-        "https://api.steampowered.com/IEconItems_440/GetSchemaOverview/v0001"
-    )
-    SCHEMA_URL = "http://api.steampowered.com/IEconItems_440/GetSchemaURL/v1"
-    STORE_DATA = "http://api.steampowered.com/IEconItems_440/GetStoreMetaData/v1"
+    API_URL = "https://api.steampowered.com/IEconItems_440/"
+    SCHEMA_OVERVIEW = API_URL + "GetSchemaOverview/v0001"
+    PLAYER_ITEMS = API_URL + "GetPlayerItems/v0001"
+    SCHEMA_ITEMS = API_URL + "GetSchemaItems/v1"
+    STORE_DATA = API_URL + "GetStoreMetaData/v1"
+    SCHEMA_URL = API_URL + "GetSchemaURL/v1"
 
     def __init__(self, key: str) -> None:
         self.key = key

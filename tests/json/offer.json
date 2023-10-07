@@ -1,0 +1,63 @@
+{
+    "tradeofferid": "4289274434",
+    "accountid_other": 293059984,
+    "message": "",
+    "expiration_time": 1605970340,
+    "trade_offer_state": 3,
+    "items_to_give": [
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "9422622596",
+            "classid": "2675",
+            "instanceid": "11040547",
+            "amount": "1",
+            "missing": true
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "9422622671",
+            "classid": "2675",
+            "instanceid": "11040547",
+            "amount": "1",
+            "missing": true
+        }
+    ],
+    "items_to_receive": [
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "9443876106",
+            "classid": "5564",
+            "instanceid": "11040547",
+            "amount": "1",
+            "missing": true
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "9443871431",
+            "classid": "2675",
+            "instanceid": "11040547",
+            "amount": "1",
+            "missing": true
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "9443871404",
+            "classid": "2675",
+            "instanceid": "11040547",
+            "amount": "1",
+            "missing": true
+        }
+    ],
+    "is_our_offer": false,
+    "time_created": 1604760740,
+    "time_updated": 1604760772,
+    "tradeid": "3622544162294464626",
+    "from_real_time_trade": false,
+    "escrow_end_date": 0,
+    "confirmation_method": 2
+}
