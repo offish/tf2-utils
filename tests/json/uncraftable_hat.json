@@ -1,30 +1,41 @@
 {
     "appid": 440,
-    "classid": "313",
-    "instanceid": "11040552",
+    "classid": "42266450",
+    "instanceid": "11040578",
     "currency": 0,
     "background_color": "3C352E",
-    "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEKYAsuWBfusSt8hMn0CvfCDLYDzo8z45JRjW84xgR5ZrblZjZlJQeSVPdaBaQ7oljtWiNh65E3DZmm-bzQBTxVGw",
-    "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEKYAsuWBfusSt8hMn0CvfCDLYDzo8z45JRjW84xgR5ZrblZjZlJQeSVPdaBaQ7oljtWiNh65E3DZmm-bzQBTxVGw",
+    "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEIYxATUgLgtzdXm_f1Av6IAeUSpNY095dQl2dvxQB-ZrfiNjUyJlWSU_QKWKY-rQq4WiFqvZ5lBYW1o71fKl-7tYHYc-57ZXFH8jk",
+    "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEIYxATUgLgtzdXm_f1Av6IAeUSpNY095dQl2dvxQB-ZrfiNjUyJlWSU_QKWKY-rQq4WiFqvZ5lBYW1o71fKl-7tYHYc-57ZXFH8jk",
+    "descriptions": [
+        {
+            "value": "These steel-toed dogs were scientifically engineered (in a wind tunnel) by America's foremost authorities on mouth-kicking to perfectly fit the inside of an idiot's mouth."
+        },
+        {
+            "value": " "
+        },
+        {
+            "value": "( Not Usable in Crafting )"
+        }
+    ],
     "tradable": 1,
     "actions": [
         {
-            "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=263&lang=en_US",
+            "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=734&lang=en_US",
             "name": "Item Wiki Page..."
         },
         {
-            "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D16432518629171569139",
+            "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D7271246809017449296",
             "name": "Inspect in Game..."
         }
     ],
-    "name": "Ellis' Cap",
+    "name": "The Teufort Tooth Kicker",
     "name_color": "7D6D00",
-    "type": "Level 10 Hat",
-    "market_name": "Ellis' Cap",
-    "market_hash_name": "Ellis' Cap",
+    "type": "Level 10 Boots",
+    "market_name": "The Teufort Tooth Kicker",
+    "market_hash_name": "The Teufort Tooth Kicker",
     "market_actions": [
         {
-            "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D16432518629171569139",
+            "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D7271246809017449296",
             "name": "Inspect in Game..."
         }
     ],
@@ -69,30 +80,6 @@
             "internal_name": "Demoman",
             "localized_category_name": "Class",
             "localized_tag_name": "Demoman"
-        },
-        {
-            "category": "Class",
-            "internal_name": "Medic",
-            "localized_category_name": "Class",
-            "localized_tag_name": "Medic"
-        },
-        {
-            "category": "Class",
-            "internal_name": "Heavy",
-            "localized_category_name": "Class",
-            "localized_tag_name": "Heavy"
-        },
-        {
-            "category": "Class",
-            "internal_name": "Pyro",
-            "localized_category_name": "Class",
-            "localized_tag_name": "Pyro"
-        },
-        {
-            "category": "Class",
-            "internal_name": "Spy",
-            "localized_category_name": "Class",
-            "localized_tag_name": "Spy"
         },
         {
             "category": "Class",

@@ -47,12 +47,39 @@ class Item:
     def has_name(self, name: str) -> bool:
         return self.name == name
 
-    def has_description(self, description: str) -> bool:
+    def has_description(
+        self, description: str, color: str = "756b5e", exact: bool = True
+    ) -> bool:
         for i in self.descriptions:
-            if i["value"] == description:
+            desc = i["value"]
+
+            if color != i.get("color", ""):
+                continue
+
+            if (description == desc) or (description in desc and not exact):
                 return True
 
         return False
+
+    def get_description(self, description: str, color: str = "756b5e") -> str:
+        for i in self.descriptions:
+            desc = i["value"]
+
+            if color != i.get("color", ""):
+                continue
+
+            if description not in desc:
+                continue
+
+            return desc
+
+        return ""
+
+    def get_description_and_replace(
+        self, description: str, color: str = "756b5e"
+    ) -> str:
+        desc = self.get_description(description, color)
+        return desc.replace(description, "")
 
     def has_tag(self, tag: str, exact: bool = True) -> bool:
         for i in self.tags:
@@ -117,16 +144,10 @@ class Item:
         return -1  # could not find
 
     def get_effect(self) -> str:
-        if not self.is_unusual():
-            return ""
+        return self.get_description_and_replace("\u2605 Unusual Effect: ", "ffd700")
 
-        string = "★ Unusual Effect: "
-
-        for i in self.descriptions:
-            if string in i["value"]:
-                return i["value"].replace(string, "")
-
-        return ""  # could not find
+    def get_paint(self) -> str:
+        return self.get_description_and_replace("Paint Color: ")
 
     def get_killstreak_id(self) -> int:
         if not self.is_killstreak():
@@ -176,13 +197,24 @@ class Item:
         return self.has_tag("Decorated Weapon")
 
     def is_craftable(self) -> bool:
-        return not self.has_description("( Not Usable in Crafting )")
+        # has no color
+        return not self.has_description("( Not Usable in Crafting )", "")
 
     def is_uncraftable(self) -> bool:
         return not self.is_craftable()
 
     def is_non_craftable(self) -> bool:
         return self.is_uncraftable()
+
+    def is_painted(self) -> bool:
+        return self.has_description("Paint Color: ", exact=False)
+
+    def has_spell(self) -> bool:
+        return self.has_description("(spell only active during event)", "7ea9d1", False)
+
+    def is_special(self) -> bool:
+        return self.is_painted() or self.has_spell()
+        # or self.has_strange_part()
 
     def is_festivized(self) -> bool:
         return "Festivized" in self.name
