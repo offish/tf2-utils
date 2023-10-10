@@ -1,0 +1,102 @@
+{
+    "appid": 440,
+    "contextid": "2",
+    "assetid": "6541131796",
+    "classid": "2676034279",
+    "instanceid": "5401089993",
+    "amount": "1",
+    "currency": 0,
+    "background_color": "3C352E",
+    "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEIUwEDUhX2sT1Rgt31GfuPDd8HlNYx2pxUyzFu31V6YrLiZWJiIVeUV6IKDvdi9wy-UXA3upY3VtG19eMDeAzusYLOMrcycIYb30r634E",
+    "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEIUwEDUhX2sT1Rgt31GfuPDd8HlNYx2pxUyzFu31V6YrLiZWJiIVeUV6IKDvdi9wy-UXA3upY3VtG19eMDeAzusYLOMrcycIYb30r634E",
+    "descriptions": [
+        {
+            "value": "(Critical Kills: 584)",
+            "color": "756b5e"
+        },
+        {
+            "value": "(Taunting Player Kills: 13)",
+            "color": "756b5e"
+        },
+        {
+            "value": "(Player Hits: 7887)",
+            "color": "756b5e"
+        },
+        {
+            "value": "Gain 2 revenge crits for each sentry kill and\n1 for each sentry assist when your sentry is destroyed",
+            "color": "7ea9d1"
+        },
+        {
+            "value": "Halloween: Exorcism (spell only active during event)",
+            "color": "7ea9d1"
+        },
+        {
+            "value": "Killstreaker: Fire Horns",
+            "color": "7ea9d1"
+        },
+        {
+            "value": "Sheen: Team Shine",
+            "color": "7ea9d1"
+        },
+        {
+            "value": "Killstreaks Active",
+            "color": "7ea9d1"
+        },
+        {
+            "value": "-50% clip size",
+            "color": "d83636"
+        },
+        {
+            "value": "No random critical hits",
+            "color": "d83636"
+        },
+        {
+            "value": "Revenge crits are lost on death",
+            "color": "d83636"
+        },
+        {
+            "type": "usertext",
+            "value": "''J\u00e4vla sosse''"
+        }
+    ],
+    "tradable": 1,
+    "actions": [
+        {
+            "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=141&lang=en_US",
+            "name": "Item Wiki Page..."
+        }
+    ],
+    "fraudwarnings": [
+        "This item has been renamed.\nOriginal name: \"Frontier Justice\""
+    ],
+    "name": "''Addcond 56''",
+    "name_color": "CF6A32",
+    "type": "Strange Shotgun - Kills: 1233",
+    "market_name": "Strange Professional Killstreak Australium Frontier Justice",
+    "market_hash_name": "Strange Professional Killstreak Australium Frontier Justice",
+    "commodity": 0,
+    "market_tradable_restriction": 7,
+    "market_marketable_restriction": 0,
+    "marketable": 1,
+    "tags": [
+        {
+            "category": "Quality",
+            "internal_name": "strange",
+            "localized_category_name": "Quality",
+            "localized_tag_name": "Strange",
+            "color": "CF6A32"
+        },
+        {
+            "category": "Type",
+            "internal_name": "primary",
+            "localized_category_name": "Type",
+            "localized_tag_name": "Primary weapon"
+        },
+        {
+            "category": "Class",
+            "internal_name": "Engineer",
+            "localized_category_name": "Class",
+            "localized_tag_name": "Engineer"
+        }
+    ]
+}

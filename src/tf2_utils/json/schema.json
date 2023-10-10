@@ -1,6 +1,7 @@
 {
     "result": {
         "status": 1,
+        "items_game_url": "http://media.steampowered.com/apps/440/scripts/items/items_game.bf0a50a382dcc1d005b89951b557847df7295eea.txt",
         "qualities": {
             "Normal": 0,
             "rarity1": 1,
@@ -10603,6 +10604,118 @@
                 "name": "Mountain Halo"
             },
             {
+                "system": "unusual_risingstar_green_parent",
+                "id": 293,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Celestial Summit"
+            },
+            {
+                "system": "unusual_risingstar_purple_parent",
+                "id": 294,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Stellar Ascent"
+            },
+            {
+                "system": "unusual_sapper_teamcolor_red",
+                "id": 295,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Sapped"
+            },
+            {
+                "system": "unusual_sapper_teamcolor_blue",
+                "id": 296,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Sapped"
+            },
+            {
+                "system": "unusual_devilish_teamcolor_red",
+                "id": 297,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Hellspawned Horns"
+            },
+            {
+                "system": "unusual_devilish_teamcolor_blue",
+                "id": 298,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Hellspawned Horns"
+            },
+            {
+                "system": "unusual_devilish_green_parent",
+                "id": 299,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Demonic Impaler"
+            },
+            {
+                "system": "unusual_devilish_purple_parent",
+                "id": 300,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Revenant's Rack"
+            },
+            {
+                "system": "unusual_sixthsense_teamcolor_red",
+                "id": 301,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Sixth Sense"
+            },
+            {
+                "system": "unusual_sixthsense_teamcolor_blue",
+                "id": 302,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Sixth Sense"
+            },
+            {
+                "system": "unusual_sixthsense_pink_parent",
+                "id": 303,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Amygdala"
+            },
+            {
+                "system": "unusual_skullhead_parent",
+                "id": 304,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "The Bone Zone"
+            },
+            {
+                "system": "unusual_spiderweb_parent",
+                "id": 305,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Arachne's Web"
+            },
+            {
+                "system": "unusual_deepsmoke_green_parent",
+                "id": 306,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Acidic Climate"
+            },
+            {
+                "system": "unusual_deepsmoke_purple_parent",
+                "id": 307,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Otherworldly Weather"
+            },
+            {
+                "system": "unusual_deepsmoke_orange_parent",
+                "id": 308,
+                "attach_to_rootbone": true,
+                "attachment": "unusual",
+                "name": "Nightmarish Storm"
+            },
+            {
                 "system": "weapon_unusual_hot",
                 "id": 701,
                 "attach_to_rootbone": false,
@@ -11403,6 +11516,48 @@
                 "id": 3123,
                 "attach_to_rootbone": false,
                 "name": "Wildflower Meadows"
+            },
+            {
+                "system": "utaunt_krakenmouth_green_parent",
+                "id": 3124,
+                "attach_to_rootbone": false,
+                "name": "Deep-sea Devourer"
+            },
+            {
+                "system": "utaunt_krakenmouth_purple_parent",
+                "id": 3125,
+                "attach_to_rootbone": false,
+                "name": "Eldritch Horror"
+            },
+            {
+                "system": "utaunt_leaftaunt_parent",
+                "id": 3126,
+                "attach_to_rootbone": false,
+                "name": "Autumn Leaves"
+            },
+            {
+                "system": "utaunt_graveparty_parent",
+                "id": 3127,
+                "attach_to_rootbone": false,
+                "name": "Dead Man's Party"
+            },
+            {
+                "system": "utaunt_spellsplash_parent",
+                "id": 3128,
+                "attach_to_rootbone": false,
+                "name": "Potion Explosion"
+            },
+            {
+                "system": "utaunt_cremation_purple_parent",
+                "id": 3129,
+                "attach_to_rootbone": false,
+                "name": "Haunted Cremation"
+            },
+            {
+                "system": "utaunt_cremation_black_parent",
+                "id": 3130,
+                "attach_to_rootbone": false,
+                "name": "Cremation"
             },
             {
                 "system": "killstreak_eyeglow_4_teamcolor_red",

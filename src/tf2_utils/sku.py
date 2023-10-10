@@ -5,8 +5,9 @@ from .schema import EFFECTS
 from tf2_sku import to_sku
 
 
-def get_sku_properties(item_description: dict) -> dict:
-    item = Item(item_description)
+def get_sku_properties(item: Item | dict) -> dict:
+    if isinstance(item, dict):
+        item = Item(item)
 
     quality = item.get_quality_id()
     effect = item.get_effect()
@@ -46,6 +47,9 @@ def get_sku_properties(item_description: dict) -> dict:
     return sku_properties
 
 
-def get_sku(item: dict) -> str:
+def get_sku(item: Item | dict) -> str:
+    if isinstance(item, dict):
+        item = Item(item)
+
     properties = get_sku_properties(item)
     return to_sku(properties)
