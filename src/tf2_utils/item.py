@@ -1,37 +1,4 @@
-# qualities are static enough to have it here as a constant
-# effects are not, use effects.json file instead (valve adds new effects yearly)
-QUALITIES = {
-    "Normal": 0,
-    "Genuine": 1,
-    "rarity2": 2,
-    "Vintage": 3,
-    "rarity3": 4,
-    "Unusual": 5,
-    "Unique": 6,
-    "Community": 7,
-    "Valve": 8,
-    "Self-Made": 9,
-    "Customized": 10,
-    "Strange": 11,
-    "Completed": 12,
-    "Haunted": 13,
-    "Collector's": 14,
-    "Decorated Weapon": 15,
-}
-
-KILLSTREAKS = {
-    "Basic": 1,
-    "Specialized": 2,
-    "Professional": 3,
-}
-
-EXTERIORS = {
-    "Factory New": 1,
-    "Minimal Wear": 2,
-    "Field-Tested": 3,
-    "Well-Worn": 4,
-    "Battle Scarred": 5,
-}
+from tf2_data import QUALITIES, KILLSTREAKS, EXTERIORS
 
 
 class Item:

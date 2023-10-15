@@ -59,5 +59,8 @@ class Offer:
 
         return False
 
+    def is_one_sided(self) -> bool:
+        return not self.is_two_sided()
+
     def get_partner(self) -> str:
         return account_id_to_steam_id(self.offer["accountid_other"])

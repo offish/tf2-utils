@@ -1,5 +1,5 @@
-from src.tf2_utils import Item, get_sku
 from src.tf2_utils.utils import read_json_file
+from src.tf2_utils import Item, get_sku
 
 from unittest import TestCase
 

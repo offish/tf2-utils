@@ -1,7 +1,6 @@
 from .item import Item
 
-from .schema import EFFECTS
-
+from tf2_data import EFFECTS
 from tf2_sku import to_sku
 
 

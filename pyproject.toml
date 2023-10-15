@@ -9,14 +9,14 @@ authors = [
 ]
 description = "Tools and utilities for TF2 trading"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 keywords = ["tf2", "utils", "sku"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = ["tf2-sku", "requests", "websocket-client"]
+dependencies = ["tf2-sku", "tf2-data", "requests", "websocket-client"]
 dynamic = ["version"]
 
 [project.urls]

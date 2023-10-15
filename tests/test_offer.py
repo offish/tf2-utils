@@ -1,5 +1,5 @@
-from src.tf2_utils import Offer
 from src.tf2_utils.utils import read_json_file
+from src.tf2_utils import Offer
 
 from unittest import TestCase
 
