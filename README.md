@@ -13,10 +13,18 @@ Tools and utilities for TF2 trading. Use 3rd party inventory providers, get SKUs
 - [Steam Trade Offer](https://steamcommunity.com/tradeoffer/new/?partner=293059984&token=0-l_idZR)
 
 ## Features
+* Uses [tf2-sku](https://github.com/offish/tf2-sku)
+* Uses [tf2-data](https://github.com/offish/tf2-data)
 * Get SKUs directly from inventories/offers
 * Fetch inventories using 3rd party providers (avoid being rate-limited)
 * Listen for Backpack.TF websocket events
 * Listen for Prices.TF websocket events
+* Interact with Prices.TF's API
+* Get item properties (`is_craft_hat`, `get_paint`, `get_effect` etc.)
+* Fetch TF2 Schema data
+* Convert SKU/defindex to item image URL
+* Convert name to SKU
+* Calculate scrap and refined prices
 
 ## Setup
 ### Install
@@ -26,11 +34,11 @@ pip install tf2-utils
 python -m pip install tf2-utils
 ```
 
-### Upgrade
+### Updating
 ```bash
-pip install --upgrade tf2-utils
+pip install --upgrade tf2-utils tf2-sku tf2-data
 # or 
-python -m pip install --upgrade tf2-utils
+python -m pip install --upgrade tf2-utils tf2-sku tf2-data
 ```
 
 ## Usage

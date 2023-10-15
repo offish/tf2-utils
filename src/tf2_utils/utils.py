@@ -3,7 +3,12 @@ import json
 
 
 def read_json_file(path: str) -> dict | list:
-    return json.loads(open(path, "r").read())
+    data = {}
+
+    with open(path, "r") as f:
+        data = json.loads(f.read())
+
+    return data
 
 
 def write_json_file(path: str, data: dict | list) -> None:

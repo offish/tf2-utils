@@ -1,86 +1,99 @@
-from .utils import read_json_file, write_json_file
+import time
 
-import os
-
+from tf2_data import SchemaItems
+from tf2_sku import to_sku
 import requests
 
 
-def get_json_path(name: str) -> str:
-    # TODO: do more dynamic than schema.py?
-    return os.path.abspath(__file__).replace("schema.py", "") + f"/json/{name}.json"
+class SchemaItems(SchemaItems):
+    def __init__(
+        self, schema_items: str | list[dict] = "", defindex_names: str | dict = ""
+    ) -> None:
+        super().__init__(schema_items, defindex_names)
 
+    def defindex_to_image_url(self, defindex: int, large: bool = False) -> str:
+        if isinstance(defindex, str):
+            defindex = int(defindex)
 
-def use_local_json(name: str) -> dict | list:
-    return read_json_file(get_json_path(name))
+        # random craft weapon => shotgun
+        if defindex == -50:
+            defindex = 9
 
+        # random craft hat image => ellis' cap
+        if defindex == -100:
+            defindex = 263
 
-ITEM_QUALITIES = use_local_json("qualities")
-SCHEMA_PATH = get_json_path("schema")
-EFFECTS = use_local_json("effects")
+        for item in self.schema_items:
+            if item["defindex"] != defindex:
+                continue
 
+            return item["image_url"] if not large else item["image_url_large"]
 
-class Schema:
-    def __init__(self, schema: dict | str = {}, api_key: str = "") -> None:
-        if not schema:
-            if api_key:
-                schema = IEconItems(api_key).get_schema_overview(save_file=True)
-            else:
-                schema = SCHEMA_PATH
+        return ""
 
-        if isinstance(schema, str):
-            schema = read_json_file(schema)
+    def sku_to_image_url(self, sku: str, large: bool = False) -> str:
+        defindex = sku.split(";")[:-1][0]
+        return self.defindex_to_image_url(defindex, large)
 
-        self.schema = schema
+    def name_to_sku(self, name: str) -> str:
+        """This is not accurate, be careful when using this."""
+        parts = name.split(" ")
 
-    def set_effects(self) -> dict:
-        path = get_json_path("effects")
-        effects = self.schema["result"]["attribute_controlled_attached_particles"]
+        defindex = -1
+        craftable = True
+        quality = 6
 
-        data = {}
+        for part in parts:
+            if part in ["Uncraftable", "Non-Craftable"]:
+                craftable = False
 
-        for effect in effects:
-            effect_name = effect["name"]
-            effect_id = effect["id"]
+            match part:
+                case "Genuine":
+                    quality = 1
 
-            # map both ways for ease of use
-            data[effect_name] = effect_id
-            data[effect_id] = effect_name
+                case "Vintage":
+                    quality = 3
 
-        write_json_file(path, data)
-        return data
+                case "Strange":
+                    quality = 11
 
-    def set_qualities(self) -> dict:
-        path = get_json_path("qualities")
-        qualtiy_ids = self.schema["result"]["qualities"]
-        qualtiy_names = self.schema["result"]["qualityNames"]
+        defindex_name = name
 
-        data = {}
+        while True:
+            defindex = self.defindex_names.get(defindex_name, -1)
 
-        for q in qualtiy_ids:
-            quality_name = qualtiy_names[q]
-            quality_id = qualtiy_ids[q]
+            if defindex != -1:
+                break
 
-            # map both ways for ease of use
-            data[quality_name] = quality_id
-            data[quality_id] = quality_name
+            try:
+                index = defindex_name.index(" ")
+            except ValueError:
+                break
 
-        write_json_file(path, data)
-        return data
+            defindex_name = defindex_name[index + 1 :]
+
+        sku_properties = {
+            "defindex": defindex,
+            "quality": quality,
+            "craftable": craftable,
+        }
+
+        return to_sku(sku_properties)
 
 
 class IEconItems:
-    API_URL = "https://api.steampowered.com/IEconItems_440/"
-    SCHEMA_OVERVIEW = API_URL + "GetSchemaOverview/v0001"
-    PLAYER_ITEMS = API_URL + "GetPlayerItems/v0001"
-    SCHEMA_ITEMS = API_URL + "GetSchemaItems/v1"
-    STORE_DATA = API_URL + "GetStoreMetaData/v1"
-    SCHEMA_URL = API_URL + "GetSchemaURL/v1"
+    API_URL = "https://api.steampowered.com/IEconItems_440"
+    SCHEMA_OVERVIEW = API_URL + "/GetSchemaOverview/v0001"
+    PLAYER_ITEMS = API_URL + "/GetPlayerItems/v0001"
+    SCHEMA_ITEMS = API_URL + "/GetSchemaItems/v1"
+    STORE_DATA = API_URL + "/GetStoreMetaData/v1"
+    SCHEMA_URL = API_URL + "/GetSchemaURL/v1"
 
-    def __init__(self, key: str) -> None:
-        self.key = key
+    def __init__(self, api_key: str) -> None:
+        self.api_key = api_key
 
     def __get(self, url: str, params: dict = {}) -> dict:
-        params["key"] = self.key
+        params["key"] = self.api_key
 
         res = requests.get(url, params=params)
 
@@ -92,18 +105,25 @@ class IEconItems:
     def get_player_items(self, steamid: str) -> dict:
         return self.__get(self.PLAYER_ITEMS, {"steamid": steamid})
 
-    def get_schema_items(self, language: str = "en") -> dict:
-        return self.__get(self.SCHEMA_ITEMS, {"language": language.lower()})
+    def get_schema_items(self, start: int = 0, language: str = "en") -> dict:
+        return self.__get(
+            self.SCHEMA_ITEMS, {"language": language.lower(), "start": start}
+        )
 
-    def get_schema_overview(
-        self, language: str = "en", save_file: bool = False
-    ) -> dict:
-        schema = self.__get(self.SCHEMA_OVERVIEW, {"language": language.lower()})
+    def get_all_schema_items(self, language: str = "en", sleep: float = 5.0) -> list:
+        items = []
+        start = 0
 
-        if schema and save_file:
-            write_json_file(SCHEMA_PATH, schema)
+        while start is not None:
+            response = self.get_schema_items(start, language=language)["result"]
+            items += response.get("items", [])
+            start = response.get("next")  # None if not found
+            time.sleep(sleep)
 
-        return schema
+        return items
+
+    def get_schema_overview(self, language: str = "en") -> dict:
+        return self.__get(self.SCHEMA_OVERVIEW, {"language": language.lower()})
 
     def get_schema_url(self) -> dict:
         return self.__get(self.SCHEMA_URL, {})

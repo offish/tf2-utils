@@ -40,7 +40,7 @@ class PricesTF:
         if PricesTF.has_code(response, 429):
             raise RateLimited("currently ratelimited")
 
-    def _get(self, endpoint: str, params: dict = {}) -> dict:
+    def __get(self, endpoint: str, params: dict = {}) -> dict:
         response = requests.get(self.URL + endpoint, headers=self.header, params=params)
 
         res = response.json()
@@ -48,7 +48,7 @@ class PricesTF:
         self.validate_response(res)
         return res
 
-    def _post(self, endpoint: str) -> tuple[dict, int]:
+    def __post(self, endpoint: str) -> tuple[dict, int]:
         response = requests.post(self.URL + endpoint, headers=self.header)
 
         res = response.json()
@@ -56,27 +56,27 @@ class PricesTF:
         self.validate_response(res)
         return (res, response.status_code)
 
-    def _set_header(self, header: dict) -> None:
+    def __set_header(self, header: dict) -> None:
         self.header = header
-
-    def update_price(self, sku: str) -> tuple[dict, int]:
-        return self._post(f"/prices/{sku}/refresh")
-
-    def get_prices(self, page: int) -> dict:
-        return self._get("/prices", {"page": page, "limit": 100, "order": "DESC"})
 
     def get_headers(self) -> dict:
         return self.header
 
+    def get_prices(self, page: int) -> dict:
+        return self.__get("/prices", {"page": page, "limit": 100, "order": "DESC"})
+
+    def update_price(self, sku: str) -> tuple[dict, int]:
+        return self.__post(f"/prices/{sku}/refresh")
+
     def request_access_token(self) -> None:
-        res, _ = self._post("/auth/access")
+        res, _ = self.__post("/auth/access")
 
         self.validate_response(res)
 
         access_token = res["accessToken"]
         self.access_token = access_token
 
-        self._set_header(
+        self.__set_header(
             {
                 "accept": "application/json",
                 "Authorization": f"Bearer {self.access_token}",
