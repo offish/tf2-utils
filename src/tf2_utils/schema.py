@@ -1,20 +1,50 @@
-import time
+from .sku import sku_to_defindex
 
 from tf2_data import SchemaItems
 from tf2_sku import to_sku
-import requests
 
 
-class SchemaItems(SchemaItems):
+class SchemaItemsUtils(SchemaItems):
     def __init__(
         self, schema_items: str | list[dict] = "", defindex_names: str | dict = ""
     ) -> None:
         super().__init__(schema_items, defindex_names)
 
-    def defindex_to_image_url(self, defindex: int, large: bool = False) -> str:
-        if isinstance(defindex, str):
-            defindex = int(defindex)
+    def defindex_to_name(self, defindex: int) -> str:
+        return self.defindex_names.get(defindex, "")
 
+    def name_to_defindex(self, name: str) -> int:
+        if name == "Random Craft Weapon":
+            return -50
+
+        if name == "Random Craft Hat":
+            return -100
+
+        defindexes = self.defindex_names.get(name, [])
+
+        if not defindexes:
+            return -1
+
+        has_multiple_defindexes = len(defindexes) != 1
+
+        if not has_multiple_defindexes:
+            return defindexes[0]
+
+        last_index = len(defindexes) - 1
+
+        # could be first or last defindex
+        match name:
+            case "Mann Co. Supply Crate Key":
+                return defindexes[0]
+
+            case "Name Tag":
+                return defindexes[last_index]
+
+            case _:
+                # use first defindex as default
+                return defindexes[0]
+
+    def defindex_to_image_url(self, defindex: int, large: bool = False) -> str:
         # random craft weapon => shotgun
         if defindex == -50:
             defindex = 9
@@ -32,7 +62,7 @@ class SchemaItems(SchemaItems):
         return ""
 
     def sku_to_image_url(self, sku: str, large: bool = False) -> str:
-        defindex = sku.split(";")[:-1][0]
+        defindex = sku_to_defindex(sku)
         return self.defindex_to_image_url(defindex, large)
 
     def name_to_sku(self, name: str) -> str:
@@ -57,10 +87,25 @@ class SchemaItems(SchemaItems):
                 case "Strange":
                     quality = 11
 
+                case "Haunted":
+                    quality = 13
+
+                case "Collector's":
+                    quality = 14
+
         defindex_name = name
 
         while True:
-            defindex = self.defindex_names.get(defindex_name, -1)
+            # try whole name, then remove everything till the
+            # first space for each iteration if defindex
+            # for that name doesnt exist
+
+            # example:
+            # Uncraftable Strange Team Captain => -1
+            # Strange Team Captain => -1
+            # Team Captain => 378 != -1, so break
+
+            defindex = self.name_to_defindex(defindex_name)
 
             if defindex != -1:
                 break
@@ -80,53 +125,6 @@ class SchemaItems(SchemaItems):
 
         return to_sku(sku_properties)
 
-
-class IEconItems:
-    API_URL = "https://api.steampowered.com/IEconItems_440"
-    SCHEMA_OVERVIEW = API_URL + "/GetSchemaOverview/v0001"
-    PLAYER_ITEMS = API_URL + "/GetPlayerItems/v0001"
-    SCHEMA_ITEMS = API_URL + "/GetSchemaItems/v1"
-    STORE_DATA = API_URL + "/GetStoreMetaData/v1"
-    SCHEMA_URL = API_URL + "/GetSchemaURL/v1"
-
-    def __init__(self, api_key: str) -> None:
-        self.api_key = api_key
-
-    def __get(self, url: str, params: dict = {}) -> dict:
-        params["key"] = self.api_key
-
-        res = requests.get(url, params=params)
-
-        try:
-            return res.json()
-        except:
-            return {}
-
-    def get_player_items(self, steamid: str) -> dict:
-        return self.__get(self.PLAYER_ITEMS, {"steamid": steamid})
-
-    def get_schema_items(self, start: int = 0, language: str = "en") -> dict:
-        return self.__get(
-            self.SCHEMA_ITEMS, {"language": language.lower(), "start": start}
-        )
-
-    def get_all_schema_items(self, language: str = "en", sleep: float = 5.0) -> list:
-        items = []
-        start = 0
-
-        while start is not None:
-            response = self.get_schema_items(start, language=language)["result"]
-            items += response.get("items", [])
-            start = response.get("next")  # None if not found
-            time.sleep(sleep)
-
-        return items
-
-    def get_schema_overview(self, language: str = "en") -> dict:
-        return self.__get(self.SCHEMA_OVERVIEW, {"language": language.lower()})
-
-    def get_schema_url(self) -> dict:
-        return self.__get(self.SCHEMA_URL, {})
-
-    def get_store_meta_data(self, language: str = "en") -> dict:
-        return self.__get(self.STORE_DATA, {"language": language.lower()})
+    def sku_to_name(self, sku: str) -> str:
+        defindex = sku_to_defindex(sku)
+        return self.defindex_to_name(defindex)

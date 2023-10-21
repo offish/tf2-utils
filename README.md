@@ -16,6 +16,7 @@ Tools and utilities for TF2 trading. Use 3rd party inventory providers, get SKUs
 * Uses [tf2-sku](https://github.com/offish/tf2-sku)
 * Uses [tf2-data](https://github.com/offish/tf2-data)
 * Get SKUs directly from inventories/offers
+* Convert name to SKU and vice versa
 * Fetch inventories using 3rd party providers (avoid being rate-limited)
 * Listen for Backpack.TF websocket events
 * Listen for Prices.TF websocket events
@@ -23,7 +24,6 @@ Tools and utilities for TF2 trading. Use 3rd party inventory providers, get SKUs
 * Get item properties (`is_craft_hat`, `get_paint`, `get_effect` etc.)
 * Fetch TF2 Schema data
 * Convert SKU/defindex to item image URL
-* Convert name to SKU
 * Calculate scrap and refined prices
 
 ## Setup
