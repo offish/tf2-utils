@@ -46,6 +46,10 @@ def get_sku_properties(item: Item | dict) -> dict:
     return sku_properties
 
 
+def sku_to_defindex(sku: str) -> int:
+    return int(sku.split(";")[:-1][0])
+
+
 def get_sku(item: Item | dict) -> str:
     if isinstance(item, dict):
         item = Item(item)
