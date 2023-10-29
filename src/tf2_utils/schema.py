@@ -11,7 +11,13 @@ class SchemaItemsUtils(SchemaItems):
         super().__init__(schema_items, defindex_names)
 
     def defindex_to_name(self, defindex: int) -> str:
-        return self.defindex_names.get(defindex, "")
+        if defindex == -50:
+            return "Random Craft Weapon"
+
+        if defindex == -100:
+            return "Random Craft Hat"
+
+        return self.defindex_names.get(str(defindex), "")
 
     def name_to_defindex(self, name: str) -> int:
         if name == "Random Craft Weapon":
@@ -127,4 +133,6 @@ class SchemaItemsUtils(SchemaItems):
 
     def sku_to_name(self, sku: str) -> str:
         defindex = sku_to_defindex(sku)
+        # TODO: add qualities and uncraftable here
+        # "reverse" name_to_sku
         return self.defindex_to_name(defindex)

@@ -62,8 +62,18 @@ class PricesTF:
     def get_headers(self) -> dict:
         return self.header
 
-    def get_prices(self, page: int) -> dict:
-        return self.__get("/prices", {"page": page, "limit": 100, "order": "DESC"})
+    def get_history(
+        self, sku: str, page: int = 1, limit: int = 100, order: str = "ASC"
+    ) -> dict:
+        return self.__get(
+            f"/history/{sku}", {"page": page, "limit": limit, "order": order}
+        )
+
+    def get_price(self, sku: str) -> dict:
+        return self.__get(f"/prices/{sku}")
+
+    def get_prices(self, page: int, limit: int = 100, order: str = "DESC") -> dict:
+        return self.__get("/prices", {"page": page, "limit": limit, "order": order})
 
     def update_price(self, sku: str) -> tuple[dict, int]:
         return self.__post(f"/prices/{sku}/refresh")

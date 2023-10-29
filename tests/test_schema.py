@@ -56,6 +56,17 @@ class TestUtils(TestCase):
         self.assertEqual("378;13", haunted)
         self.assertEqual("378;14", collectors)
 
+    def test_defindex_to_name(self):
+        self.assertEqual("Tour of Duty Ticket", schema_items.defindex_to_name(725))
+        self.assertEqual(
+            "Mann Co. Supply Crate Key", schema_items.defindex_to_name(5021)
+        )
+        self.assertEqual("Random Craft Hat", schema_items.defindex_to_name(-100))
+        self.assertEqual("Random Craft Weapon", schema_items.defindex_to_name(-50))
+        self.assertEqual("Scrap Metal", schema_items.defindex_to_name(5000))
+        self.assertEqual("Reclaimed Metal", schema_items.defindex_to_name(5001))
+        self.assertEqual("Refined Metal", schema_items.defindex_to_name(5002))
+
     def test_sku_to_name_tod(self):
         name = schema_items.sku_to_name("725;6;uncraftable")
         self.assertEqual("Tour of Duty Ticket", name)
