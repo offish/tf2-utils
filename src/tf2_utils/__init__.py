@@ -1,6 +1,6 @@
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "2.0.6"
+__version__ = "2.0.7"
 __license__ = "MIT"
 
 from .sku import get_sku, get_sku_properties, sku_to_defindex

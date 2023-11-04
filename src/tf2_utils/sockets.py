@@ -2,7 +2,7 @@ from .prices_tf import PricesTF
 
 import json
 
-from websockets.sync.client import connect
+from websockets.sync.client import ClientConnection, connect
 
 
 class BackpackTFSocket:
@@ -70,8 +70,23 @@ class PricesTFSocket:
         self.prices_tf = PricesTF()
         self.settings = settings
 
-    def process_message(self, message: str) -> None:
+    def process_message(self, ws: ClientConnection, message: str) -> None:
         data = json.loads(message)
+
+        # our auths are only valid for 10 minutes at a time
+        # pricestf requests us to authenticate again
+        if data.get("type") == "AUTH_REQUIRED":
+            self.prices_tf.request_access_token()
+            ws.send(
+                json.dumps(
+                    {
+                        "type": "AUTH",
+                        "data": {"accessToken": self.prices_tf.access_token},
+                    }
+                )
+            )
+            return
+
         self.callback(data)
 
     def listen(self) -> None:
@@ -86,4 +101,4 @@ class PricesTFSocket:
         ) as websocket:
             while True:
                 message = websocket.recv()
-                self.process_message(message)
+                self.process_message(websocket, message)
