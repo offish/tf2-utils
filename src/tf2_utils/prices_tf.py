@@ -99,7 +99,7 @@ class PricesTF:
 
         while current_page < max_page:
             try:
-                response = self.prices_tf.get_prices(current_page)
+                response = self.get_prices(current_page)
             except RateLimited:
                 timeout = 60
 
