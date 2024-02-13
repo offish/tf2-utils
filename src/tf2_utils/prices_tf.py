@@ -1,5 +1,7 @@
-from websockets.sync.client import connect
 import requests
+import time
+
+from .utils import to_refined
 
 
 class PricesTFError(Exception):
@@ -74,6 +76,55 @@ class PricesTF:
 
     def get_prices(self, page: int, limit: int = 100, order: str = "DESC") -> dict:
         return self.__get("/prices", {"page": page, "limit": limit, "order": order})
+
+    def format_price(self, data: dict) -> dict:
+        return {
+            "buy": {
+                "keys": data["buyKeys"],
+                "metal": to_refined(data["buyHalfScrap"] / 2),
+            },
+            "sell": {
+                "keys": data["sellKeys"],
+                "metal": to_refined(data["sellHalfScrap"] / 2),
+            },
+        }
+
+    def get_prices_till_page(
+        self, page_limit: int, print_rate_limit: bool = False
+    ) -> dict:
+        prices = {}
+        current_page = 1
+        # set higher than current page first time
+        max_page = page_limit if page_limit != -1 else 2
+
+        while current_page < max_page:
+            try:
+                response = self.prices_tf.get_prices(current_page)
+            except RateLimited:
+                timeout = 60
+
+                if print_rate_limit:
+                    print(f"rate limited from prices.tf, waiting {timeout} seconds")
+
+                time.sleep(timeout)
+                continue
+
+            if "items" not in response:
+                raise PricesTFError("could not find any items in response")
+
+            for item in response["items"]:
+                prices[item["sku"]] = self.format_price(item)
+
+            current_page = response["meta"]["currentPage"] + 1
+            total_pages = response["meta"]["totalPages"]
+
+            if page_limit == -1:
+                max_page = total_pages
+
+        return prices
+
+    def get_all_prices(self, print_rate_limit: bool = False) -> dict:
+        return self.get_prices_till_page(-1, print_rate_limit)
 
     def update_price(self, sku: str) -> tuple[dict, int]:
         return self.__post(f"/prices/{sku}/refresh")
