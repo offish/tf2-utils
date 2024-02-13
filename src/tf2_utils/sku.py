@@ -46,8 +46,20 @@ def get_sku_properties(item: Item | dict) -> dict:
     return sku_properties
 
 
+def get_property(sku: str, index: int) -> str:
+    return sku.split(";")[index]
+
+
 def sku_to_defindex(sku: str) -> int:
-    return int(sku.split(";")[:-1][0])
+    return int(get_property(sku, 0))
+
+
+def sku_to_quality(sku: str) -> int:
+    return int(get_property(sku, 1))
+
+
+def sku_is_uncraftable(sku: str) -> bool:
+    return sku.find(";uncraftable") != -1
 
 
 def get_sku(item: Item | dict) -> str:

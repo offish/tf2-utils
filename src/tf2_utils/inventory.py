@@ -58,5 +58,5 @@ class Inventory:
 
         try:
             return response.json()
-        except:
-            return {}
+        except Exception as e:
+            return {"error": str(e)}

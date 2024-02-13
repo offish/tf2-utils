@@ -28,5 +28,24 @@ def refinedify(value: float) -> float:
     return math.floor((round(value * 9, 0) * 100) / 9) / 100
 
 
+def get_account_id_from_trade_url(trade_url: str) -> str:
+    partner_index = trade_url.index("?partner=") + 9
+    token_index = trade_url.index("&token=")
+    return trade_url[partner_index:token_index]
+
+
+def get_steam_id_from_trade_url(trade_url: str) -> str:
+    return account_id_to_steam_id(get_account_id_from_trade_url(trade_url))
+
+
+def get_token_from_trade_url(trade_url: str) -> str:
+    token_index = trade_url.index("&token=") + 7
+    return trade_url[token_index:]
+
+
 def account_id_to_steam_id(account_id: int | str) -> str:
     return str(76561197960265728 + int(account_id))
+
+
+def steam_id_to_account_id(steam_id: str | int) -> str:
+    return str(int(steam_id) - 76561197960265728)

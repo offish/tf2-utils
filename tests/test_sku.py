@@ -1,5 +1,11 @@
 from src.tf2_utils.utils import read_json_file
-from src.tf2_utils import get_sku, get_sku_properties
+from src.tf2_utils import (
+    get_sku,
+    get_sku_properties,
+    sku_to_defindex,
+    sku_to_quality,
+    sku_is_uncraftable,
+)
 
 from unittest import TestCase
 
@@ -57,3 +63,10 @@ class TestUtils(TestCase):
 
         # https://marketplace.tf/items/tf2/734;6;uncraftable
         self.assertEqual("734;6;uncraftable", sku)
+
+    def test_properties(self):
+        sku = "734;6;uncraftable"
+
+        self.assertEqual(734, sku_to_defindex(sku))
+        self.assertEqual(6, sku_to_quality(sku))
+        self.assertEqual(True, sku_is_uncraftable(sku))
