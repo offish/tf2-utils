@@ -1,6 +1,6 @@
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "2.0.9"
+__version__ = "2.1.0"
 __license__ = "MIT"
 
 from .sku import (
@@ -32,5 +32,6 @@ from .prices_tf import (
     InternalServerError,
 )
 from .inventory import Inventory, map_inventory
+from .currency import CurrencyExchange
 
 # flake8: noqa

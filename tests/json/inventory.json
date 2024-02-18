@@ -1,0 +1,1921 @@
+{
+    "assets": [
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14001800033",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423377",
+            "classid": "2675",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14001800034",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423394",
+            "classid": "5564",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423429",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423433",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423418",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423409",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423400",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423389",
+            "classid": "2675",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423437",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423445",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423459",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423471",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423480",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423491",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423511",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423521",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423536",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423560",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423575",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423606",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423635",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423647",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423659",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423697",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423721",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423747",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423763",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423777",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423786",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423798",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423811",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423821",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423837",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423852",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423871",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423894",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423911",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423921",
+            "classid": "2675",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423915",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423901",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423884",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423862",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423847",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423829",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423815",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423804",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423791",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423780",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423769",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423758",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423728",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423708",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423673",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423653",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423639",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423622",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423592",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423566",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423548",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423527",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423515",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423501",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423485",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423475",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423467",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423454",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "14142423441",
+            "classid": "2674",
+            "instanceid": "11040547",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "7404092136",
+            "classid": "1336074005",
+            "instanceid": "331381",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "7404092134",
+            "classid": "3119076267",
+            "instanceid": "0",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "13997959077",
+            "classid": "5643432938",
+            "instanceid": "0",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "7105361493",
+            "classid": "1419736",
+            "instanceid": "0",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "13997959078",
+            "classid": "22989188",
+            "instanceid": "0",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "7245867249",
+            "classid": "1365977426",
+            "instanceid": "1365981138",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "6791246944",
+            "classid": "331369",
+            "instanceid": "2788515190",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "7105361494",
+            "classid": "1419737",
+            "instanceid": "0",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "6757820304",
+            "classid": "4724536",
+            "instanceid": "11040580",
+            "amount": "1"
+        },
+        {
+            "appid": 440,
+            "contextid": "2",
+            "assetid": "6757820305",
+            "classid": "780610989",
+            "instanceid": "11040580",
+            "amount": "1"
+        }
+    ],
+    "descriptions": [
+        {
+            "appid": 440,
+            "classid": "2674",
+            "instanceid": "11040547",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO1Mv6NGucF1Ygzt8ZQijJukFMiMrbhYDEwI1yRVKNfD6xorQ3qW3Jr6546DNPuou9IOVK4p4kWJaA",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO1Mv6NGucF1Ygzt8ZQijJukFMiMrbhYDEwI1yRVKNfD6xorQ3qW3Jr6546DNPuou9IOVK4p4kWJaA",
+            "tradable": 1,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5002&lang=en_US",
+                    "name": "Item Wiki Page..."
+                }
+            ],
+            "name": "Refined Metal",
+            "name_color": "7D6D00",
+            "type": "Level 3 Craft Item",
+            "market_name": "Refined Metal",
+            "market_hash_name": "Refined Metal",
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "Craft Item",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Craft Item"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "2675",
+            "instanceid": "11040547",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+            "tradable": 1,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5000&lang=en_US",
+                    "name": "Item Wiki Page..."
+                }
+            ],
+            "name": "Scrap Metal",
+            "name_color": "7D6D00",
+            "type": "Level 1 Craft Item",
+            "market_name": "Scrap Metal",
+            "market_hash_name": "Scrap Metal",
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "Craft Item",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Craft Item"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "5564",
+            "instanceid": "11040547",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO0Mv6NGucF1YJlscMEgDdvxVYsMLPkMmFjI1OSUvMHDPBp9lu0CnVluZQxA9Gwp-hIOVK4sMMNWF4",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO0Mv6NGucF1YJlscMEgDdvxVYsMLPkMmFjI1OSUvMHDPBp9lu0CnVluZQxA9Gwp-hIOVK4sMMNWF4",
+            "tradable": 1,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5001&lang=en_US",
+                    "name": "Item Wiki Page..."
+                }
+            ],
+            "name": "Reclaimed Metal",
+            "name_color": "7D6D00",
+            "type": "Level 2 Craft Item",
+            "market_name": "Reclaimed Metal",
+            "market_hash_name": "Reclaimed Metal",
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "Craft Item",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Craft Item"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "1336074005",
+            "instanceid": "331381",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgETYRQuXBfuuzRCm9vZCvuKHOIBn90w2pxUyzFu3wJ4Yua0NjIyKlDEUfkNXqBroA7qDXEz7p9iBtHioesHLwnpsIvEZ7QycIYbTv20z5o",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgETYRQuXBfuuzRCm9vZCvuKHOIBn90w2pxUyzFu3wJ4Yua0NjIyKlDEUfkNXqBroA7qDXEz7p9iBtHioesHLwnpsIvEZ7QycIYbTv20z5o",
+            "descriptions": [
+                {
+                    "value": "The more gifts you give away, the bigger your heart will get! Get what gift-givers call \"the Smissmas spirit,\" and what cardiologists call hypertrophic cardiomyopathy."
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable or Marketable )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=655&lang=en_US",
+                    "name": "Item Wiki Page..."
+                },
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D2659596550459669365",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "name": "The Spirit of Giving",
+            "name_color": "CF6A32",
+            "type": "The Badge - Gifts Given: 0",
+            "market_name": "Strange Spirit of Giving",
+            "market_hash_name": "Strange Spirit of Giving",
+            "market_actions": [
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D2659596550459669365",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "strange",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Strange",
+                    "color": "CF6A32"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "misc",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Cosmetic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "3119076267",
+            "instanceid": "0",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEcZQkFWAmw6GkQt9vyAvGHAe4HpMkh8JZT3CRUnQBpM-b7ZzVkJVKXWPEIWPRi9g20W3VjsJNiUIe1pbhWeQ7qs4LHOrctNNhMTt6QBKFcnpQuGQ",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEcZQkFWAmw6GkQt9vyAvGHAe4HpMkh8JZT3CRUnQBpM-b7ZzVkJVKXWPEIWPRi9g20W3VjsJNiUIe1pbhWeQ7qs4LHOrctNNhMTt6QBKFcnpQuGQ",
+            "descriptions": [
+                {
+                    "value": "Contains an assortment of goodies for good little Mercenaries."
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "This is a limited use item. Uses: 1",
+                    "color": "00a000"
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable or Marketable )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5900&lang=en_US",
+                    "name": "Item Wiki Page..."
+                }
+            ],
+            "name": "Gift-Stuffed Stocking 2018",
+            "name_color": "7D6D00",
+            "type": "Level 13 Gift",
+            "market_name": "Gift-Stuffed Stocking 2018",
+            "market_hash_name": "Gift-Stuffed Stocking 2018",
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "TF_Gift",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Gift"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "5643432938",
+            "instanceid": "0",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEcZQkFWAmw6GkQt9vyAvGHAe4HpMkh8JZT3CRUnQBpM-b7ZzVkJVKXWPEIWPRi9g20W3VjsJNiUIe1pbhWeQ7qs4LHOrctNNhMTt6QBKFcnpQuGQ",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEcZQkFWAmw6GkQt9vyAvGHAe4HpMkh8JZT3CRUnQBpM-b7ZzVkJVKXWPEIWPRi9g20W3VjsJNiUIe1pbhWeQ7qs4LHOrctNNhMTt6QBKFcnpQuGQ",
+            "descriptions": [
+                {
+                    "value": "Contains an assortment of goodies for good little Mercenaries."
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "This is a limited use item. Uses: 1",
+                    "color": "00a000"
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable or Marketable )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5955&lang=en_US",
+                    "name": "Item Wiki Page..."
+                }
+            ],
+            "name": "Gift-Stuffed Stocking 2023",
+            "name_color": "7D6D00",
+            "type": "Level 13 Gift",
+            "market_name": "Gift-Stuffed Stocking 2023",
+            "market_hash_name": "Gift-Stuffed Stocking 2023",
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "TF_Gift",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Gift"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "1419736",
+            "instanceid": "0",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEFYw4CWBbjsz1Rt8rvH-aEDOEZpNY095dQl248lFB4bLXiYGNkK1GaU6ELXqM59Qq6XyYx6pU0UtLk87hWcVjvvdPYc-57KrOyQig",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEFYw4CWBbjsz1Rt8rvH-aEDOEZpNY095dQl248lFB4bLXiYGNkK1GaU6ELXqM59Qq6XyYx6pU0UtLk87hWcVjvvdPYc-57KrOyQig",
+            "descriptions": [
+                {
+                    "value": "Holiday Restriction: TF Birthday",
+                    "color": "d83636"
+                },
+                {
+                    "value": "Unlimited use",
+                    "color": "7ea9d1"
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable or Marketable )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=536&lang=en_US",
+                    "name": "Item Wiki Page..."
+                }
+            ],
+            "name": "Noise Maker - TF Birthday",
+            "name_color": "7D6D00",
+            "type": "Level 5 Party Favor",
+            "market_name": "Noise Maker - TF Birthday",
+            "market_hash_name": "Noise Maker - TF Birthday",
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "TF_Party_Favor",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Party Favor"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "22989188",
+            "instanceid": "0",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEFYw4CWBbjsz1Rt9DrDOGzBOESnN97t8QGiGM6yAMtNruxZTYwdAfGB_gPDfZjpAu8W3E0vpEyVtTn8u8DKBKv6tWDEmB72Q",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEFYw4CWBbjsz1Rt9DrDOGzBOESnN97t8QGiGM6yAMtNruxZTYwdAfGB_gPDfZjpAu8W3E0vpEyVtTn8u8DKBKv6tWDEmB72Q",
+            "descriptions": [
+                {
+                    "value": "Holiday Restriction: Smissmas",
+                    "color": "d83636"
+                },
+                {
+                    "value": "Unlimited use",
+                    "color": "7ea9d1"
+                }
+            ],
+            "tradable": 1,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=673&lang=en_US",
+                    "name": "Item Wiki Page..."
+                }
+            ],
+            "name": "Noise Maker - Winter Holiday",
+            "name_color": "7D6D00",
+            "type": "Level 5 Party Favor",
+            "market_name": "Noise Maker - Winter Holiday",
+            "market_hash_name": "Noise Maker - Winter Holiday",
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "TF_Party_Favor",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Party Favor"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "1365977426",
+            "instanceid": "1365981138",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEDewlDDUq3hz9Cms_pFP6JN_MUlNQw2pxUyzFu31h4YeCwYmU0dlKWAvUMDqw79VjuWSVgsJFiAYDlp-kAfFnutdHBM7MycIYb4edIMVc",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEDewlDDUq3hz9Cms_pFP6JN_MUlNQw2pxUyzFu31h4YeCwYmU0dlKWAvUMDqw79VjuWSVgsJFiAYDlp-kAfFnutdHBM7MycIYb4edIMVc",
+            "descriptions": [
+                {
+                    "value": "(Merasmissions Completed: 0)",
+                    "color": "756b5e"
+                },
+                {
+                    "value": "(Halloween Transmutes Performed: 0)",
+                    "color": "756b5e"
+                },
+                {
+                    "value": "The Soul Gargoyle grants access to Merasmissions during the Scream Fortress event each year.\nYou can level up the gargoyle by collecting souls. Souls can be found by killing enemies, completing Merasmissions and finding Soul Gargoyles.\nLevels up at 666, 1337, 2000 and then every 2000 Souls.\n\nProvides access to Halloween transmutes where you can transmute 3 items for an untradable and unmarketable Halloween item from years past.\nA bonus is given for every 10 transmutes."
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "The Scream Fortress Collections"
+                },
+                {
+                    "value": "    Gargoyle Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Creepy Crawly Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Violet Vermin Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Scream Fortress X Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Spooky Spoils Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Wicked Windfall Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Scream Fortress XII Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Crimson Cache Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Scream Fortress XIII Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Ghoulish Gains Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Scream Fortress XIV Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": "    Bone-Chilling Bonanza Collection",
+                    "color": "4b69ff"
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "Case Global Bonus Item(s)"
+                },
+                {
+                    "value": "Paint Cans!\nTaunt Unusualifiers!\nMvM Tickets!\nAnd TF2 Tools!"
+                },
+                {
+                    "value": "Inspect for full list of unusual effects and more details"
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable, Marketable, or Usable in Crafting )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5826&lang=en_US",
+                    "name": "Item Wiki Page..."
+                },
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D14027975199516027958",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "name": "Sad Soul Gargoyle",
+            "name_color": "7D6D00",
+            "type": "Sad Tool - Souls Collected: 0",
+            "market_name": "Strange Soul Gargoyle",
+            "market_hash_name": "Strange Soul Gargoyle",
+            "market_actions": [
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D14027975199516027958",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "Craft Item",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Craft Item"
+                },
+                {
+                    "category": "Collection",
+                    "internal_name": "Halloween_master_collection",
+                    "localized_category_name": "Collection",
+                    "localized_tag_name": "The Scream Fortress Collections"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "331369",
+            "instanceid": "2788515190",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgECaDgTXB_lvQdBmsfoF_ezBOESnN975sgC32I_xFV-MrvnMjNic1GUUKEND_Bu9l-4CHYz7sM7BY7j87gDfxKv6tWeoo5XMA",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgECaDgTXB_lvQdBmsfoF_ezBOESnN975sgC32I_xFV-MrvnMjNic1GUUKEND_Bu9l-4CHYz7sM7BY7j87gDfxKv6tWeoo5XMA",
+            "descriptions": [
+                {
+                    "value": "Hire Date: Thursday, April 5, 2018 (15:23:44) GMT"
+                },
+                {
+                    "value": "Even though you were late to the party, you were still the life of it."
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable or Marketable )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=166&lang=en_US",
+                    "name": "Item Wiki Page..."
+                },
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D3325915362459969374",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "name": "Mercenary",
+            "name_color": "7D6D00",
+            "type": "Level 5 Badge",
+            "market_name": "Mercenary",
+            "market_hash_name": "Mercenary",
+            "market_actions": [
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D3325915362459969374",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "misc",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Cosmetic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "1419737",
+            "instanceid": "0",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEJaAYIVRr2hzBGid7_Mv6NGucF1YpjtpIF2mdowwArNbq0MW5lcAWRVfldC_Fs9126W35qsMRiVdK38b5IOVK4Ttx7-eY",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEJaAYIVRr2hzBGid7_Mv6NGucF1YpjtpIF2mdowwArNbq0MW5lcAWRVfldC_Fs9126W35qsMRiVdK38b5IOVK4Ttx7-eY",
+            "descriptions": [
+                {
+                    "value": ""
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable or Marketable )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=537&lang=en_US",
+                    "name": "Item Wiki Page..."
+                },
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D3026467959062491213",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "name": "Party Hat",
+            "name_color": "7D6D00",
+            "type": "Level 10 Hat",
+            "market_name": "Party Hat",
+            "market_hash_name": "Party Hat",
+            "market_actions": [
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D3026467959062491213",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "misc",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Cosmetic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "4724536",
+            "instanceid": "11040580",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEKYAsuUBrstjtCmPfqDOCLDa5SmI1mtZMC2zRqwlIvbOHnZ2UwJFfGBfkGCvdop1DoWXdq68UzUYe3uasILr2NNqzy",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEKYAsuUBrstjtCmPfqDOCLDa5SmI1mtZMC2zRqwlIvbOHnZ2UwJFfGBfkGCvdop1DoWXdq68UzUYe3uasILr2NNqzy",
+            "descriptions": [
+                {
+                    "value": ""
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable, Marketable, or Usable in Crafting )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=261&lang=en_US",
+                    "name": "Item Wiki Page..."
+                },
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D14015873718180800485",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "name": "Mann Co. Cap",
+            "name_color": "7D6D00",
+            "type": "Level 10 Hat",
+            "market_name": "Mann Co. Cap",
+            "market_hash_name": "Mann Co. Cap",
+            "market_actions": [
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D14015873718180800485",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "misc",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Cosmetic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        },
+        {
+            "appid": 440,
+            "classid": "780610989",
+            "instanceid": "11040580",
+            "currency": 0,
+            "background_color": "3C352E",
+            "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEGbQkfXhTdtzZPgcbjMv6NGucF1dkwvMRTj2E6wAJ6bOW3ZGQzcQKQBPAHCaRi9VnoCiJmv59gA4Gwpb9IOVK4s1L-PRo",
+            "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEGbQkfXhTdtzZPgcbjMv6NGucF1dkwvMRTj2E6wAJ6bOW3ZGQzcQKQBPAHCaRi9VnoCiJmv59gA4Gwpb9IOVK4s1L-PRo",
+            "descriptions": [
+                {
+                    "value": ""
+                },
+                {
+                    "value": " "
+                },
+                {
+                    "value": "( Not Tradable, Marketable, or Usable in Crafting )"
+                }
+            ],
+            "tradable": 0,
+            "actions": [
+                {
+                    "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=994&lang=en_US",
+                    "name": "Item Wiki Page..."
+                },
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20S%owner_steamid%A%assetid%D9432262169162967672",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "name": "Mann Co. Online Cap",
+            "name_color": "7D6D00",
+            "type": "Level 10 Hat",
+            "market_name": "Mann Co. Online Cap",
+            "market_hash_name": "Mann Co. Online Cap",
+            "market_actions": [
+                {
+                    "link": "steam://rungame/440/76561202255233023/+tf_econ_item_preview%20M%listingid%A%assetid%D9432262169162967672",
+                    "name": "Inspect in Game..."
+                }
+            ],
+            "commodity": 0,
+            "market_tradable_restriction": 7,
+            "market_marketable_restriction": 0,
+            "marketable": 0,
+            "tags": [
+                {
+                    "category": "Quality",
+                    "internal_name": "Unique",
+                    "localized_category_name": "Quality",
+                    "localized_tag_name": "Unique",
+                    "color": "7D6D00"
+                },
+                {
+                    "category": "Type",
+                    "internal_name": "misc",
+                    "localized_category_name": "Type",
+                    "localized_tag_name": "Cosmetic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Scout",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Scout"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Sniper",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Sniper"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Soldier",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Soldier"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Demoman",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Demoman"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Medic",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Medic"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Heavy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Heavy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Pyro",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Pyro"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Spy",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Spy"
+                },
+                {
+                    "category": "Class",
+                    "internal_name": "Engineer",
+                    "localized_category_name": "Class",
+                    "localized_tag_name": "Engineer"
+                }
+            ]
+        }
+    ],
+    "total_inventory_count": 79,
+    "success": 1,
+    "rwgrsn": -2
+}

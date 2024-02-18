@@ -1,0 +1,232 @@
+[
+    {
+        "sku": "5001;6",
+        "appid": 440,
+        "contextid": "2",
+        "assetid": "14142423394",
+        "classid": "5564",
+        "instanceid": "11040547",
+        "amount": "1",
+        "currency": 0,
+        "background_color": "3C352E",
+        "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO0Mv6NGucF1YJlscMEgDdvxVYsMLPkMmFjI1OSUvMHDPBp9lu0CnVluZQxA9Gwp-hIOVK4sMMNWF4",
+        "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO0Mv6NGucF1YJlscMEgDdvxVYsMLPkMmFjI1OSUvMHDPBp9lu0CnVluZQxA9Gwp-hIOVK4sMMNWF4",
+        "tradable": 1,
+        "actions": [
+            {
+                "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5001&lang=en_US",
+                "name": "Item Wiki Page..."
+            }
+        ],
+        "name": "Reclaimed Metal",
+        "name_color": "7D6D00",
+        "type": "Level 2 Craft Item",
+        "market_name": "Reclaimed Metal",
+        "market_hash_name": "Reclaimed Metal",
+        "commodity": 0,
+        "market_tradable_restriction": 7,
+        "market_marketable_restriction": 0,
+        "marketable": 0,
+        "tags": [
+            {
+                "category": "Quality",
+                "internal_name": "Unique",
+                "localized_category_name": "Quality",
+                "localized_tag_name": "Unique",
+                "color": "7D6D00"
+            },
+            {
+                "category": "Type",
+                "internal_name": "Craft Item",
+                "localized_category_name": "Type",
+                "localized_tag_name": "Craft Item"
+            }
+        ],
+        "pure_value": 3,
+        "picked": true
+    },
+    {
+        "sku": "5000;6",
+        "appid": 440,
+        "contextid": "2",
+        "assetid": "14142423377",
+        "classid": "2675",
+        "instanceid": "11040547",
+        "amount": "1",
+        "currency": 0,
+        "background_color": "3C352E",
+        "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+        "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+        "tradable": 1,
+        "actions": [
+            {
+                "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5000&lang=en_US",
+                "name": "Item Wiki Page..."
+            }
+        ],
+        "name": "Scrap Metal",
+        "name_color": "7D6D00",
+        "type": "Level 1 Craft Item",
+        "market_name": "Scrap Metal",
+        "market_hash_name": "Scrap Metal",
+        "commodity": 0,
+        "market_tradable_restriction": 7,
+        "market_marketable_restriction": 0,
+        "marketable": 0,
+        "tags": [
+            {
+                "category": "Quality",
+                "internal_name": "Unique",
+                "localized_category_name": "Quality",
+                "localized_tag_name": "Unique",
+                "color": "7D6D00"
+            },
+            {
+                "category": "Type",
+                "internal_name": "Craft Item",
+                "localized_category_name": "Type",
+                "localized_tag_name": "Craft Item"
+            }
+        ],
+        "pure_value": 1,
+        "picked": true
+    },
+    {
+        "sku": "5000;6",
+        "appid": 440,
+        "contextid": "2",
+        "assetid": "14142423389",
+        "classid": "2675",
+        "instanceid": "11040547",
+        "amount": "1",
+        "currency": 0,
+        "background_color": "3C352E",
+        "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+        "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+        "tradable": 1,
+        "actions": [
+            {
+                "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5000&lang=en_US",
+                "name": "Item Wiki Page..."
+            }
+        ],
+        "name": "Scrap Metal",
+        "name_color": "7D6D00",
+        "type": "Level 1 Craft Item",
+        "market_name": "Scrap Metal",
+        "market_hash_name": "Scrap Metal",
+        "commodity": 0,
+        "market_tradable_restriction": 7,
+        "market_marketable_restriction": 0,
+        "marketable": 0,
+        "tags": [
+            {
+                "category": "Quality",
+                "internal_name": "Unique",
+                "localized_category_name": "Quality",
+                "localized_tag_name": "Unique",
+                "color": "7D6D00"
+            },
+            {
+                "category": "Type",
+                "internal_name": "Craft Item",
+                "localized_category_name": "Type",
+                "localized_tag_name": "Craft Item"
+            }
+        ],
+        "pure_value": 1,
+        "picked": true
+    },
+    {
+        "sku": "5000;6",
+        "appid": 440,
+        "contextid": "2",
+        "assetid": "14142423921",
+        "classid": "2675",
+        "instanceid": "11040547",
+        "amount": "1",
+        "currency": 0,
+        "background_color": "3C352E",
+        "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+        "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsPZAfOeD-VOn4phtsdQ32ZtxFYoN7PkYmVmIgeaUKNaX_Rjpwy8UHMz6pcxAIfnovUWJ1t9nYFqYw",
+        "tradable": 1,
+        "actions": [
+            {
+                "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5000&lang=en_US",
+                "name": "Item Wiki Page..."
+            }
+        ],
+        "name": "Scrap Metal",
+        "name_color": "7D6D00",
+        "type": "Level 1 Craft Item",
+        "market_name": "Scrap Metal",
+        "market_hash_name": "Scrap Metal",
+        "commodity": 0,
+        "market_tradable_restriction": 7,
+        "market_marketable_restriction": 0,
+        "marketable": 0,
+        "tags": [
+            {
+                "category": "Quality",
+                "internal_name": "Unique",
+                "localized_category_name": "Quality",
+                "localized_tag_name": "Unique",
+                "color": "7D6D00"
+            },
+            {
+                "category": "Type",
+                "internal_name": "Craft Item",
+                "localized_category_name": "Type",
+                "localized_tag_name": "Craft Item"
+            }
+        ],
+        "pure_value": 1,
+        "picked": true
+    },
+    {
+        "sku": "5002;6",
+        "appid": 440,
+        "contextid": "2",
+        "assetid": "14001800033",
+        "classid": "2674",
+        "instanceid": "11040547",
+        "amount": "1",
+        "currency": 0,
+        "background_color": "3C352E",
+        "icon_url": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO1Mv6NGucF1Ygzt8ZQijJukFMiMrbhYDEwI1yRVKNfD6xorQ3qW3Jr6546DNPuou9IOVK4p4kWJaA",
+        "icon_url_large": "fWFc82js0fmoRAP-qOIPu5THSWqfSmTELLqcUywGkijVjZULUrsm1j-9xgEbZQsUYhTkhzJWhsO1Mv6NGucF1Ygzt8ZQijJukFMiMrbhYDEwI1yRVKNfD6xorQ3qW3Jr6546DNPuou9IOVK4p4kWJaA",
+        "tradable": 1,
+        "actions": [
+            {
+                "link": "http://wiki.teamfortress.com/scripts/itemredirect.php?id=5002&lang=en_US",
+                "name": "Item Wiki Page..."
+            }
+        ],
+        "name": "Refined Metal",
+        "name_color": "7D6D00",
+        "type": "Level 3 Craft Item",
+        "market_name": "Refined Metal",
+        "market_hash_name": "Refined Metal",
+        "commodity": 0,
+        "market_tradable_restriction": 7,
+        "market_marketable_restriction": 0,
+        "marketable": 0,
+        "tags": [
+            {
+                "category": "Quality",
+                "internal_name": "Unique",
+                "localized_category_name": "Quality",
+                "localized_tag_name": "Unique",
+                "color": "7D6D00"
+            },
+            {
+                "category": "Type",
+                "internal_name": "Craft Item",
+                "localized_category_name": "Type",
+                "localized_tag_name": "Craft Item"
+            }
+        ],
+        "pure_value": 9,
+        "picked": true
+    }
+]

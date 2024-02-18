@@ -11,6 +11,9 @@ class Item:
     def is_tf2(self) -> bool:
         return self.item["appid"] == 440
 
+    def is_tradable(self) -> bool:
+        return self.item.get("tradable", 1) == 1
+
     def has_name(self, name: str) -> bool:
         return self.name == name
 
@@ -210,6 +213,19 @@ class Item:
 
     def is_australium(self) -> bool:
         return "Australium" in self.name
+
+    def is_pure(self) -> bool:
+        return (
+            self.is_craftable()
+            and self.is_unique()
+            and self.name
+            in [
+                "Mann Co. Supply Crate Key",
+                "Refined Metal",
+                "Reclaimed Metal",
+                "Scrap Metal",
+            ]
+        )
 
     def is_key(self) -> bool:
         return (
