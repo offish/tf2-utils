@@ -5,6 +5,11 @@ from src.tf2_utils import (
     sku_to_defindex,
     sku_to_quality,
     sku_is_uncraftable,
+    is_sku,
+    sku_to_color,
+    is_pure,
+    is_metal,
+    get_metal,
 )
 
 from unittest import TestCase
@@ -70,3 +75,32 @@ class TestUtils(TestCase):
         self.assertEqual(734, sku_to_defindex(sku))
         self.assertEqual(6, sku_to_quality(sku))
         self.assertEqual(True, sku_is_uncraftable(sku))
+
+    def test_is_sku(self):
+        self.assertTrue(is_sku("734;6;uncraftable"))
+        self.assertTrue(is_sku("something;text"))
+        self.assertFalse(is_sku("734"))
+
+    def test_is_metal(self):
+        self.assertTrue(is_metal("5000;6"))
+        self.assertTrue(is_metal("5001;6"))
+        self.assertTrue(is_metal("5002;6"))
+        self.assertFalse(is_metal("5021;6"))
+
+    def test_is_pure(self):
+        self.assertTrue(is_pure("5000;6"))
+        self.assertTrue(is_pure("5001;6"))
+        self.assertTrue(is_pure("5002;6"))
+        self.assertTrue(is_pure("5021;6"))
+        self.assertFalse(is_pure("5021;7"))
+
+    def test_get_metal(self):
+        self.assertEqual(9, get_metal("5002;6"))
+        self.assertEqual(3, get_metal("5001;6"))
+        self.assertEqual(1, get_metal("5000;6"))
+        self.assertRaises(AssertionError, get_metal, "5021;6")
+
+    def test_sku_to_color(self):
+        self.assertEqual("7D6D00", sku_to_color("734;6;uncraftable"))
+        self.assertEqual("4D7455", sku_to_color("30469;1"))
+        self.assertRaises(AssertionError, sku_to_color, "notsku")

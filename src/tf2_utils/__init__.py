@@ -1,6 +1,6 @@
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 __license__ = "MIT"
 
 from .sku import (
@@ -8,7 +8,12 @@ from .sku import (
     get_sku_properties,
     sku_to_defindex,
     sku_to_quality,
+    sku_to_color,
     sku_is_uncraftable,
+    is_sku,
+    is_pure,
+    is_metal,
+    get_metal,
 )
 from .item import Item
 from .offer import Offer

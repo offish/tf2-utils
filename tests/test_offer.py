@@ -10,16 +10,16 @@ offer = Offer(OFFER)
 
 class TestUtils(TestCase):
     def test_offer_state(self):
-        self.assertEqual(False, offer.is_active())
-        self.assertEqual(False, offer.is_declined())
-        self.assertEqual(True, offer.is_accepted())
+        self.assertFalse(offer.is_active())
+        self.assertFalse(offer.is_declined())
+        self.assertTrue(offer.is_accepted())
 
     def test_offer_sides(self):
-        self.assertEqual(False, offer.is_our_offer())
-        self.assertEqual(False, offer.is_scam())
-        self.assertEqual(False, offer.is_gift())
-        self.assertEqual(True, offer.is_two_sided())
+        self.assertFalse(offer.is_our_offer())
+        self.assertFalse(offer.is_scam())
+        self.assertFalse(offer.is_gift())
+        self.assertTrue(offer.is_two_sided())
 
     def test_offer_partner(self):
-        self.assertEqual(False, offer.has_trade_hold())
+        self.assertFalse(offer.has_trade_hold())
         self.assertEqual("76561198253325712", offer.get_partner())

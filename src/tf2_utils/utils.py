@@ -1,3 +1,4 @@
+import struct
 import math
 import json
 
@@ -43,9 +44,13 @@ def get_token_from_trade_url(trade_url: str) -> str:
     return trade_url[token_index:]
 
 
-def account_id_to_steam_id(account_id: int | str) -> str:
-    return str(76561197960265728 + int(account_id))
+# implementation from bukson's steampy
+def account_id_to_steam_id(account_id: str | int) -> str:
+    first_bytes = int(account_id).to_bytes(4, byteorder="big")
+    last_bytes = 0x1100001.to_bytes(4, byteorder="big")
+    return str(struct.unpack(">Q", last_bytes + first_bytes)[0])
 
 
+# implementation from bukson's steampy
 def steam_id_to_account_id(steam_id: str | int) -> str:
-    return str(int(steam_id) - 76561197960265728)
+    return str(struct.unpack(">L", int(steam_id).to_bytes(8, byteorder="big")[4:])[0])
