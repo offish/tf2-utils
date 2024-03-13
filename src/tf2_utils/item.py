@@ -238,7 +238,7 @@ class Item:
         return self.is_key()
 
     def is_killstreak(self) -> bool:
-        return "Killstreak" in self.name
+        return "Killstreak" in self.name and "Killstreaks" not in self.name
 
     def is_basic_killstreak(self) -> bool:
         return self.has_killstreak("Basic")

@@ -1,19 +1,12 @@
 from src.tf2_utils.inventory import map_inventory
 from src.tf2_utils.currency import CurrencyExchange
+from src.tf2_utils.utils import read_json_file
 
 from unittest import TestCase
-import json
 
 
-INVENTORY = {}
-PICKED_METALS = []
-
-with open("./tests/json/inventory.json", "r") as f:
-    INVENTORY = json.loads(f.read())
-
-with open("./tests/json/picked_metals.json", "r") as f:
-    PICKED_METALS = json.loads(f.read())
-
+INVENTORY = read_json_file("./tests/json/inventory.json")
+PICKED_METALS = read_json_file("./tests/json/picked_metals.json")
 
 KEY_RATE = 56 * 9
 TAG = [
