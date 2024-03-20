@@ -1,6 +1,13 @@
-from .sku import sku_to_defindex
+from .sku import (
+    sku_to_defindex,
+    sku_to_quality_name,
+    sku_is_uncraftable,
+    get_sku_effect,
+    get_sku_killstreak,
+    strange_in_sku,
+)
 
-from tf2_data import SchemaItems
+from tf2_data import SchemaItems, EFFECTS, KILLSTREAKS
 from tf2_sku import to_sku
 
 
@@ -131,8 +138,43 @@ class SchemaItemsUtils(SchemaItems):
 
         return to_sku(sku_properties)
 
-    def sku_to_name(self, sku: str) -> str:
+    def sku_to_base_name(self, sku: str) -> str:
         defindex = sku_to_defindex(sku)
-        # TODO: add qualities and uncraftable here
-        # "reverse" name_to_sku
         return self.defindex_to_name(defindex)
+
+    def sku_to_name(self, sku: str, use_uncraftable: bool = True) -> str:
+        name = self.sku_to_base_name(sku)
+        craftable = ""
+        quality = sku_to_quality_name(sku)
+        effect = get_sku_effect(sku)
+        killstreak = get_sku_killstreak(sku)
+        strange = strange_in_sku(sku)
+
+        if quality not in ["Unusual", "Unique"]:
+            quality += " "
+        else:
+            quality = ""
+
+        if effect != -1:
+            effect = EFFECTS[str(effect)] + " "
+
+        if killstreak != -1:
+            killstreak = KILLSTREAKS[str(killstreak)] + " "
+
+        if strange:
+            strange = "Strange "
+
+        if sku_is_uncraftable(sku):
+            if use_uncraftable:
+                craftable = "Uncraftable "
+            else:
+                craftable = "Non-Craftable "
+
+        # TODO: add killstreaks and other properties (strange unusual etc.)
+        # festive
+        # festivzed
+        # wear
+
+        return "".join(
+            [killstreak, strange, festive, festivized, craftable, quality, name, wear]
+        )

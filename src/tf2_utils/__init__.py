@@ -1,6 +1,7 @@
+# flake8: noqa
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "2.1.2"
+__version__ = "2.1.3"
 __license__ = "MIT"
 
 from .sku import (
@@ -38,5 +39,4 @@ from .prices_tf import (
 )
 from .inventory import Inventory, map_inventory
 from .currency import CurrencyExchange
-
-# flake8: noqa
+from .marketplace_tf import SKUDoesNotMatch, MarketplaceTF
