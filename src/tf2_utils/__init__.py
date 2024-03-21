@@ -39,4 +39,9 @@ from .prices_tf import (
 )
 from .inventory import Inventory, map_inventory
 from .currency import CurrencyExchange
-from .marketplace_tf import SKUDoesNotMatch, MarketplaceTF
+from .marketplace_tf import (
+    MarketplaceTFException,
+    SKUDoesNotMatch,
+    NoAPIKey,
+    MarketplaceTF,
+)

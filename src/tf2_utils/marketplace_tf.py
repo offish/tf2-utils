@@ -1,17 +1,83 @@
 from .schema import SchemaItemsUtils
 from .sku import sku_to_quality_name, sku_is_craftable
 
+import time
+
 import requests
 
 
-class SKUDoesNotMatch(Exception):
+class MarketplaceTFException(Exception):
     pass
 
 
+class SKUDoesNotMatch(MarketplaceTFException):
+    pass
+
+
+class NoAPIKey(MarketplaceTFException):
+    pass
+
+
+def api_key_required(func):
+    def wrapper(self, *args, **kwargs):
+        if self.api_key == "":
+            raise NoAPIKey("No API key provided")
+
+        return func(self, *args, **kwargs)
+
+    return wrapper
+
+
 class MarketplaceTF:
-    def __init__(self):
+    def __init__(self, api_key: str = ""):
+        self.api_key = api_key
         self.schema = SchemaItemsUtils()
         self.data = {}
+
+    def _get_request(self, endpoint: str, params: dict = {}):
+        url = "https://marketplace.tf/api" + endpoint
+
+        if self.api_key:
+            params["key"] = self.api_key
+
+        response = requests.get(url, params=params)
+        return response.json()
+
+    def get_endpoints(self) -> dict:
+        return self._get_request("/Meta/GetEndpoints/v1")
+
+    @api_key_required
+    def get_bots(self) -> dict:
+        return self._get_request("/Bots/GetBots/v2")
+
+    @api_key_required
+    def get_bans(self, steam_id: str) -> dict:
+        return self._get_request("/Bans/GetUserBan/v2", {"steamid": steam_id})
+
+    def get_is_banned(self, steam_id: str) -> bool:
+        return self.get_bans(steam_id)["result"][0]["banned"]
+
+    def get_name(self, steam_id: str) -> str:
+        return self.get_bans(steam_id)["result"][0]["name"]
+
+    def get_is_seller(self, steam_id: str) -> bool:
+        return self.get_bans(steam_id)["result"][0]["seller"]
+
+    def get_seller_id(self, steam_id: str) -> int:
+        return self.get_bans(steam_id)["result"][0]["id"]
+
+    @api_key_required
+    def get_dashboard_items(self) -> dict:
+        return self._get_request("/Seller/GetDashboardItems/v2")
+
+    @api_key_required
+    def get_sales(self, number: int = 100, start_before: float = 0.0) -> dict:
+        if start_before == 0.0:
+            start_before = time.time()
+
+        return self._get_request(
+            "/Seller/GetSales/v2", {"num": number, "start_before": start_before}
+        )
 
     @staticmethod
     def _format_url(item_name: str, quality: str, craftable: bool) -> str:
@@ -104,5 +170,3 @@ class MarketplaceTF:
 
     def fetch_stock(self, sku: str) -> int:
         return self.fetch_item_data(sku).get("num_for_sale", 0)
-
-    # {"prices":{"mp":{"sku":"357;6;kt-2","lowest_price":"$1.85","num_for_sale":5}}}

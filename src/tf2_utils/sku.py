@@ -74,11 +74,12 @@ def get_properties(sku: str) -> list[str]:
 
 
 def get_property(sku: str, index: int) -> str:
-    return get_sku_properties(sku)[index]
+    return get_properties(sku)[index]
 
 
 def get_property_by_key(sku: str, key: str) -> str:
     for p in get_properties(sku):
+        # TODO: this needs to be fixed
         # so n{} does not match with strange etc.
         if f";{key}" in f";{p}":
             return p
@@ -102,12 +103,12 @@ def sku_to_color(sku: str) -> str:
     return COLORS[str(sku_to_quality(sku))]
 
 
-def sku_is_craftable(sku: str) -> bool:
+def sku_is_uncraftable(sku: str) -> bool:
     return ";uncraftable" in sku
 
 
-def sku_is_uncraftable(sku: str) -> bool:
-    return not sku_is_craftable(sku)
+def sku_is_craftable(sku: str) -> bool:
+    return not sku_is_uncraftable(sku)
 
 
 def strange_in_sku(sku: str) -> bool:

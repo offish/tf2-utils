@@ -12,6 +12,8 @@ from src.tf2_utils import (
     get_metal,
 )
 
+# TODO:add tests for the rest of the functions
+
 from unittest import TestCase
 
 file_path = "./tests/json/{}.json"
@@ -74,7 +76,7 @@ class TestUtils(TestCase):
 
         self.assertEqual(734, sku_to_defindex(sku))
         self.assertEqual(6, sku_to_quality(sku))
-        self.assertEqual(True, sku_is_uncraftable(sku))
+        self.assertTrue(sku_is_uncraftable(sku))
 
     def test_is_sku(self):
         self.assertTrue(is_sku("734;6;uncraftable"))
