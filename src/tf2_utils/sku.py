@@ -3,6 +3,30 @@ from .item import Item
 from tf2_data import EFFECTS, COLORS, QUALITIES
 from tf2_sku import to_sku
 
+import re
+
+
+__all__ = [
+    "get_sku_properties",
+    "is_sku",
+    "is_pure",
+    "is_metal",
+    "get_metal",
+    "get_properties",
+    "get_property",
+    "get_property_by_key",
+    "sku_to_defindex",
+    "sku_to_quality",
+    "sku_to_quality_name",
+    "sku_to_color",
+    "sku_is_uncraftable",
+    "sku_is_craftable",
+    "strange_in_sku",
+    "get_sku_killstreak",
+    "get_sku_effect",
+    "get_sku",
+]
+
 
 def get_sku_properties(item: Item | dict) -> dict:
     if isinstance(item, dict):
@@ -79,10 +103,10 @@ def get_property(sku: str, index: int) -> str:
 
 def get_property_by_key(sku: str, key: str) -> str:
     for p in get_properties(sku):
-        # TODO: this needs to be fixed
-        # so n{} does not match with strange etc.
-        if f";{key}" in f";{p}":
-            return p
+        match = re.search(key + r"(\d+)", p)
+
+        if match:
+            return match.group(1)
 
     return ""
 

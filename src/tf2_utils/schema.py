@@ -157,18 +157,28 @@ class SchemaItemsUtils(SchemaItems):
 
         if effect != -1:
             effect = EFFECTS[str(effect)] + " "
+        else:
+            effect = ""
 
         if killstreak != -1:
             killstreak = KILLSTREAKS[str(killstreak)] + " "
+        else:
+            killstreak = ""
 
         if strange:
             strange = "Strange "
+        else:
+            strange = ""
 
         if sku_is_uncraftable(sku):
             if use_uncraftable:
                 craftable = "Uncraftable "
             else:
                 craftable = "Non-Craftable "
+
+        festive = ""
+        festivized = ""
+        wear = ""
 
         # TODO: add killstreaks and other properties (strange unusual etc.)
         # festive

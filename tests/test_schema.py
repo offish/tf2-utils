@@ -67,9 +67,17 @@ class TestUtils(TestCase):
         self.assertEqual("Reclaimed Metal", schema_items.defindex_to_name(5001))
         self.assertEqual("Refined Metal", schema_items.defindex_to_name(5002))
 
+    def test_sku_to_base_name_tod(self):
+        name = schema_items.sku_to_base_name("725;6;uncraftable")
+        self.assertEqual("Tour of Duty Ticket", name)
+
     def test_sku_to_name_tod(self):
         name = schema_items.sku_to_name("725;6;uncraftable")
-        self.assertEqual("Tour of Duty Ticket", name)
+        self.assertEqual("Uncraftable Tour of Duty Ticket", name)
+
+    def test_sku_to_non_craftable_name(self):
+        name = schema_items.sku_to_name("725;6;uncraftable", use_uncraftable=False)
+        self.assertEqual("Non-Craftable Tour of Duty Ticket", name)
 
     def test_sku_to_name_key(self):
         name = schema_items.sku_to_name("5021;6")
