@@ -54,6 +54,10 @@ provider = Inventory("steamsupply", "9st947vs0qmgfpeqde1gj92l0oqmhysm")
 # using steam as inventory provider
 provider = Inventory() # or Inventory("steamcommunity")
 
+# using a custom api as inventory provider
+# requests will be sent to {url}/inventory/{steam_id}/{app_id}/{context_id}?api_key=apikey
+provider = Inventory("http://localhost:8000", "9st947vs0qmgfpeqde1gj92l0oqmhysm")
+
 # get an inventory
 inventory = provider.fetch("76561198253325712")
 ```
