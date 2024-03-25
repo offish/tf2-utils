@@ -1,6 +1,7 @@
 from .providers.steamcommunity import SteamCommunity
 from .providers.steamsupply import SteamSupply
 from .providers.steamapis import SteamApis
+from .providers.custom import Custom
 from .sku import get_sku
 
 import requests
@@ -43,6 +44,11 @@ class Inventory:
 
         if provider_name == "steamcommunity":
             # already set
+            return
+
+        # if provider_name is a url, assign it as a custom provider address
+        if provider_name.lower().startswith("http"):
+            self.provider = Custom(api_key, provider_name.lower())
             return
 
         # loop through providers create object
