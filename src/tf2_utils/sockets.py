@@ -1,6 +1,7 @@
 from .prices_tf import PricesTF
 
 import json
+from typing import Callable, Any
 
 from websockets.sync.client import ClientConnection, connect
 
@@ -10,7 +11,7 @@ class BackpackTFSocket:
 
     def __init__(
         self,
-        callback,
+        callback: Callable[[dict | list[dict]], None],
         solo_entries: bool = True,
         headers: dict = {"batch-test": True},
         max_size: int | None = None,
@@ -58,7 +59,7 @@ class PricesTFSocket:
 
     def __init__(
         self,
-        callback,
+        callback: Callable[[dict], Any],
         settings: dict = {},
     ) -> None:
         """

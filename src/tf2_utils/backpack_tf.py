@@ -1,14 +1,17 @@
 import requests
 
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, field
+
+from .schema import SchemaItemsUtils
+from .sku import sku_to_quality, sku_is_craftable
+from . import __title__
 
 
 __all__ = [
     "Currencies",
     "Enity",
-    "ItemResolvable",
+    # "ItemResolvable",
     "ItemDocument",
-    "ListingResolvable",
     "Listing",
     "BackpackTF",
 ]
@@ -22,55 +25,58 @@ class Currencies:
 
 @dataclass
 class Enity:
-    name: str
-    id: int
-    color: str
-
-
-@dataclass
-class ItemResolvable:
-    item: str
-    quality: str | int
-    tradable: bool
-    craftable: str
-    priceindex: str
+    name: str = ""
+    id: int = 0
+    color: str = ""
 
 
 @dataclass
 class ItemDocument:
+    appid: int
     baseName: str
-    name: str
+    defindex: int
+    id: str
     imageUrl: str
-    quantity: int
+    marketName: str
+    name: str
+    # origin:None
+    originalId: str
+    price: dict
     quality: Enity
-    rarity: Enity
-    paint: Enity
-    particle: Enity
-    elevatedQuality: Enity
+    summary: str
+    # class:list
+    slot: str
+    tradable: bool
+    craftable: bool
 
 
 @dataclass
-class ListingResolvable:
-    id: int  # asset_id if this is set, its a sell order
-    item: dict
-    details: str
-    currencies: Currencies
+class ItemResolvable:
+    baseName: str
+    craftable: bool
+    quality: Enity
+    tradable: bool = True
 
 
 @dataclass
 class Listing:
     id: str
-    appid: int
-    bumpedAt: str
-    listedAt: str
-    details: str
-    intent: str
     steamid: str
+    appid: int
     currencies: Currencies
-    promoted: bool
+    value: dict
     tradeOffersPreferred: bool
+    buyoutOnly: bool
+    details: str
+    listedAt: int
+    bumpedAt: int
+    intent: str
     count: int
+    status: str
+    source: str
     item: ItemDocument
+    user: dict
+    userAgent: dict = field(default_factory=dict)
 
 
 class BackpackTFException(Exception):
@@ -82,38 +88,24 @@ class NeedsAPIKey(BackpackTFException):
 
 
 class BackpackTF:
-    URL = "https://backpack.tf/api"
+    URL = "https://api.backpack.tf/api"
 
-    def __init__(self, api_key: str) -> None:
+    def __init__(
+        self, token: str, api_key: str = "", user_agent="listed with <3"
+    ) -> None:
+        self.token = token
         self.api_key = api_key
+        self.user_agent = user_agent
         self.user_token = None
+        self.schema = SchemaItemsUtils()
 
-    def _get_request(self, endpoint: str, params: dict = {}) -> dict:
-        if self.api_key:
-            params["apiKey"] = self.api_key
+        self.__headers = {"User-Agent": f"{__title__} | {self.user_agent}"}
 
-        response = requests.get(self.URL + endpoint, params=params)
-        return response.json()
-
-    def _post_request(self, endpoint: str, json: dict = {}) -> dict:
-        if self.api_key:
-            json["apiKey"] = self.api_key
-
-        response = requests.post(self.URL + endpoint, json=json)
-        return response.json()
-
-    def _delete_request(self, endpoint: str, params: dict = {}) -> dict:
-        if self.api_key:
-            params["apiKey"] = self.api_key
-
-        response = requests.delete(self.URL + endpoint, params=params)
-        return response.json()
-
-    def _patch_request(self, endpoint: str, params: dict = {}) -> dict:
-        if self.api_key:
-            params["apiKey"] = self.api_key
-
-        response = requests.patch(self.URL + endpoint, params=params)
+    def request(self, method: str, endpoint: str, params: dict = {}, **kwargs) -> dict:
+        params["token"] = self.token
+        response = requests.request(
+            method, self.URL + endpoint, params=params, headers=self.__headers, **kwargs
+        )
         return response.json()
 
     def get_listings(self, skip: int = 0, limit: int = 100) -> dict:
@@ -121,24 +113,35 @@ class BackpackTF:
             "/v2/classifieds/listings", {"skip": skip, "limit": limit}
         )
 
-    def create_listing(self, listing: ListingResolvable) -> Listing:
-        return self._post_request("/v2/classifieds/listings", asdict(listing))
+    def _construct_listing_item(self, sku: str) -> dict:
+        return {
+            "baseName": self.schema.sku_to_base_name(sku),
+            "craftable": sku_is_craftable(sku),
+            "tradable": True,
+            "quality": {"id": sku_to_quality(sku)},
+        }
 
-    def make_listing(
-        self, id: int, item: dict, details: str, currencies: dict
+    def _construct_listing(
+        self, sku: str, intent: str, currencies: dict, details: str, asset_id: int = 0
+    ) -> dict:
+        listing = {
+            "item": self._construct_listing_item(sku),
+            "details": details,
+            "currencies": Currencies(**currencies).__dict__,
+        }
+
+        if intent == "sell":
+            listing["id"] = asset_id
+
+        return listing
+
+    def create_listing(
+        self, sku: str, intent: str, currencies: dict, details: str, asset_id: int = 0
     ) -> Listing:
-        listing = ListingResolvable(id, item, details, Currencies(**currencies))
-        return self.create_listing(listing)
+        listing = self._construct_listing(sku, intent, currencies, details, asset_id)
+        response = self.request("POST", "/v2/classifieds/listings", json=listing)
 
+        return Listing(**response)
 
-if __name__ == "__main__":
-    # BackpackTF.create_listing(ListingResolvable(1, 1, 1, 1, 1))
-
-    # listin = ListingResolvable("1", {}, "my details", Currencies(1, 1.5))
-    # listin = ListingResolvable(
-    #     "1", {}, "my details", Currencies(**{"keys": 1, "metal": 1.5})
-    # )
-    listin = ListingResolvable("1", {}, "my details", Currencies(**{"keys": 2}))
-    print(asdict(listin))
-    # curren = Currencies(1, 1.5)
-    # print(curren.__dict__)
+    def register_user_agent(self) -> dict:
+        return self.request("POST", "/agent/pulse")

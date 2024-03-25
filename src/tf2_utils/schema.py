@@ -26,6 +26,9 @@ class SchemaItemsUtils(SchemaItems):
 
         return self.defindex_names.get(str(defindex), "")
 
+    def defindex_to_full_name(self, defindex: int) -> str:
+        return self.defindex_full_names.get(str(defindex), "")
+
     def name_to_defindex(self, name: str) -> int:
         if name == "Random Craft Weapon":
             return -50
@@ -141,6 +144,10 @@ class SchemaItemsUtils(SchemaItems):
     def sku_to_base_name(self, sku: str) -> str:
         defindex = sku_to_defindex(sku)
         return self.defindex_to_name(defindex)
+
+    def sku_to_full_name(self, sku: str) -> str:
+        defindex = sku_to_defindex(sku)
+        return self.defindex_to_full_name(defindex)
 
     def sku_to_name(self, sku: str, use_uncraftable: bool = True) -> str:
         name = self.sku_to_base_name(sku)
