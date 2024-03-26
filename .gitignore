@@ -1,3 +1,5 @@
 .vscode
 __pycache__
 jsons
+config.py
+_build

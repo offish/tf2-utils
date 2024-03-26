@@ -42,18 +42,20 @@ class Inventory:
         if not api_key:
             return
 
+        provider_name = provider_name.lower()
+
         if provider_name == "steamcommunity":
             # already set
             return
 
         # if provider_name is a url, assign it as a custom provider address
-        if provider_name.lower().startswith("http"):
-            self.provider = Custom(api_key, provider_name.lower())
+        if provider_name.startswith("http"):
+            self.provider = Custom(api_key, provider_name)
             return
 
         # loop through providers create object
         for i in self.PROVIDERS:
-            if provider_name.lower() == i.__name__.lower():
+            if provider_name == i.__name__.lower():
                 # set the first found provider and then stop
                 self.provider = i(api_key)
                 break

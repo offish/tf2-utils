@@ -1,7 +1,31 @@
 from .item import Item
 
-from tf2_data import EFFECTS, COLORS
+from tf2_data import EFFECTS, COLORS, QUALITIES
 from tf2_sku import to_sku
+
+import re
+
+
+__all__ = [
+    "get_sku_properties",
+    "is_sku",
+    "is_pure",
+    "is_metal",
+    "get_metal",
+    "get_properties",
+    "get_property",
+    "get_property_by_key",
+    "sku_to_defindex",
+    "sku_to_quality",
+    "sku_to_quality_name",
+    "sku_to_color",
+    "sku_is_uncraftable",
+    "sku_is_craftable",
+    "strange_in_sku",
+    "get_sku_killstreak",
+    "get_sku_effect",
+    "get_sku",
+]
 
 
 def get_sku_properties(item: Item | dict) -> dict:
@@ -11,7 +35,6 @@ def get_sku_properties(item: Item | dict) -> dict:
     quality = item.get_quality_id()
     effect = item.get_effect()
 
-    # TODO: add rest
     sku_properties = {
         "defindex": item.get_defindex(),
         "quality": quality,
@@ -20,21 +43,14 @@ def get_sku_properties(item: Item | dict) -> dict:
         "wear": item.get_exterior_id(),
         "killstreak_tier": item.get_killstreak_id(),
         "festivized": item.is_festivized(),
-        #
-        # "effect": "u{}",
-        # "australium": "australium",
-        # "craftable": "uncraftable",
-        # "wear": "w{}",
-        # "skin": "pk{}",
-        # "strange": "strange",
-        # "killstreak_tier": "kt-{}",
-        # "target_defindex": "td-{}",
-        # "festivized": "festive",
-        # "craft_number": "n{}",
-        # "crate_number": "c{}",
-        # "output_defindex": "od-{}",
-        # "output_quality": "oq-{}",
     }
+    # TODO: add rest
+    # "skin": "pk{}",
+    # "target_defindex": "td-{}",
+    # "craft_number": "n{}",
+    # "crate_number": "c{}",
+    # "output_defindex": "od-{}",
+    # "output_quality": "oq-{}",
 
     if effect:
         sku_properties["effect"] = EFFECTS[effect]
@@ -75,10 +91,24 @@ def get_metal(sku: str) -> int:
             return 1
 
 
-def get_property(sku: str, index: int) -> str:
+def get_properties(sku: str) -> list[str]:
     assert is_sku(sku), f"sku {sku} is not valid"
 
-    return sku.split(";")[index]
+    return sku.split(";")
+
+
+def get_property(sku: str, index: int) -> str:
+    return get_properties(sku)[index]
+
+
+def get_property_by_key(sku: str, key: str) -> str:
+    for p in get_properties(sku):
+        match = re.search(key + r"(\d+)", p)
+
+        if match:
+            return match.group(1)
+
+    return ""
 
 
 def sku_to_defindex(sku: str) -> int:
@@ -89,12 +119,42 @@ def sku_to_quality(sku: str) -> int:
     return int(get_property(sku, 1))
 
 
+def sku_to_quality_name(sku: str) -> str:
+    return QUALITIES[str(sku_to_quality(sku))]
+
+
 def sku_to_color(sku: str) -> str:
     return COLORS[str(sku_to_quality(sku))]
 
 
 def sku_is_uncraftable(sku: str) -> bool:
-    return sku.find(";uncraftable") != -1
+    return ";uncraftable" in sku
+
+
+def sku_is_craftable(sku: str) -> bool:
+    return not sku_is_uncraftable(sku)
+
+
+def strange_in_sku(sku: str) -> bool:
+    return ";strange" in sku
+
+
+def get_sku_killstreak(sku: str) -> int:
+    value = get_property_by_key(sku, "kt-")
+
+    if not value:
+        return -1
+
+    return int(value.replace("kt-", ""))
+
+
+def get_sku_effect(sku: str) -> int:
+    value = get_property_by_key(sku, "u")
+
+    if not value:
+        return -1
+
+    return int(value.replace("u", ""))
 
 
 def get_sku(item: Item | dict) -> str:
