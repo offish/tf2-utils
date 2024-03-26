@@ -1,33 +1,6 @@
 tf2-utils
 =========
-
-.. image:: https://img.shields.io/github/license/offish/tf2-utils.svg
-    :target: https://github.com/offish/tf2-utils/blob/master/LICENSE
-    :alt: License
-
-.. image:: https://img.shields.io/github/stars/offish/tf2-utils.svg
-    :target: https://github.com/offish/tf2-utils/stargazers
-    :alt: Stars
-
-.. image:: https://img.shields.io/github/issues/offish/tf2-utils.svg
-    :target: https://github.com/offish/tf2-utils/issues
-    :alt: Issues
-
-.. image:: https://img.shields.io/github/repo-size/offish/tf2-utils.svg
-    :target: https://github.com/offish/tf2-utils
-    :alt: Size
-
-.. image:: https://img.shields.io/discord/467040686982692865?color=7289da&label=Discord&logo=discord
-    :target: https://discord.gg/t8nHSvA
-    :alt: Discord
-
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/psf/black
-    :alt: Code style
-
-.. image:: https://img.shields.io/pypi/dm/tf2-utils
-    :target: https://pypi.org/project/tf2-utils/
-    :alt: Downloads
+|license| |stars| |issues| |repo_size| |discord| |code_style| |downloads|
 
 ``tf2-utils`` is a collection of tools and utilities for TF2 trading. 
 Use 3rd party inventory providers, SKUs formatting, interact with various APIs, websockets and more.
@@ -132,3 +105,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+.. |license| image:: https://img.shields.io/github/license/offish/tf2-utils.svg
+    :target: https://github.com/offish/tf2-utils/blob/master/LICENSE
+    :alt: License
+
+.. |stars| image:: https://img.shields.io/github/stars/offish/tf2-utils.svg
+    :target: https://github.com/offish/tf2-utils/stargazers
+    :alt: Stars
+
+.. |issues| image:: https://img.shields.io/github/issues/offish/tf2-utils.svg
+    :target: https://github.com/offish/tf2-utils/issues
+    :alt: Issues
+
+.. |repo_size| image:: https://img.shields.io/github/repo-size/offish/tf2-utils.svg
+    :target: https://github.com/offish/tf2-utils
+    :alt: Size
+
+.. |discord| image:: https://img.shields.io/discord/467040686982692865?color=7289da&label=Discord&logo=discord
+    :target: https://discord.gg/t8nHSvA
+    :alt: Discord
+
+.. |code_style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+    :alt: Code style
+
+.. |downloads| image:: https://img.shields.io/pypi/dm/tf2-utils
+    :target: https://pypi.org/project/tf2-utils/
+    :alt: Downloads
