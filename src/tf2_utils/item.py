@@ -212,7 +212,8 @@ class Item:
         return self.is_unusual() and self.is_cosmetic()
 
     def is_australium(self) -> bool:
-        return "Australium" in self.name
+        # strange eliminates australium paint
+        return "Australium" in self.name and self.is_strange()
 
     def is_pure(self) -> bool:
         return (
