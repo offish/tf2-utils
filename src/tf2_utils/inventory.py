@@ -1,10 +1,10 @@
+import requests
+
+from .providers.custom import Custom
+from .providers.steamapis import SteamApis
 from .providers.steamcommunity import SteamCommunity
 from .providers.steamsupply import SteamSupply
-from .providers.steamapis import SteamApis
-from .providers.custom import Custom
 from .sku import get_sku
-
-import requests
 
 
 def map_inventory(inventory: dict, add_skus: bool = False) -> list[dict]:

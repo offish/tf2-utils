@@ -1,8 +1,8 @@
-import requests
 import time
 
-from .utils import to_refined
+import requests
 
+from .utils import to_refined
 
 __all__ = [
     "PricesTF",

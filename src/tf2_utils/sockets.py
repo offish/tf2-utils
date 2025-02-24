@@ -1,9 +1,9 @@
-from .prices_tf import PricesTF
-
-from typing import Callable
 import json
+from typing import Callable
 
 from websockets.sync.client import ClientConnection, connect
+
+from .prices_tf import PricesTF
 
 
 class BackpackTFSocket:

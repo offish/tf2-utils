@@ -1,7 +1,7 @@
 # flake8: noqa
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "2.2.0"
+__version__ = "2.3.0"
 __license__ = "MIT"
 
 from .sku import *

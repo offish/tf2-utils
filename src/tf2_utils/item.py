@@ -1,4 +1,4 @@
-from tf2_data import QUALITIES, KILLSTREAKS, EXTERIORS
+from tf2_data import EXTERIORS, KILLSTREAKS, QUALITIES
 
 
 class Item:

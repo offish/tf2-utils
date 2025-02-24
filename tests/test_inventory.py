@@ -1,14 +1,12 @@
-from src.tf2_utils.utils import read_json_file
 from src.tf2_utils import map_inventory
-
-from unittest import TestCase
+from src.tf2_utils.utils import read_json_file
 
 INVENTORY = read_json_file("./tests/json/bot_inventory.json")
+inventory = map_inventory(INVENTORY, True)
 
 
-class TestInventory(TestCase):
-    def setUp(cls) -> None:
-        cls.inventory = map_inventory(INVENTORY, True)
+def test_inventory() -> None:
+    assert 500 == len(inventory)
 
-    def test_inventory(self):
-        self.assertEqual(500, len(self.inventory))
+    for item in inventory:
+        assert "sku" in item

@@ -1,12 +1,11 @@
-import requests
-
 from dataclasses import dataclass, field
 from hashlib import md5
 
-from .schema import SchemaItemsUtils
-from .sku import sku_to_quality, sku_is_craftable
-from . import __title__
+import requests
 
+from . import __title__
+from .schema import SchemaItemsUtils
+from .sku import sku_is_craftable, sku_to_quality
 
 __all__ = [
     "Currencies",

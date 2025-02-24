@@ -1,10 +1,9 @@
-from .item import Item
-
-from tf2_data import EFFECTS, COLORS, QUALITIES
-from tf2_sku import to_sku
-
 import re
 
+from tf2_data import COLORS, EFFECTS, QUALITIES
+from tf2_sku import to_sku
+
+from .item import Item
 
 __all__ = [
     "get_sku_properties",
