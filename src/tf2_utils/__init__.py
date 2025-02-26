@@ -9,9 +9,8 @@ from .item import Item
 from .offer import Offer
 from .utils import *
 from .schema import SchemaItemsUtils
-from .sockets import BackpackTFSocket, PricesTFSocket
+from .sockets import PricesTFWebsocket
 from .prices_tf import *
 from .inventory import Inventory, map_inventory
 from .currency import CurrencyExchange
 from .marketplace_tf import *
-from .backpack_tf import *

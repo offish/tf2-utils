@@ -1,12 +1,6 @@
 Sockets
 =======
 
-BackpackTF Example
-------------------
-
-.. literalinclude:: ../usage/backpack_tf_socket.py
-    :language: python3
-
 PricesTF Example
 ----------------
 

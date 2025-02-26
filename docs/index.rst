@@ -7,7 +7,6 @@ Table of Contents
    :maxdepth: 2
 
 
-   pages/backpack_tf
    pages/currency
    pages/inventory
    pages/item
