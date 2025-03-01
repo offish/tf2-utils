@@ -33,21 +33,17 @@ class CurrencyExchange:
         self.our_combination = []  # list of metal names
 
     def get_pure_value(self, name: str) -> int:
-        match name:
-            # refined
-            case "Mann Co. Supply Crate Key":
-                return self.key_price
+        if name == "Mann Co. Supply Crate Key":
+            return self.key_price
 
-            case "Refined Metal":
-                return 9
+        if name == "Refined Metal":
+            return 9
 
-            # reclaimed
-            case "Reclaimed Metal":
-                return 3
+        if name == "Reclaimed Metal":
+            return 3
 
-            # scrap
-            case "Scrap Metal":
-                return 1
+        if name == "Scrap Metal":
+            return 1
 
         raise ValueError(f"{name} is not pure")
 

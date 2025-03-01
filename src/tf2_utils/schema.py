@@ -1,4 +1,4 @@
-from tf2_data import EFFECTS, KILLSTREAKS, SchemaItems
+from tf2_data import EFFECTS, KILLSTREAKS, QUALITIES, SchemaItems
 from tf2_sku import to_sku
 
 from .sku import (
@@ -51,17 +51,13 @@ class SchemaItemsUtils(SchemaItems):
 
         last_index = len(defindexes) - 1
 
-        # could be first or last defindex
-        match name:
-            case "Mann Co. Supply Crate Key":
-                return defindexes[0]
+        if name == "Mann Co. Supply Crate Key":
+            return defindexes[0]
 
-            case "Name Tag":
-                return defindexes[last_index]
+        if name == "Name Tag":
+            return defindexes[last_index]
 
-            case _:
-                # use first defindex as default
-                return defindexes[0]
+        return defindexes[0]
 
     def defindex_to_image_url(self, defindex: int, large: bool = False) -> str:
         # random craft weapon => shotgun
@@ -96,21 +92,8 @@ class SchemaItemsUtils(SchemaItems):
             if part in ["Uncraftable", "Non-Craftable"]:
                 craftable = False
 
-            match part:
-                case "Genuine":
-                    quality = 1
-
-                case "Vintage":
-                    quality = 3
-
-                case "Strange":
-                    quality = 11
-
-                case "Haunted":
-                    quality = 13
-
-                case "Collector's":
-                    quality = 14
+            if part in QUALITIES:
+                quality = QUALITIES[part]
 
         defindex_name = name
 

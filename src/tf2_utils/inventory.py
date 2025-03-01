@@ -1,5 +1,6 @@
 import requests
 
+from .exceptions import InvalidInventory
 from .providers.custom import Custom
 from .providers.steamapis import SteamApis
 from .providers.steamcommunity import SteamCommunity
@@ -11,6 +12,9 @@ def map_inventory(inventory: dict, add_skus: bool = False) -> list[dict]:
     """Matches classids and instanceids, merges these and
     adds `sku` to each item entry if `add_skus` is enabled"""
     mapped_inventory = []
+
+    if "assets" not in inventory:
+        raise InvalidInventory("No assets found in inventory")
 
     for asset in inventory["assets"]:
         for desc in inventory["descriptions"]:

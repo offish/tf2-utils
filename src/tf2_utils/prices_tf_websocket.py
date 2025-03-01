@@ -7,8 +7,6 @@ from .prices_tf import PricesTF
 
 
 class PricesTFWebsocket:
-    URL = "wss://ws.prices.tf"
-
     def __init__(
         self,
         callback: Callable[[dict], None],
@@ -19,39 +17,38 @@ class PricesTFWebsocket:
             callback: Function pointer where you want the data to end up
             settings: Additional websocket settings as a dict to be unpacked
         """
-        self.callback = callback
-        self.prices_tf = PricesTF()
-        self.settings = settings
+        self._callback = callback
+        self._prices_tf = PricesTF()
+        self._settings = settings
 
-    def process_message(self, ws: ClientConnection, message: str) -> None:
+    def _process_message(self, ws: ClientConnection, message: str) -> None:
         data = json.loads(message)
+
+        if data.get("type") != "AUTH_REQUIRED":
+            self._callback(data)
+            return
 
         # our auths are only valid for 10 minutes at a time
         # pricestf requests us to authenticate again
-        if data.get("type") == "AUTH_REQUIRED":
-            self.prices_tf.request_access_token()
-            ws.send(
-                json.dumps(
-                    {
-                        "type": "AUTH",
-                        "data": {"accessToken": self.prices_tf.access_token},
-                    }
-                )
-            )
-            return
+        self._prices_tf.request_access_token()
 
-        self.callback(data)
+        payload = {
+            "type": "AUTH",
+            "data": {"accessToken": self._prices_tf.access_token},
+        }
+
+        ws.send(json.dumps(payload))
 
     def listen(self) -> None:
         """Listen for messages from PricesTF."""
-        self.prices_tf.request_access_token()
-        headers = self.prices_tf.get_headers()
+        self._prices_tf.request_access_token()
+        headers = self._prices_tf.headers
 
         with connect(
-            self.URL,
+            "wss://ws.prices.tf",
             additional_headers=headers,
-            **self.settings,
+            **self._settings,
         ) as websocket:
             while True:
                 message = websocket.recv()
-                self.process_message(websocket, message)
+                self._process_message(websocket, message)

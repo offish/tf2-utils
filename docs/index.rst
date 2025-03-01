@@ -13,9 +13,9 @@ Table of Contents
    pages/marketplace_tf
    pages/offer
    pages/prices_tf
+   pages/prices_tf_websocket
    pages/schema
    pages/sku
-   pages/sockets
    pages/utils
 
 

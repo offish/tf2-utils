@@ -43,7 +43,6 @@ def get_sku_properties(item: Item | dict) -> dict:
         "killstreak_tier": item.get_killstreak_id(),
         "festivized": item.is_festivized(),
     }
-    # TODO: add rest
     # "skin": "pk{}",
     # "target_defindex": "td-{}",
     # "craft_number": "n{}",
@@ -76,18 +75,14 @@ def is_metal(sku: str) -> bool:
 def get_metal(sku: str) -> int:
     assert is_metal(sku), f"sku {sku} is not metal"
 
-    match sku:
-        # refined
-        case "5002;6":
-            return 9
+    if sku == "5002;6":
+        return 9
 
-        # reclaimed
-        case "5001;6":
-            return 3
+    if sku == "5001;6":
+        return 3
 
-        # scrap
-        case "5000;6":
-            return 1
+    if sku == "5000;6":
+        return 1
 
 
 def get_properties(sku: str) -> list[str]:
@@ -100,14 +95,12 @@ def get_property(sku: str, index: int) -> str:
     return get_properties(sku)[index]
 
 
-def get_property_by_key(sku: str, key: str) -> str:
+def get_property_by_key(sku: str, key: str) -> str | None:
     for p in get_properties(sku):
         match = re.search(key + r"(\d+)", p)
 
         if match:
             return match.group(1)
-
-    return ""
 
 
 def sku_to_defindex(sku: str) -> int:
@@ -141,7 +134,7 @@ def strange_in_sku(sku: str) -> bool:
 def get_sku_killstreak(sku: str) -> int:
     value = get_property_by_key(sku, "kt-")
 
-    if not value:
+    if value is None:
         return -1
 
     return int(value.replace("kt-", ""))
@@ -150,7 +143,7 @@ def get_sku_killstreak(sku: str) -> int:
 def get_sku_effect(sku: str) -> int:
     value = get_property_by_key(sku, "u")
 
-    if not value:
+    if value is None:
         return -1
 
     return int(value.replace("u", ""))

@@ -3,9 +3,9 @@ from src.tf2_utils import MarketplaceTF
 mplc = None
 
 
-def test_initiate_marketplace_tf(marketplace_tf_api_key: str) -> None:
+def test_init() -> None:
     global mplc
-    mplc = MarketplaceTF(marketplace_tf_api_key)
+    mplc = MarketplaceTF()
 
 
 def test_key_data() -> None:
@@ -19,41 +19,51 @@ def test_key_data() -> None:
     assert mplc.get_lowest_price() == mplc.get_price()
 
 
-# def test_no_api_key(self):
-#     self.mplc.api_key = ""
-#     endpoints = self.mplc.get_endpoints()
+# def test_no_api_key(marketplace_tf_api_key: str) -> None:
+#     global mplc
+#     mplc = MarketplaceTF()
+#     endpoints = mplc.get_endpoints()
 
-#     self.assertTrue("endpoints" in endpoints)
-#     self.assertRaises(NoAPIKey, self.mplc.get_bots)
-#     self.assertRaises(NoAPIKey, self.mplc.get_is_banned("76561198253325712"))
-#     self.mplc.api_key = MARKETPLACE_TF_API_KEY
+#     assert "endpoints" in endpoints
 
-# def test_get_bots(self):
-#     self.assertTrue(self.mplc.get_bots()["success"])
+#     with pytest.raises(NoAPIKey):
+#         mplc.get_bots()
 
-# def test_get_bans(self):
-#     self.assertEqual("confern", self.mplc.get_name("76561198253325712"))
-#     self.assertTrue(self.mplc.get_is_seller("76561198253325712"))
-#     self.assertFalse(self.mplc.get_is_banned("76561198253325712"))
-#     self.assertEqual(self.mplc.get_seller_id("76561198253325712"), 195002)
+#     with pytest.raises(NoAPIKey):
+#         mplc.get_is_banned("76561198253325712")
 
-#     self.assertTrue(self.mplc.get_is_banned("76561198115857578"))
-#     self.assertFalse(self.mplc.get_is_seller("76561198115857578"))
+#     mplc._api_key = marketplace_tf_api_key
 
-# def test_get_dashboard_items(self):
-#     dashboard = self.mplc.get_dashboard_items()
 
-#     self.assertTrue("items" in dashboard)
-#     self.assertTrue(dashboard["success"])
+# def test_get_bots() -> None:
+#     assert mplc.get_bots()["success"]
 
-# def test_get_sales(self):
-#     sales = self.mplc.get_sales()
 
-#     self.assertTrue("sales" in sales)
-#     self.assertTrue(sales["success"])
+# def test_get_bans() -> None:
+#     assert "confern" == mplc.get_name("76561198253325712")
+#     assert mplc.get_is_seller("76561198253325712")
+#     assert not mplc.get_is_banned("76561198253325712")
+#     assert mplc.get_seller_id("76561198253325712") == 195002
 
-#     sales = self.mplc.get_sales(number=1)
-#     self.assertTrue(len(sales["sales"]) == 1)
+#     assert mplc.get_is_banned("76561198115857578")
+#     assert not mplc.get_is_seller("76561198115857578")
 
-#     sales = self.mplc.get_sales(start_before=0)
-#     self.assertEqual(sales, {})
+
+# def test_get_dashboard_items() -> None:
+#     dashboard = mplc.get_dashboard_items()
+
+#     assert "items" in dashboard
+#     assert dashboard["success"]
+
+
+# def test_get_sales() -> None:
+#     sales = mplc.get_sales()
+
+#     assert "sales" in sales
+#     assert sales["success"]
+
+#     sales = mplc.get_sales(number=1)
+#     assert len(sales["sales"]) == 1
+
+#     sales = mplc.get_sales(start_before=0)
+#     assert sales == {}

@@ -4,13 +4,14 @@ tf2-utils
 
 ``tf2-utils`` is a collection of tools and utilities for TF2 trading. 
 Use 3rd party inventory providers, SKUs formatting, interact with various APIs, websockets and more.
-``tf2-utils`` is built on top of `tf2-sku <https://github.com/offish/tf2-sku>`_ and `tf2-data <https://github.com/offish/tf2-data>`_.
+``tf2-utils`` is built on top of `tf2-sku <https://github.com/offish/tf2-sku>`_, `tf2-data <https://github.com/offish/tf2-data>`_ 
+and `backpack-tf <https://github.com/offish/backpack-tf>`_.
 ``tf2-utils`` is a key dependency of `tf2-express <https://github.com/offish/tf2-express>`_.
 
 Donate
 ------
 
-- BTC: ``bc1qntlxs7v76j0zpgkwm62f6z0spsvyezhcmsp0z2``
+- BTC: ``bc1q9gmh5x2g9s0pw3282a5ypr6ms8qvuxh3fd7afh``
 - `Steam Trade Offer <https://steamcommunity.com/tradeoffer/new/?partner=293059984&token=0-l_idZR>`_
 
 You can reach me at `Steam <https://steamcommunity.com/id/confern>`_, 
@@ -54,9 +55,9 @@ Updating
 
 .. code-block:: bash
 
-    pip install --upgrade tf2-utils tf2-sku tf2-data
+    pip install --upgrade tf2-utils tf2-sku tf2-data bptf
     # or 
-    python -m pip install --upgrade tf2-utils tf2-sku tf2-data
+    python -m pip install --upgrade tf2-utils tf2-sku tf2-data bptf
 
 
 Development
@@ -67,7 +68,7 @@ Testing
 .. code-block:: bash
 
     # tf2-utils/
-    python -m unittest
+    pytest
 
 Documentation
 ~~~~~~~~~~~~~
@@ -85,7 +86,7 @@ License
 -------
 MIT License
 
-Copyright (c) 2019-2024 offish (`confern <https://steamcommunity.com/id/confern>`_)
+Copyright (c) 2019-2025 offish (`confern <https://steamcommunity.com/id/confern>`_)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

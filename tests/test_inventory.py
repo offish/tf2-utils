@@ -1,4 +1,6 @@
-from src.tf2_utils import map_inventory
+import pytest
+
+from src.tf2_utils import InvalidInventory, map_inventory
 from src.tf2_utils.utils import read_json_file
 
 INVENTORY = read_json_file("./tests/json/bot_inventory.json")
@@ -10,3 +12,8 @@ def test_inventory() -> None:
 
     for item in inventory:
         assert "sku" in item
+
+
+def test_raises_error() -> None:
+    with pytest.raises(InvalidInventory):
+        map_inventory({}, False)
