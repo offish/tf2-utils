@@ -8,8 +8,9 @@ from .item import Item
 __all__ = [
     "get_sku_properties",
     "is_sku",
-    "is_pure",
+    "is_key",
     "is_metal",
+    "is_pure",
     "get_metal",
     "get_properties",
     "get_property",
@@ -64,12 +65,16 @@ def is_sku(item: str) -> bool:
     return item.find(";") != -1
 
 
-def is_pure(sku: str) -> bool:
-    return sku in ["5000;6", "5001;6", "5002;6", "5021;6"]
+def is_key(sku: str) -> bool:
+    return sku == "5021;6"
 
 
 def is_metal(sku: str) -> bool:
     return sku in ["5000;6", "5001;6", "5002;6"]
+
+
+def is_pure(sku: str) -> bool:
+    return is_metal(sku) or is_key(sku)
 
 
 def get_metal(sku: str) -> int:
