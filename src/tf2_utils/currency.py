@@ -24,7 +24,7 @@ class CurrencyExchange:
         self.key_price = key_price
         self.item_is_not_pure = item_is_not_pure
 
-        self.__is_possible = False
+        self._is_possible = False
         self.their_scrap = 0
         self.our_scrap = 0
         self.their_overview = {}
@@ -33,21 +33,17 @@ class CurrencyExchange:
         self.our_combination = []  # list of metal names
 
     def get_pure_value(self, name: str) -> int:
-        match name:
-            # refined
-            case "Mann Co. Supply Crate Key":
-                return self.key_price
+        if name == "Mann Co. Supply Crate Key":
+            return self.key_price
 
-            case "Refined Metal":
-                return 9
+        if name == "Refined Metal":
+            return 9
 
-            # reclaimed
-            case "Reclaimed Metal":
-                return 3
+        if name == "Reclaimed Metal":
+            return 3
 
-            # scrap
-            case "Scrap Metal":
-                return 1
+        if name == "Scrap Metal":
+            return 1
 
         raise ValueError(f"{name} is not pure")
 
@@ -74,12 +70,8 @@ class CurrencyExchange:
 
         return scrap, metal
 
-    def is_possible(self) -> bool:
-        return self.__is_possible
-
-    def __overview_to_items(
-        self, combination: list[str], inventory: list[dict]
-    ) -> list[dict]:
+    @staticmethod
+    def _overview_to_items(combination: list[str], inventory: list[dict]) -> list[dict]:
         items = []
 
         for metal_name in combination:
@@ -97,12 +89,12 @@ class CurrencyExchange:
         return items
 
     def get_currencies(self) -> tuple[list[dict], list[dict]]:
-        assert self.__is_possible, "Currencies does not add up"
+        assert self._is_possible, "Currencies does not add up"
 
-        their_items = self.__overview_to_items(
+        their_items = self._overview_to_items(
             self.their_combination, self.their_inventory
         )
-        our_items = self.__overview_to_items(self.our_combination, self.our_inventory)
+        our_items = self._overview_to_items(self.our_combination, self.our_inventory)
 
         return their_items, our_items
 
@@ -125,7 +117,7 @@ class CurrencyExchange:
 
         return overview
 
-    def __pick_currencies(self, user: str) -> tuple[bool, list[str]]:
+    def _pick_currencies(self, user: str) -> tuple[bool, list[str]]:
         """ref, ref, scrap, rec"""
         overview = (
             self.their_overview.copy() if user == "them" else self.our_overview.copy()
@@ -166,7 +158,7 @@ class CurrencyExchange:
 
         return True, combination
 
-    def __does_add_up(self) -> bool:
+    def _adds_up(self) -> bool:
         their_value = 0
         our_value = 0
 
@@ -184,9 +176,9 @@ class CurrencyExchange:
 
         return their_value == our_value
 
-    def __set_combinations(self) -> bool:
-        success_our, our_combination = self.__pick_currencies("us")
-        success_their, their_combination = self.__pick_currencies("them")
+    def _set_combinations(self) -> bool:
+        success_our, our_combination = self._pick_currencies("us")
+        success_their, their_combination = self._pick_currencies("them")
 
         if not success_our or not success_their:
             return False
@@ -196,7 +188,7 @@ class CurrencyExchange:
 
         return True
 
-    def __has_enough(self) -> bool:
+    def _has_enough(self) -> bool:
         temp_price = self.scrap_price
 
         if self.item_is_not_pure:
@@ -214,11 +206,11 @@ class CurrencyExchange:
         self.their_overview = self.format_overview(their_pure)
         self.our_overview = self.format_overview(our_pure)
 
-        if not self.__has_enough():
+        if not self._has_enough():
             return
 
-        while self.__has_enough():
-            success = self.__set_combinations()
+        while self._has_enough():
+            success = self._set_combinations()
 
             if success:
                 break
@@ -227,8 +219,12 @@ class CurrencyExchange:
             # try again, do this till we have either user does not have enough anymore
             self.scrap_price += 1
 
-        if not self.__does_add_up():
+        if not self._adds_up():
             return
 
         # everything adds up and looks good
-        self.__is_possible = True
+        self._is_possible = True
+
+    @property
+    def is_possible(self) -> bool:
+        return self._is_possible

@@ -1,6 +1,6 @@
-from .utils import account_id_to_steam_id
-
 import enum
+
+from .utils import account_id_to_steam_id
 
 
 class TradeOfferState(enum.IntEnum):

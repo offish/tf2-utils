@@ -1,16 +1,16 @@
-from .item import Item
-
-from tf2_data import EFFECTS, COLORS, QUALITIES
-from tf2_sku import to_sku
-
 import re
 
+from tf2_data import COLORS, EFFECTS, QUALITIES
+from tf2_sku import to_sku
+
+from .item import Item
 
 __all__ = [
     "get_sku_properties",
     "is_sku",
-    "is_pure",
+    "is_key",
     "is_metal",
+    "is_pure",
     "get_metal",
     "get_properties",
     "get_property",
@@ -44,7 +44,6 @@ def get_sku_properties(item: Item | dict) -> dict:
         "killstreak_tier": item.get_killstreak_id(),
         "festivized": item.is_festivized(),
     }
-    # TODO: add rest
     # "skin": "pk{}",
     # "target_defindex": "td-{}",
     # "craft_number": "n{}",
@@ -66,29 +65,29 @@ def is_sku(item: str) -> bool:
     return item.find(";") != -1
 
 
-def is_pure(sku: str) -> bool:
-    return sku in ["5000;6", "5001;6", "5002;6", "5021;6"]
+def is_key(sku: str) -> bool:
+    return sku == "5021;6"
 
 
 def is_metal(sku: str) -> bool:
     return sku in ["5000;6", "5001;6", "5002;6"]
 
 
+def is_pure(sku: str) -> bool:
+    return is_metal(sku) or is_key(sku)
+
+
 def get_metal(sku: str) -> int:
     assert is_metal(sku), f"sku {sku} is not metal"
 
-    match sku:
-        # refined
-        case "5002;6":
-            return 9
+    if sku == "5002;6":
+        return 9
 
-        # reclaimed
-        case "5001;6":
-            return 3
+    if sku == "5001;6":
+        return 3
 
-        # scrap
-        case "5000;6":
-            return 1
+    if sku == "5000;6":
+        return 1
 
 
 def get_properties(sku: str) -> list[str]:
@@ -101,14 +100,12 @@ def get_property(sku: str, index: int) -> str:
     return get_properties(sku)[index]
 
 
-def get_property_by_key(sku: str, key: str) -> str:
+def get_property_by_key(sku: str, key: str) -> str | None:
     for p in get_properties(sku):
         match = re.search(key + r"(\d+)", p)
 
         if match:
             return match.group(1)
-
-    return ""
 
 
 def sku_to_defindex(sku: str) -> int:
@@ -142,7 +139,7 @@ def strange_in_sku(sku: str) -> bool:
 def get_sku_killstreak(sku: str) -> int:
     value = get_property_by_key(sku, "kt-")
 
-    if not value:
+    if value is None:
         return -1
 
     return int(value.replace("kt-", ""))
@@ -151,7 +148,7 @@ def get_sku_killstreak(sku: str) -> int:
 def get_sku_effect(sku: str) -> int:
     value = get_property_by_key(sku, "u")
 
-    if not value:
+    if value is None:
         return -1
 
     return int(value.replace("u", ""))

@@ -1,4 +1,4 @@
-from tf2_data import QUALITIES, KILLSTREAKS, EXTERIORS
+from tf2_data import EXTERIORS, KILLSTREAKS, QUALITIES
 
 
 class Item:
@@ -9,7 +9,7 @@ class Item:
         self.tags = item.get("tags", [])
 
     def is_tf2(self) -> bool:
-        return self.item["appid"] == 440
+        return int(self.item["appid"]) == 440
 
     def is_tradable(self) -> bool:
         return self.item.get("tradable", 1) == 1

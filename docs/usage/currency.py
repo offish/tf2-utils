@@ -1,6 +1,5 @@
 from tf2_utils import CurrencyExchange, Inventory, map_inventory
 
-
 inventory_provider = Inventory("steamcommunity")
 
 # Get our inventory of a user
@@ -26,7 +25,7 @@ currency = CurrencyExchange(
 
 currency.calculate()
 
-if not currency.is_possible():
+if not currency.is_possible:
     print("Trade is not possible")
     # either no combination worked, or someone did not have enough pure
 

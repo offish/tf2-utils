@@ -1,6 +1,6 @@
-import struct
-import math
 import json
+import math
+import struct
 
 __all__ = [
     "to_scrap",

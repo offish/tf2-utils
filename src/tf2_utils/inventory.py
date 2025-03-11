@@ -1,19 +1,28 @@
-from .providers.steamcommunity import SteamCommunity
-from .providers.steamsupply import SteamSupply
-from .providers.steamapis import SteamApis
-from .providers.custom import Custom
-from .sku import get_sku
-
 import requests
 
+from .exceptions import InvalidInventory
+from .providers.custom import Custom
+from .providers.steamapis import SteamApis
+from .providers.steamcommunity import SteamCommunity
+from .providers.steamsupply import SteamSupply
+from .sku import get_sku
 
-def map_inventory(inventory: dict, add_skus: bool = False) -> list[dict]:
+
+def map_inventory(
+    inventory: dict, add_skus: bool = False, skip_untradable: bool = False
+) -> list[dict]:
     """Matches classids and instanceids, merges these and
     adds `sku` to each item entry if `add_skus` is enabled"""
     mapped_inventory = []
 
+    if "assets" not in inventory:
+        raise InvalidInventory("No assets found in inventory")
+
     for asset in inventory["assets"]:
         for desc in inventory["descriptions"]:
+            if skip_untradable and not desc["tradable"]:
+                continue
+
             if (
                 asset["classid"] != desc["classid"]
                 or asset["instanceid"] != desc["instanceid"]

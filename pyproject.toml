@@ -16,7 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = ["tf2-sku", "tf2-data", "requests", "websocket-client"]
+dependencies = ["tf2-sku", "tf2-data", "bptf", "requests", "websocket-client"]
 dynamic = ["version"]
 
 [project.urls]

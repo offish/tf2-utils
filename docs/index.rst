@@ -7,16 +7,15 @@ Table of Contents
    :maxdepth: 2
 
 
-   pages/backpack_tf
    pages/currency
    pages/inventory
    pages/item
    pages/marketplace_tf
    pages/offer
    pages/prices_tf
+   pages/prices_tf_websocket
    pages/schema
    pages/sku
-   pages/sockets
    pages/utils
 
 

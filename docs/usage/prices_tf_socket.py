@@ -1,4 +1,4 @@
-from tf2_utils import PricesTFSocket
+from tf2_utils import PricesTFWebsocket
 
 
 def my_function(data: dict):
@@ -10,7 +10,7 @@ def my_function(data: dict):
     # etc. your logic goes here
 
 
-socket = PricesTFSocket(my_function)
+socket = PricesTFWebsocket(my_function)
 
 socket.listen()
 
