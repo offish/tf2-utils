@@ -1,6 +1,9 @@
-class Custom:
+from .provider import Provider
+
+
+class Custom(Provider):
     def __init__(self, api_key: str, url: str) -> None:
-        self.api_key = api_key
+        super().__init__(api_key)
         self.url = url.rstrip("/")
 
     def get_url_and_params(

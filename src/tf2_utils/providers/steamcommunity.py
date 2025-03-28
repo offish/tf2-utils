@@ -1,7 +1,7 @@
-class SteamCommunity:
-    def __init__(self, api_key: str = "") -> None:
-        pass  # we dont care about api_key for steam
+from .provider import Provider
 
+
+class SteamCommunity(Provider):
     def get_url_and_params(
         self, steam_id: str, app_id: int, context_id: int
     ) -> tuple[str, dict]:
