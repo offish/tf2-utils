@@ -3,28 +3,46 @@ from typing import Any
 
 import requests
 
-from .exceptions import EmptyResponse, InternalServerError, PricesTFError, RateLimited
-from .utils import to_refined
+from .exceptions import TF2UtilsError
+from .utils import refinedify
+
+
+class PricesTFError(TF2UtilsError):
+    pass
+
+
+class UnauthorizedError(PricesTFError):
+    pass
+
+
+class InternalServerError(PricesTFError):
+    pass
+
+
+class RateLimited(PricesTFError):
+    pass
+
+
+class EmptyResponse(PricesTFError):
+    pass
 
 
 class PricesTF:
-    URL = "https://api2.prices.tf"
-
     def __init__(self) -> None:
+        self.url = "https://api2.prices.tf"
         self._access_token = ""
         self._headers = {}
 
     @staticmethod
-    def _format_price(data: dict) -> dict:
+    def format_price(data: dict) -> dict:
+        buy_keys = data.get("buyKeys", 0)
+        buy_metal = refinedify(data.get("buyHalfScrap", 0) / 18)
+        sell_keys = data.get("sellKeys", 0)
+        sell_metal = refinedify(data.get("sellHalfScrap", 0) / 18)
+
         return {
-            "buy": {
-                "keys": data["buyKeys"],
-                "metal": to_refined(data["buyHalfScrap"] / 2),
-            },
-            "sell": {
-                "keys": data["sellKeys"],
-                "metal": to_refined(data["sellHalfScrap"] / 2),
-            },
+            "buy": {"keys": buy_keys, "metal": buy_metal},
+            "sell": {"keys": sell_keys, "metal": sell_metal},
         }
 
     @staticmethod
@@ -33,6 +51,9 @@ class PricesTF:
             raise EmptyResponse("response from server was empty")
 
         status_code = response.get("statusCode")
+
+        if status_code == 401:
+            raise UnauthorizedError("unauthorized, please request a new access token")
 
         if status_code == 500:
             raise InternalServerError("there was an interal server error")
@@ -44,7 +65,7 @@ class PricesTF:
         self._headers = header
 
     def _get(self, endpoint: str, params: dict = {}) -> dict:
-        url = self.URL + endpoint
+        url = self.url + endpoint
         response = requests.get(url, headers=self._headers, params=params)
         res = response.json()
         self._validate_response(res)
@@ -52,14 +73,14 @@ class PricesTF:
         return res
 
     def _post(self, endpoint: str) -> tuple[dict, int]:
-        url = self.URL + endpoint
+        url = self.url + endpoint
         response = requests.post(url, headers=self._headers)
         res = response.json()
         self._validate_response(res)
 
         return (res, response.status_code)
 
-    def _get_prices_till_page(
+    def get_prices_till_page(
         self, page_limit: int, print_rate_limit: bool = False
     ) -> dict:
         prices = {}
@@ -83,7 +104,7 @@ class PricesTF:
                 raise PricesTFError("could not find any items in response")
 
             for item in response["items"]:
-                prices[item["sku"]] = self._format_price(item)
+                prices[item["sku"]] = self.format_price(item)
 
             current_page = response["meta"]["currentPage"] + 1
             total_pages = response["meta"]["totalPages"]
@@ -107,16 +128,14 @@ class PricesTF:
         return self._get("/prices", {"page": page, "limit": limit, "order": order})
 
     def get_all_prices(self, print_rate_limit: bool = False) -> dict:
-        return self._get_prices_till_page(-1, print_rate_limit)
+        return self.get_prices_till_page(-1, print_rate_limit)
 
     def update_price(self, sku: str) -> tuple[dict, int]:
         return self._post(f"/prices/{sku}/refresh")
 
     def request_access_token(self) -> None:
         res, _ = self._post("/auth/access")
-
         self._validate_response(res)
-
         self._access_token = res["accessToken"]
 
         self._set_header(
