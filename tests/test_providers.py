@@ -21,4 +21,7 @@ def test_express_load_inventory(express_load_api_key: str, steam_id: str) -> Non
 
     assert url == f"https://api.express-load.com/inventory/{steam_id}/440/2"
     assert params == {}
-    assert provider.headers == {"X-API-Key": express_load_api_key}
+    assert provider.headers == {
+        "X-API-Key": express_load_api_key,
+        "User-Agent": "tf2-express",
+    }

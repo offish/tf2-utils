@@ -2,9 +2,21 @@ import time
 
 import requests
 
-from .exceptions import NoAPIKey, SKUDoesNotMatch
+from .exceptions import TF2UtilsError
 from .schema import SchemaItemsUtils
 from .sku import sku_is_craftable, sku_to_quality_name
+
+
+class MarketplaceTFException(TF2UtilsError):
+    pass
+
+
+class SKUDoesNotMatch(MarketplaceTFException):
+    pass
+
+
+class NoAPIKey(MarketplaceTFException):
+    pass
 
 
 def api_key_required(func):
