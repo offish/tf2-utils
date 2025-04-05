@@ -6,6 +6,7 @@ from tf2_sku import to_sku
 from .item import Item
 
 __all__ = [
+    "get_sku",
     "get_sku_properties",
     "is_sku",
     "is_key",
@@ -22,9 +23,12 @@ __all__ = [
     "sku_is_uncraftable",
     "sku_is_craftable",
     "strange_in_sku",
+    "australium_in_sku",
+    "festive_in_sku",
     "get_sku_killstreak",
+    "get_killstreak_name_from_sku",
     "get_sku_effect",
-    "get_sku",
+    "get_effect_name_from_sku",
 ]
 
 
@@ -136,6 +140,14 @@ def strange_in_sku(sku: str) -> bool:
     return ";strange" in sku
 
 
+def australium_in_sku(sku: str) -> bool:
+    return ";australium" in sku
+
+
+def festive_in_sku(sku: str) -> bool:
+    return ";festive" in sku
+
+
 def get_sku_killstreak(sku: str) -> int:
     value = get_property_by_key(sku, "kt-")
 
@@ -145,6 +157,22 @@ def get_sku_killstreak(sku: str) -> int:
     return int(value.replace("kt-", ""))
 
 
+def get_killstreak_name_from_sku(sku: str) -> str:
+    tier = get_sku_killstreak(sku)
+    name = ""
+
+    if tier == 1:
+        name = "Basic Killstreak "
+
+    if tier == 2:
+        name = "Specialized "
+
+    if tier == 3:
+        name = "Professional "
+
+    return name
+
+
 def get_sku_effect(sku: str) -> int:
     value = get_property_by_key(sku, "u")
 
@@ -152,6 +180,16 @@ def get_sku_effect(sku: str) -> int:
         return -1
 
     return int(value.replace("u", ""))
+
+
+def get_effect_name_from_sku(sku: str) -> str:
+    effect = get_sku_effect(sku)
+    name = ""
+
+    if effect != -1:
+        name = EFFECTS[str(effect)] + " "
+
+    return name
 
 
 def get_sku(item: Item | dict) -> str:

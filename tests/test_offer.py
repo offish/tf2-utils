@@ -21,4 +21,4 @@ def test_offer_sides() -> None:
 
 def test_offer_partner() -> None:
     assert not offer.has_trade_hold()
-    assert "76561198253325712" == offer.get_partner()
+    assert offer.get_partner() == "76561198253325712"
