@@ -35,22 +35,20 @@ def test_utils() -> None:
     )
     c.calculate()
 
-    assert 22 == c.their_scrap
-    assert 12 == c.our_scrap
-
-    assert {
+    assert c.their_scrap == 22
+    assert c.our_scrap == 12
+    assert c.their_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 2,
         "Reclaimed Metal": 1,
         "Scrap Metal": 1,
-    } == c.their_overview
-    assert {
+    }
+    assert c.our_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 1,
         "Reclaimed Metal": 1,
         "Scrap Metal": 0,
-    } == c.our_overview
-
+    }
     assert not c.is_possible
 
 
@@ -68,7 +66,7 @@ def test_not_enough() -> None:
     )
     c.calculate()
 
-    assert 19 == c.their_scrap
+    assert c.their_scrap == 19
     assert not c.is_possible
 
 
@@ -88,10 +86,9 @@ def test_no_combination() -> None:
     )
     c.calculate()
 
-    assert 18 == c.their_scrap
-    assert 12 == c.our_scrap
-
-    # they have enough but there is no combo which would work
+    assert c.their_scrap == 18
+    assert c.our_scrap == 12
+    # they have enough but there is no combination which would work
     assert not c.is_possible
 
 
@@ -116,34 +113,31 @@ def test_possible() -> None:
     )
     c.calculate()
 
-    assert 15 == c.their_scrap
-    assert 12 == c.our_scrap
-
-    assert {
+    assert c.their_scrap == 15
+    assert c.our_scrap == 12
+    assert c.their_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 1,
         "Reclaimed Metal": 0,
         "Scrap Metal": 6,
-    } == c.their_overview
-    assert {
+    }
+    assert c.our_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 1,
         "Reclaimed Metal": 1,
         "Scrap Metal": 0,
-    } == c.our_overview
-
+    }
     assert c.is_possible
-
     # 0.44, but we pay 1 ref
     # that means they have to add 0.55
-    assert ["Refined Metal"] == c.our_combination
-    assert [
+    assert c.our_combination == ["Refined Metal"]
+    assert c.their_combination == [
         "Scrap Metal",
         "Scrap Metal",
         "Scrap Metal",
         "Scrap Metal",
         "Scrap Metal",
-    ] == c.their_combination
+    ]
 
 
 def test_best_possible() -> None:
@@ -169,31 +163,28 @@ def test_best_possible() -> None:
     )
     c.calculate()
 
-    assert KEY_RATE + 20 == c.their_scrap
-    assert 18 == c.our_scrap
-
-    assert {
+    assert c.their_scrap == KEY_RATE + 20
+    assert c.our_scrap == 18
+    assert c.their_overview == {
         "Mann Co. Supply Crate Key": 1,
         "Refined Metal": 1,
         "Reclaimed Metal": 2,
         "Scrap Metal": 5,
-    } == c.their_overview
-    assert {
+    }
+    assert c.our_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 2,
         "Reclaimed Metal": 0,
         "Scrap Metal": 0,
-    } == c.our_overview
-
+    }
     assert c.is_possible
-
-    assert [
+    assert c.their_combination == [
         "Scrap Metal",
         "Scrap Metal",
         "Reclaimed Metal",
         "Refined Metal",
-    ] == c.their_combination
-    assert [] == c.our_combination
+    ]
+    assert c.our_combination == []
 
 
 def test_only_metal() -> None:
@@ -216,32 +207,29 @@ def test_only_metal() -> None:
     )
     c.calculate()
 
-    assert 9 == c.their_scrap
-    assert 18 == c.our_scrap
-
-    assert {
+    assert c.their_scrap == 9
+    assert c.our_scrap == 18
+    assert c.their_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 0,
         "Reclaimed Metal": 2,
         "Scrap Metal": 3,
-    } == c.their_overview
-    assert {
+    }
+    assert c.our_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 2,
         "Reclaimed Metal": 0,
         "Scrap Metal": 0,
-    } == c.our_overview
-
+    }
     assert c.is_possible
-
-    assert [
+    assert c.their_combination == [
         "Reclaimed Metal",
         "Reclaimed Metal",
         "Scrap Metal",
         "Scrap Metal",
         "Scrap Metal",
-    ] == c.their_combination
-    assert ["Refined Metal"] == c.our_combination
+    ]
+    assert c.our_combination == ["Refined Metal"]
 
 
 def test_real_inventory() -> None:
@@ -257,34 +245,31 @@ def test_real_inventory() -> None:
 
     c.calculate()
 
-    assert 591 == c.their_scrap
-    assert 0 == c.our_scrap
-
-    assert {
+    assert c.their_scrap == 591
+    assert c.our_scrap == 0
+    assert c.their_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 65,
         "Reclaimed Metal": 1,
         "Scrap Metal": 3,
-    } == c.their_overview
-    assert {
+    }
+    assert c.our_overview == {
         "Mann Co. Supply Crate Key": 0,
         "Refined Metal": 0,
         "Reclaimed Metal": 0,
         "Scrap Metal": 0,
-    } == c.our_overview
-
+    }
     assert c.is_possible
-
-    assert [
+    assert c.their_combination == [
         "Reclaimed Metal",
         "Scrap Metal",
         "Scrap Metal",
         "Scrap Metal",
         "Refined Metal",
-    ] == c.their_combination
-    assert [] == c.our_combination
+    ]
+    assert c.our_combination == []
 
     their_items, our_items = c.get_currencies()
 
-    assert PICKED_METALS == their_items
-    assert [] == our_items
+    assert their_items == PICKED_METALS
+    assert our_items == []

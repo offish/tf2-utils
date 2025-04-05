@@ -12,32 +12,10 @@ from src.tf2_utils import (
     sku_to_defindex,
     sku_to_quality,
 )
-from src.tf2_utils.utils import read_json_file
-
-file_path = "./tests/json/{}.json"
 
 
-def get_item_dict(file_name: str) -> dict:
-    return read_json_file(file_path.format(file_name))
-
-
-CRUSADERS_CROSSBOW = get_item_dict("crusaders_crossbow")
-UNCRAFTABLE_HAT = get_item_dict("uncraftable_hat")
-HONG_KONG_CONE = get_item_dict("hong_kong_cone")
-ELLIS_CAP = get_item_dict("ellis_cap")
-
-
-def test_ellis_cap_sku() -> None:
-    sku = get_sku(ELLIS_CAP)
-
-    # https://marketplace.tf/items/tf2/263;6
-    assert "263;6" == sku
-
-
-def test_ellis_cap_sku_properties() -> None:
-    sku = get_sku_properties(ELLIS_CAP)
-
-    assert {
+def test_ellis_cap_sku_properties(ellis_cap: dict) -> None:
+    assert get_sku_properties(ellis_cap) == {
         "defindex": 263,
         "quality": 6,
         "australium": False,
@@ -46,35 +24,30 @@ def test_ellis_cap_sku_properties() -> None:
         "killstreak_tier": -1,
         "festivized": False,
         "strange": False,
-    } == sku
+    }
 
 
-def test_crusaders_crossbow_sku() -> None:
-    sku = get_sku(CRUSADERS_CROSSBOW)
-
+def test_get_sku_items(
+    ellis_cap: dict,
+    crusaders_crossbow: dict,
+    hong_kong_cone: dict,
+    uncraftable_hat: dict,
+) -> None:
+    # https://marketplace.tf/items/tf2/263;6
+    assert get_sku(ellis_cap) == "263;6"
     # https://marketplace.tf/items/tf2/305;11;kt-3;festive
-    assert "305;11;kt-3;festive" == sku
-
-
-def test_strange_unusual_hong_kong_cone() -> None:
-    sku = get_sku(HONG_KONG_CONE)
-
+    assert get_sku(crusaders_crossbow) == "305;11;kt-3;festive"
     # https://marketplace.tf/items/tf2/30177;5;u107;strange
-    assert "30177;5;u107;strange" == sku
-
-
-def test_uncraftable_hat() -> None:
-    sku = get_sku(UNCRAFTABLE_HAT)
-
+    assert get_sku(hong_kong_cone) == "30177;5;u107;strange"
     # https://marketplace.tf/items/tf2/734;6;uncraftable
-    assert "734;6;uncraftable" == sku
+    assert get_sku(uncraftable_hat) == "734;6;uncraftable"
 
 
 def test_properties() -> None:
     sku = "734;6;uncraftable"
 
-    assert 734, sku_to_defindex(sku)
-    assert 6, sku_to_quality(sku)
+    assert sku_to_defindex(sku) == 734
+    assert sku_to_quality(sku) == 6
     assert sku_is_uncraftable(sku)
 
 
@@ -100,17 +73,17 @@ def test_is_pure() -> None:
 
 
 def test_get_metal() -> None:
-    assert 9, get_metal("5002;6")
-    assert 3, get_metal("5001;6")
-    assert 1, get_metal("5000;6")
+    assert get_metal("5002;6") == 9
+    assert get_metal("5001;6") == 3
+    assert get_metal("5000;6") == 1
 
     with pytest.raises(AssertionError):
         get_metal("5021;6")
 
 
 def test_sku_to_color() -> None:
-    assert "7D6D00" == sku_to_color("734;6;uncraftable")
-    assert "4D7455" == sku_to_color("30469;1")
+    assert sku_to_color("734;6;uncraftable") == "7D6D00"
+    assert sku_to_color("30469;1") == "4D7455"
 
     with pytest.raises(AssertionError):
         sku_to_color("notsku")

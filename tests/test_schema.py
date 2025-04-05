@@ -31,16 +31,14 @@ def test_name_to_sku_qualities() -> None:
 
 
 def test_defindex_to_name() -> None:
-    ptr = schema.defindex_to_name
-
-    assert ptr(378) == "Team Captain"
-    assert ptr(725) == "Tour of Duty Ticket"
-    assert ptr(5021) == "Mann Co. Supply Crate Key"
-    assert ptr(-100) == "Random Craft Hat"
-    assert ptr(-50) == "Random Craft Weapon"
-    assert ptr(5000) == "Scrap Metal"
-    assert ptr(5001) == "Reclaimed Metal"
-    assert ptr(5002) == "Refined Metal"
+    assert schema.defindex_to_name(378) == "Team Captain"
+    assert schema.defindex_to_name(725) == "Tour of Duty Ticket"
+    assert schema.defindex_to_name(5021) == "Mann Co. Supply Crate Key"
+    assert schema.defindex_to_name(-100) == "Random Craft Hat"
+    assert schema.defindex_to_name(-50) == "Random Craft Weapon"
+    assert schema.defindex_to_name(5000) == "Scrap Metal"
+    assert schema.defindex_to_name(5001) == "Reclaimed Metal"
+    assert schema.defindex_to_name(5002) == "Refined Metal"
 
 
 def test_tod_sku() -> None:

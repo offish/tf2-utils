@@ -1,6 +1,7 @@
 import json
 import math
 import struct
+from pathlib import Path
 
 __all__ = [
     "to_scrap",
@@ -14,7 +15,7 @@ __all__ = [
 ]
 
 
-def read_json_file(path: str) -> dict | list:
+def read_json_file(path: Path | str) -> dict | list:
     data = {}
 
     with open(path, "r") as f:
@@ -23,7 +24,7 @@ def read_json_file(path: str) -> dict | list:
     return data
 
 
-def write_json_file(path: str, data: dict | list) -> None:
+def write_json_file(path: Path | str, data: dict | list) -> None:
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
 

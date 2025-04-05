@@ -9,50 +9,32 @@ from src.tf2_utils import (
     to_scrap,
 )
 
-STEAM_ID = "76561198253325712"
-ACCOUNT_ID = "293059984"
 
-
-def test_steam_id() -> None:
-    assert STEAM_ID == account_id_to_steam_id(ACCOUNT_ID)
-    assert ACCOUNT_ID == steam_id_to_account_id(STEAM_ID)
-    assert STEAM_ID == account_id_to_steam_id(int(ACCOUNT_ID))
-    assert ACCOUNT_ID == steam_id_to_account_id(int(STEAM_ID))
+def test_steam_id(steam_id: str, account_id: str) -> None:
+    assert account_id_to_steam_id(account_id) == steam_id
+    assert steam_id_to_account_id(steam_id) == account_id
+    assert account_id_to_steam_id(int(account_id)) == steam_id
+    assert steam_id_to_account_id(int(steam_id)) == account_id
 
 
 def test_to_refined() -> None:
-    scrap = 43
-    refined = to_refined(scrap)
-
-    assert 4.77 == refined
+    assert to_refined(43) == 4.77
 
 
 def test_to_scrap() -> None:
-    refined = 2.44
-    scrap = to_scrap(refined)
-
-    assert 22 == scrap
+    assert to_scrap(2.44) == 22
 
 
-def test_refinedify_up() -> None:
-    wrong_value = 32.53
-    refined = refinedify(wrong_value)
-
-    assert 32.55 == refined
+def test_refinedify() -> None:
+    assert refinedify(32.53) == 32.55
+    assert refinedify(12.47) == 12.44
 
 
-def test_refinedify_down() -> None:
-    wrong_value = 12.47
-    refined = refinedify(wrong_value)
-
-    assert 12.44 == refined
-
-
-def test_trade_url() -> None:
+def test_trade_url(steam_id: str, account_id: str) -> None:
     trade_url = (
-        "https://steamcommunity.com/tradeoffer/new/?partner=293059984&token=0-l_idZR"  # noqa
+        "https://steamcommunity.com/tradeoffer/new/?partner=293059984&token=0-l_idZR"
     )
 
-    assert ACCOUNT_ID == get_account_id_from_trade_url(trade_url)
-    assert STEAM_ID == get_steam_id_from_trade_url(trade_url)
-    assert "0-l_idZR" == get_token_from_trade_url(trade_url)
+    assert get_account_id_from_trade_url(trade_url) == account_id
+    assert get_steam_id_from_trade_url(trade_url) == steam_id
+    assert get_token_from_trade_url(trade_url) == "0-l_idZR"
