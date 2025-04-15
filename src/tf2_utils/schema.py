@@ -70,8 +70,6 @@ class SchemaItemsUtils(SchemaItems):
         if name == "Name Tag":
             return defindexes[last_index]
 
-        print(index)
-        print(defindexes)
         return defindexes[index]
 
     def defindex_to_image_url(self, defindex: int, large_image: bool = False) -> str:

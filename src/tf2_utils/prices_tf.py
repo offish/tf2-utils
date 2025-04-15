@@ -95,9 +95,15 @@ class PricesTF:
                 timeout = 60
 
                 if print_rate_limit:
-                    print(f"rate limited from prices.tf, waiting {timeout} seconds")
+                    print(f"We are rate limited, waiting {timeout} seconds...")
 
                 time.sleep(timeout)
+                continue
+            except UnauthorizedError:
+                if print_rate_limit:
+                    print("We are unauthorized, requesting new access token...")
+
+                self.request_access_token()
                 continue
 
             if "items" not in response:
