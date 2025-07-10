@@ -1,6 +1,6 @@
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "2.3.4"
+__version__ = "2.3.5"
 __license__ = "MIT"
 
 from .currency import CurrencyExchange

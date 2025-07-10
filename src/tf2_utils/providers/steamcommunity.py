@@ -7,5 +7,5 @@ class SteamCommunity(Provider):
     ) -> tuple[str, dict]:
         return (
             f"https://steamcommunity.com/inventory/{steam_id}/{app_id}/{context_id}",
-            {"l": "english", "count": 5000},
+            {"l": "english", "count": 2500},
         )
