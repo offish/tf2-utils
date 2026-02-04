@@ -10,7 +10,7 @@ def test_steam_community_inventory(steam_id: str) -> None:
     assert url == f"https://steamcommunity.com/inventory/{steam_id}/440/2"
     assert params == {
         "l": "english",
-        "count": 5000,
+        "count": 2500,
     }
     assert provider.headers == {}
 

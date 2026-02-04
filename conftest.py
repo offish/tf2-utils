@@ -2,6 +2,7 @@ from os import getenv
 from pathlib import Path
 
 import pytest
+from aiohttp import ClientSession
 from dotenv import load_dotenv
 
 from src.tf2_utils.utils import read_json_file
@@ -81,3 +82,9 @@ def painted_hat() -> dict:
 @pytest.fixture
 def ellis_cap() -> dict:
     return ELLIS_CAP
+
+
+@pytest.fixture
+async def aiohttp_session():
+    async with ClientSession() as session:
+        yield session
