@@ -82,13 +82,8 @@ def get_effect_in_name(name: str) -> int:
 
 
 def get_quality_from_name(name: str) -> int:
-    quality = 6
-
     for part in name.split(" "):
-        if part not in QUALITY_NAMES:
-            continue
+        if part in QUALITY_NAMES:
+            return QUALITIES[part]
 
-        quality = QUALITIES[part]
-        break
-
-    return quality
+    return 6

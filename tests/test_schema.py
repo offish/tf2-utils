@@ -1,6 +1,4 @@
-from src.tf2_utils import SchemaItemsUtils
-
-schema = SchemaItemsUtils()  # uses local files by default
+from src.tf2_utils.instances import schema
 
 
 def test_map_defindex_names() -> None:

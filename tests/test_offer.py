@@ -1,9 +1,10 @@
 from src.tf2_utils import Offer
 from src.tf2_utils.utils import read_json_file
 
-OFFER = read_json_file("./tests/json/offer.json")
+from .utils import get_path
 
-offer = Offer(OFFER)
+offer_data = read_json_file(get_path("offer"))
+offer = Offer(offer_data)
 
 
 def test_offer_state() -> None:

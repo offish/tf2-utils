@@ -6,7 +6,7 @@ __license__ = "MIT"
 
 from .currency import CurrencyExchange
 from .exceptions import InvalidInventory, TF2UtilsError
-from .inventory import Inventory, map_inventory
+from .inventory import Inventory, get_keys_and_scrap, get_non_pure_skus, map_inventory
 from .item import Item
 from .item_name import *
 from .marketplace_tf import MarketplaceTF

@@ -4,7 +4,37 @@ from .exceptions import InvalidInventory
 from .providers.custom import Custom
 from .providers.providers import PROVIDERS
 from .providers.steamcommunity import SteamCommunity
-from .sku import get_sku
+from .sku import get_metal, get_sku, is_key, is_pure
+
+
+def get_non_pure_skus(items: list[dict]) -> list[str]:
+    skus = []
+
+    for i in items:
+        sku = get_sku(i)
+
+        if not is_pure(sku):
+            skus.append(sku)
+
+    return skus
+
+
+def get_keys_and_scrap(inventory: list[dict]) -> tuple[int, int]:
+    keys = 0
+    scrap = 0
+
+    for i in inventory:
+        sku = i["sku"]
+
+        if is_key(sku):
+            keys += 1
+            continue
+
+        if is_pure(sku):
+            scrap += get_metal(sku)
+            continue
+
+    return keys, scrap
 
 
 def map_inventory(

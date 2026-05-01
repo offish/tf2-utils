@@ -31,24 +31,20 @@ class Item:
 
         return False
 
-    def get_description(self, description: str, color: str = "756b5e") -> str:
+    def get_description(self, description: str, color: str = "756b5e") -> str | None:
         for i in self.descriptions:
             desc = i["value"]
 
             if color != i.get("color", ""):
                 continue
 
-            if description not in desc:
-                continue
-
-            return desc
-
-        return ""
+            if description in desc:
+                return desc
 
     def get_description_and_replace(
         self, description: str, color: str = "756b5e"
     ) -> str:
-        desc = self.get_description(description, color)
+        desc = self.get_description(description, color) or ""
         return desc.replace(description, "")
 
     def has_tag(self, tag: str, exact: bool = True) -> bool:
@@ -72,9 +68,9 @@ class Item:
     def has_killstreak(self, killstreak: str) -> bool:
         return self.get_killstreak() == killstreak
 
-    def get_killstreak(self) -> str:
+    def get_killstreak(self) -> str | None:
         if not self.is_killstreak():
-            return ""
+            return
 
         parts = self.name.split(" ")
         killstreak_index = parts.index("Killstreak")
@@ -85,14 +81,10 @@ class Item:
 
         return killstreak
 
-    def get_quality(self) -> str:
+    def get_quality(self) -> str | None:
         for tag in self.tags:
-            if tag["localized_category_name"] != "Quality":
-                continue
-
-            return tag["localized_tag_name"]
-
-        return ""  # could not find
+            if tag["localized_category_name"] == "Quality":
+                return tag["localized_tag_name"]
 
     def get_quality_id(self) -> int:
         return QUALITIES[self.get_quality()]
@@ -125,14 +117,10 @@ class Item:
 
         return KILLSTREAKS[self.get_killstreak()]
 
-    def get_exterior(self) -> str:
+    def get_exterior(self) -> str | None:
         for tag in self.tags:
-            if tag["category"] != "Exterior":
-                continue
-
-            return tag["localized_tag_name"]
-
-        return ""  # could not find
+            if tag["category"] == "Exterior":
+                return tag["localized_tag_name"]
 
     def get_exterior_id(self) -> int:
         exterior = self.get_exterior()
@@ -167,7 +155,7 @@ class Item:
         return self.has_tag("Decorated Weapon")
 
     def is_craftable(self) -> bool:
-        # has no color
+        # description value has no color
         return not self.has_description("( Not Usable in Crafting )", "")
 
     def is_uncraftable(self) -> bool:
@@ -212,8 +200,7 @@ class Item:
         return self.is_unusual() and self.is_cosmetic()
 
     def is_australium(self) -> bool:
-        # strange eliminates australium paint
-        return "Australium" in self.name and self.is_strange()
+        return self.is_strange() and "Australium" in self.name
 
     def is_pure(self) -> bool:
         return (

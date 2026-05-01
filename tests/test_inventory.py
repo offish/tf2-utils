@@ -4,8 +4,10 @@ from src.tf2_utils import InvalidInventory, map_inventory
 from src.tf2_utils.inventory import Inventory
 from src.tf2_utils.utils import read_json_file
 
-INVENTORY = read_json_file("./tests/json/bot_inventory.json")
-inventory = map_inventory(INVENTORY, True)
+from .utils import get_path
+
+inventory_data = read_json_file(get_path("bot_inventory"))
+inventory = map_inventory(inventory_data, True)
 
 
 def test_inventory() -> None:
