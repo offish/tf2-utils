@@ -1,7 +1,7 @@
 # flake8: noqa: F401, F403
 __title__ = "tf2-utils"
 __author__ = "offish"
-__version__ = "2.4.0"
+__version__ = "2.4.1"
 __license__ = "MIT"
 
 from .currency import CurrencyExchange

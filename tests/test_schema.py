@@ -102,6 +102,7 @@ def test_name_to_sku() -> None:
     assert schema.name_to_sku("Professional Genuine Original") == "513;1;kt-3"
     assert schema.name_to_sku("Genuine Texas Ten Gallon") == "94;1"
     assert schema.name_to_sku("Professional Vintage Lugermorph") == "160;3;kt-3"
+    assert schema.name_to_sku("Strange Part: Gib Kills") == "6013;6"
 
 
 def test_sku_to_name() -> None:
@@ -139,3 +140,4 @@ def test_sku_to_name() -> None:
     assert schema.sku_to_name("513;1;kt-3") == "Professional Genuine Original"
     assert schema.sku_to_name("94;1") == "Genuine Texas Ten Gallon"
     assert schema.sku_to_name("160;3;kt-3") == "Professional Vintage Lugermorph"
+    assert schema.sku_to_name("6013;6") == "Strange Part: Gib Kills"
