@@ -1,0 +1,13 @@
+{
+    "index": 0.038,
+    "pages/currency": 0.052,
+    "pages/inventory": 0.032,
+    "pages/item": 0.082,
+    "pages/marketplace_tf": 0.037,
+    "pages/offer": 0.004,
+    "pages/prices_tf": 0.003,
+    "pages/prices_tf_websocket": 0.004,
+    "pages/schema": 0.004,
+    "pages/sku": 0.047,
+    "pages/utils": 0.004
+}
