@@ -50,7 +50,7 @@ def has_australium_in_name(name: str) -> bool:
 
 
 def has_strange_in_name(name: str) -> bool:
-    return "Strange " in name
+    return "Strange " in name and "Strange Part: " not in name
 
 
 def has_basic_killstreak_in_name(name: str) -> bool:
@@ -83,6 +83,9 @@ def get_effect_in_name(name: str) -> int:
 
 def get_quality_from_name(name: str) -> int:
     quality = 6
+
+    if "Strange Part: " in name:
+        return quality
 
     for part in name.split(" "):
         if part not in QUALITY_NAMES:
