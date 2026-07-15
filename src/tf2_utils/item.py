@@ -1,5 +1,7 @@
 from tf2_data import EXTERIORS, KILLSTREAKS, QUALITIES
 
+from .item_name import has_australium_in_name, has_strange_in_name
+
 
 class Item:
     def __init__(self, item: dict) -> None:
@@ -64,10 +66,10 @@ class Item:
         return self.get_quality() == quality
 
     def has_strange_in_name(self) -> bool:
-        return "Strange " in self.name and "Strange Part: " not in self.name
+        return has_strange_in_name(self.name)
 
     def has_vintage_in_name(self) -> bool:
-        return "Vintage" in self.name
+        return "Vintage " in self.name
 
     def has_killstreak(self, killstreak: str) -> bool:
         return self.get_killstreak() == killstreak
@@ -187,7 +189,7 @@ class Item:
         # or self.has_strange_part()
 
     def is_festivized(self) -> bool:
-        return "Festivized" in self.name
+        return "Festivized " in self.name
 
     def is_halloween(self) -> bool:
         return self.has_description("Holiday Restriction: Halloween / Full Moon")
@@ -212,8 +214,7 @@ class Item:
         return self.is_unusual() and self.is_cosmetic()
 
     def is_australium(self) -> bool:
-        # strange eliminates australium paint
-        return "Australium" in self.name and self.is_strange()
+        return has_australium_in_name(self.name) and self.is_strange()
 
     def is_pure(self) -> bool:
         return (
@@ -239,7 +240,7 @@ class Item:
         return self.is_key()
 
     def is_killstreak(self) -> bool:
-        return "Killstreak" in self.name and "Killstreaks" not in self.name
+        return "Killstreak " in self.name and "Killstreaks" not in self.name
 
     def is_basic_killstreak(self) -> bool:
         return self.has_killstreak("Basic")

@@ -1,7 +1,8 @@
 from aiohttp import ClientSession
+from tf2_sku import is_craftable
 
 from .instances import schema
-from .sku import sku_is_craftable, sku_to_quality_name
+from .sku import sku_to_quality_name
 
 
 class MarketplaceTF:
@@ -17,7 +18,7 @@ class MarketplaceTF:
     def format_url_sku(self, sku: str) -> str:
         item_name = schema.sku_to_base_name(sku)
         quality = sku_to_quality_name(sku)
-        return self.format_url(item_name, quality, sku_is_craftable(sku))
+        return self.format_url(item_name, quality, is_craftable(sku))
 
     @staticmethod
     def format_price_to_float(price: str | float) -> float:

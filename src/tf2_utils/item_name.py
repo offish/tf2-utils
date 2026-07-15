@@ -46,7 +46,7 @@ def is_craftable(name: str) -> bool:
 
 
 def has_australium_in_name(name: str) -> bool:
-    return "Australium " in name
+    return "Australium " in name and "Australium Gold" not in name
 
 
 def has_strange_in_name(name: str) -> bool:

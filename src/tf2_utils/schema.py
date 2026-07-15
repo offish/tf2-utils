@@ -1,5 +1,12 @@
 from tf2_data import SchemaItems
-from tf2_sku import to_sku
+from tf2_sku import (
+    get_defindex,
+    has_australium_in_sku,
+    has_festive_in_sku,
+    has_strange_in_sku,
+    is_uncraftable,
+    to_sku,
+)
 
 from .item_name import (
     get_effect_in_name,
@@ -13,14 +20,9 @@ from .item_name import (
     is_craftable,
 )
 from .sku import (
-    australium_in_sku,
-    festive_in_sku,
     get_effect_name_from_sku,
     get_killstreak_name_from_sku,
-    sku_is_uncraftable,
-    sku_to_defindex,
     sku_to_quality_name,
-    strange_in_sku,
 )
 
 
@@ -90,7 +92,7 @@ class SchemaItemsUtils(SchemaItems):
         return ""
 
     def sku_to_image_url(self, sku: str, large_image: bool = False) -> str:
-        defindex = sku_to_defindex(sku)
+        defindex = get_defindex(sku)
         return self.defindex_to_image_url(defindex, large_image)
 
     def get_defindex_from_name(self, name: str, entry_index: int = 0) -> int:
@@ -140,7 +142,7 @@ class SchemaItemsUtils(SchemaItems):
             killstreak_tier = 1
 
         # must be strange to be australium
-        if "Australium Gold" not in name and has_australium_in_name(name):
+        if has_australium_in_name(name):
             quality = 11
             is_australium = True
 
@@ -163,11 +165,11 @@ class SchemaItemsUtils(SchemaItems):
         return to_sku(sku_properties)
 
     def sku_to_base_name(self, sku: str) -> str:
-        defindex = sku_to_defindex(sku)
+        defindex = get_defindex(sku)
         return self.defindex_to_name(defindex)
 
     def sku_to_full_name(self, sku: str) -> str:
-        defindex = sku_to_defindex(sku)
+        defindex = get_defindex(sku)
         return self.defindex_to_full_name(defindex)
 
     def format_name(
@@ -188,13 +190,13 @@ class SchemaItemsUtils(SchemaItems):
         name = self.sku_to_base_name(sku)
         quality = sku_to_quality_name(sku)
         craftable = ""
-        festivized = "Festivized " if festive_in_sku(sku) else ""
+        festivized = "Festivized " if has_festive_in_sku(sku) else ""
         effect = get_effect_name_from_sku(sku)
         killstreak = get_killstreak_name_from_sku(sku)
-        is_australium = australium_in_sku(sku)
+        is_australium = has_australium_in_sku(sku)
         strange = ""
 
-        if strange_in_sku(sku):
+        if has_strange_in_sku(sku):
             strange = "Strange "
 
         if quality not in ["Unusual", "Unique"]:
@@ -206,7 +208,7 @@ class SchemaItemsUtils(SchemaItems):
             quality = ""
             name = "Australium " + name
 
-        if sku_is_uncraftable(sku):
+        if is_uncraftable(sku):
             if as_uncraftable:
                 craftable = "Uncraftable "
             else:
