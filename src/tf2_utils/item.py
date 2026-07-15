@@ -1,6 +1,11 @@
 from tf2_data import EXTERIORS, KILLSTREAKS, QUALITIES
 
-from .item_name import has_australium_in_name, has_strange_in_name
+from .constants import KEY, REC, REF, SCRAP
+from .item_name import (
+    has_australium_in_name,
+    has_killstreak_in_name,
+    has_strange_in_name,
+)
 
 
 class Item:
@@ -20,12 +25,12 @@ class Item:
         return self.name == name
 
     def has_description(
-        self, description: str, color: str = "756b5e", exact: bool = True
+        self, description: str, color: str | None = "756b5e", exact: bool = True
     ) -> bool:
         for i in self.descriptions:
             desc = i["value"]
 
-            if color != i.get("color", ""):
+            if color != i.get("color"):
                 continue
 
             if (description == desc) or (description in desc and not exact):
@@ -33,11 +38,11 @@ class Item:
 
         return False
 
-    def get_description(self, description: str, color: str = "756b5e") -> str:
+    def get_description(self, description: str, color: str | None = "756b5e") -> str:
         for i in self.descriptions:
             desc = i["value"]
 
-            if color != i.get("color", ""):
+            if color != i.get("color"):
                 continue
 
             if description not in desc:
@@ -48,7 +53,7 @@ class Item:
         return ""
 
     def get_description_and_replace(
-        self, description: str, color: str = "756b5e"
+        self, description: str, color: str | None = "756b5e"
     ) -> str:
         desc = self.get_description(description, color)
         return desc.replace(description, "")
@@ -67,9 +72,6 @@ class Item:
 
     def has_strange_in_name(self) -> bool:
         return has_strange_in_name(self.name)
-
-    def has_vintage_in_name(self) -> bool:
-        return "Vintage " in self.name
 
     def has_killstreak(self, killstreak: str) -> bool:
         return self.get_killstreak() == killstreak
@@ -107,10 +109,8 @@ class Item:
             wiki_link = action["link"]
             start = wiki_link.index("id=")
             end = wiki_link.index("lang=")
-            # defindex = re.findall("\\d+", wiki_link[start:end])[0]
-
-            # extract defindex from wiki link
             defindex = wiki_link[start + 3 : end - 1]
+
             return int(defindex)
 
         return -1  # could not find
@@ -170,7 +170,7 @@ class Item:
 
     def is_craftable(self) -> bool:
         # has no color
-        return not self.has_description("( Not Usable in Crafting )", "")
+        return not self.has_description("( Not Usable in Crafting )", None)
 
     def is_uncraftable(self) -> bool:
         return not self.is_craftable()
@@ -220,27 +220,17 @@ class Item:
         return (
             self.is_craftable()
             and self.is_unique()
-            and self.name
-            in [
-                "Mann Co. Supply Crate Key",
-                "Refined Metal",
-                "Reclaimed Metal",
-                "Scrap Metal",
-            ]
+            and self.name in [KEY, REF, REC, SCRAP]
         )
 
     def is_key(self) -> bool:
-        return (
-            self.is_craftable()
-            and self.is_unique()
-            and self.has_name("Mann Co. Supply Crate Key")
-        )
+        return self.is_craftable() and self.is_unique() and self.has_name(KEY)
 
     def is_mann_co_key(self) -> bool:
         return self.is_key()
 
     def is_killstreak(self) -> bool:
-        return "Killstreak " in self.name and "Killstreaks" not in self.name
+        return has_killstreak_in_name(self.name)
 
     def is_basic_killstreak(self) -> bool:
         return self.has_killstreak("Basic")

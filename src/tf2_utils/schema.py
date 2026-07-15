@@ -12,8 +12,8 @@ from .item_name import (
     get_effect_in_name,
     get_quality_from_name,
     has_australium_in_name,
-    has_basic_killstreak_in_name,
     has_festivized_in_name,
+    has_killstreak_in_name,
     has_professional_killstreak_in_name,
     has_specialized_killstreak_in_name,
     has_strange_in_name,
@@ -132,14 +132,14 @@ class SchemaItemsUtils(SchemaItems):
         if effect != -1:
             quality = 5
 
-        if has_professional_killstreak_in_name(name):
-            killstreak_tier = 3
+        if has_killstreak_in_name(name):
+            killstreak_tier = 1
 
         if has_specialized_killstreak_in_name(name):
             killstreak_tier = 2
 
-        if has_basic_killstreak_in_name(name):
-            killstreak_tier = 1
+        if has_professional_killstreak_in_name(name):
+            killstreak_tier = 3
 
         # must be strange to be australium
         if has_australium_in_name(name):

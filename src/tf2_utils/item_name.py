@@ -7,10 +7,10 @@ __all__ = [
     "is_craftable",
     "has_australium_in_name",
     "has_strange_in_name",
-    "has_basic_killstreak_in_name",
+    "has_killstreak_in_name",
     "has_specialized_killstreak_in_name",
     "has_professional_killstreak_in_name",
-    "has_killstreak_in_name",
+    "is_killstreak",
     "get_effect_in_name",
     "get_quality_from_name",
 ]
@@ -53,21 +53,21 @@ def has_strange_in_name(name: str) -> bool:
     return "Strange " in name and "Strange Part: " not in name
 
 
-def has_basic_killstreak_in_name(name: str) -> bool:
-    return name.startswith("Basic Killstreak ")
+def has_killstreak_in_name(name: str) -> bool:
+    return "Killstreak " in name
 
 
 def has_specialized_killstreak_in_name(name: str) -> bool:
-    return name.startswith("Specialized ")
+    return "Specialized Killstreak " in name
 
 
 def has_professional_killstreak_in_name(name: str) -> bool:
-    return name.startswith("Professional ")
+    return "Professional Killstreak " in name
 
 
-def has_killstreak_in_name(name: str) -> bool:
+def is_killstreak(name: str) -> bool:
     return (
-        has_basic_killstreak_in_name(name)
+        has_killstreak_in_name(name)
         or has_specialized_killstreak_in_name(name)
         or has_professional_killstreak_in_name(name)
     )
