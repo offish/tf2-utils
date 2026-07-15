@@ -4,7 +4,8 @@ __author__ = "offish"
 __version__ = "2.5.0"
 __license__ = "MIT"
 
-from .currency import CurrencyExchange
+from .constants import KEY, REC, REF, SCRAP
+from .currency_exchange import CurrencyExchange
 from .exceptions import InvalidInventory, TF2UtilsError
 from .inventory import Inventory, map_inventory
 from .item import Item

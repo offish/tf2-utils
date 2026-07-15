@@ -26,7 +26,7 @@ HONG_KONG_CONE = get_item_data("hong_kong_cone")
 SPELLED_ITEM = get_item_data("spelled_item")
 PAINTED_HAT = get_item_data("painted_hat")
 ELLIS_CAP = get_item_data("ellis_cap")
-STRANGE_PART = get_item_data("strange_part")
+# STRANGE_PART = get_item_data("strange_part")
 
 
 @pytest.fixture
@@ -85,9 +85,9 @@ def ellis_cap() -> dict:
     return ELLIS_CAP
 
 
-@pytest.fixture
-def strange_part() -> dict:
-    return STRANGE_PART
+# @pytest.fixture
+# def strange_part() -> dict:
+#     return STRANGE_PART
 
 
 @pytest.fixture

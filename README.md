@@ -25,13 +25,11 @@ You can reach me at [Steam](https://steamcommunity.com/id/confern), my [Discord 
 ## Features
 - Built-in currency picking (metal + keys) for sending offers 
 - Interact with BackpackTF's API
-- Interact with PricesTF's API
 - Get MarketplaceTF item prices and stocks
 - Get SKUs directly from inventories/offers
 - Convert names to SKUs and vice versa
 - Fetch inventories using 3rd party providers or your own (avoid being rate-limited)
 - Listen for Backpack.TF websocket events
-- Listen for Prices.TF websocket events
 - Get item properties (`is_craft_hat`, `get_paint`, `get_effect` and more)
 - Fetch TF2 Schema data
 - Convert SKU/defindex to item image URL
@@ -49,9 +47,9 @@ python -m pip install tf2-utils
 
 ## Updating
 ```bash
-pip install --upgrade tf2-utils tf2-utils tf2-data bptf
+pip install --upgrade tf2-utils tf2-sku tf2-data bptf
 # or 
-python -m pip install --upgrade tf2-utils tf2-utils tf2-data bptf
+python -m pip install --upgrade tf2-utils tf2-sku tf2-data bptf
 ```
 
 ## Testing
