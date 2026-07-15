@@ -16,17 +16,17 @@ def test_ellis_cap_sku_properties(ellis_cap: dict) -> None:
     }
 
 
-# def test_strange_part_sku_properties(strange_part: dict) -> None:
-#     assert get_sku_properties(strange_part) == {
-#         "defindex": 6012,
-#         "quality": 6,
-#         "australium": False,
-#         "craftable": True,
-#         "wear": -1,
-#         "killstreak_tier": -1,
-#         "festivized": False,
-#         "strange": False,
-#     }
+def test_strange_part_sku_properties(strange_part: dict) -> None:
+    assert get_sku_properties(strange_part) == {
+        "defindex": 6012,
+        "quality": 6,
+        "australium": False,
+        "craftable": True,
+        "wear": -1,
+        "killstreak_tier": -1,
+        "festivized": False,
+        "strange": False,
+    }
 
 
 def test_get_sku_items(
@@ -45,7 +45,7 @@ def test_get_sku_items(
     # https://marketplace.tf/items/tf2/734;6;uncraftable
     assert get_sku(uncraftable_hat) == "734;6;uncraftable"
     # https://marketplace.tf/items/tf2/6012;6
-    # assert get_sku(strange_part) == "6012;6"
+    assert get_sku(strange_part) == "6012;6"
 
 
 def test_get_metal() -> None:
