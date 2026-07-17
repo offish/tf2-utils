@@ -10,29 +10,32 @@ from .sku import get_sku
 def map_inventory(
     inventory: dict, add_skus: bool = False, skip_untradable: bool = False
 ) -> list[dict]:
-    """Matches classids and instanceids, merges these and
-    adds `sku` to each item entry if `add_skus` is enabled"""
     mapped_inventory = []
 
     if "assets" not in inventory:
         raise InvalidInventory("No assets found in inventory")
 
+    desc_lookup = {}
+
+    for desc in inventory["descriptions"]:
+        if skip_untradable and not desc["tradable"]:
+            continue
+
+        key = (desc["classid"], desc["instanceid"])
+
+        if key not in desc_lookup:
+            desc_lookup[key] = desc
+
     for asset in inventory["assets"]:
-        for desc in inventory["descriptions"]:
-            if skip_untradable and not desc["tradable"]:
-                continue
+        desc = desc_lookup.get((asset["classid"], asset["instanceid"]))
 
-            if (
-                asset["classid"] != desc["classid"]
-                or asset["instanceid"] != desc["instanceid"]
-            ):
-                continue
+        if not desc:
+            continue
 
-            if add_skus:
-                mapped_inventory.append({"sku": get_sku(desc), **asset, **desc})
-            else:
-                mapped_inventory.append({**asset, **desc})
-            break
+        if add_skus:
+            mapped_inventory.append({"sku": get_sku(desc), **asset, **desc})
+        else:
+            mapped_inventory.append({**asset, **desc})
 
     return mapped_inventory
 

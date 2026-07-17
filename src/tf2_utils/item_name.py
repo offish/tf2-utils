@@ -1,32 +1,6 @@
 from tf2_data import EFFECTS, QUALITIES
 
-__all__ = [
-    "has_festivized_in_name",
-    "has_uncraftable_in_name",
-    "has_non_craftable_in_name",
-    "is_craftable",
-    "has_australium_in_name",
-    "has_strange_in_name",
-    "has_killstreak_in_name",
-    "has_specialized_killstreak_in_name",
-    "has_professional_killstreak_in_name",
-    "is_killstreak",
-    "get_effect_in_name",
-    "get_quality_from_name",
-]
-
-QUALITY_NAMES = [
-    "Genuine",
-    "Vintage",
-    "Unusual",
-    "Unique",
-    "Strange",
-    "Haunted",
-    "Collector's",
-    "Decorated Weapon",
-]
-
-EFFECT_NAMES = [i for i in EFFECTS.keys() if not i.isnumeric()]
+from .constants import EFFECT_NAMES, QUALITY_NAMES
 
 
 def has_festivized_in_name(name: str) -> bool:
@@ -66,11 +40,7 @@ def has_professional_killstreak_in_name(name: str) -> bool:
 
 
 def is_killstreak(name: str) -> bool:
-    return (
-        has_killstreak_in_name(name)
-        or has_specialized_killstreak_in_name(name)
-        or has_professional_killstreak_in_name(name)
-    )
+    return has_killstreak_in_name(name)
 
 
 def get_effect_in_name(name: str) -> int:

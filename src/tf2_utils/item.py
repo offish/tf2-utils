@@ -3,6 +3,7 @@ from tf2_data import EXTERIORS, KILLSTREAKS, QUALITIES
 from .constants import KEY, REC, REF, SCRAP
 from .item_name import (
     has_australium_in_name,
+    has_festivized_in_name,
     has_killstreak_in_name,
     has_strange_in_name,
 )
@@ -169,8 +170,7 @@ class Item:
         return self.has_tag("Decorated Weapon")
 
     def is_craftable(self) -> bool:
-        # has no color
-        return not self.has_description("( Not Usable in Crafting )", None)
+        return not self.has_description("( Not Usable in Crafting )", None)  # no color
 
     def is_uncraftable(self) -> bool:
         return not self.is_craftable()
@@ -189,7 +189,7 @@ class Item:
         # or self.has_strange_part()
 
     def is_festivized(self) -> bool:
-        return "Festivized " in self.name
+        return has_festivized_in_name(self.name)
 
     def is_halloween(self) -> bool:
         return self.has_description("Holiday Restriction: Halloween / Full Moon")
@@ -224,7 +224,7 @@ class Item:
         )
 
     def is_key(self) -> bool:
-        return self.is_craftable() and self.is_unique() and self.has_name(KEY)
+        return self.has_name(KEY) and self.is_craftable() and self.is_unique()
 
     def is_mann_co_key(self) -> bool:
         return self.is_key()
