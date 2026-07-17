@@ -23,6 +23,9 @@ def map_inventory(
     if "assets" not in inventory:
         raise InvalidInventory("No assets found in inventory")
 
+    if "descriptions" not in inventory:
+        raise InvalidInventory("No descriptions found in inventory")
+
     desc_lookup = {}
 
     for desc in inventory["descriptions"]:
@@ -41,9 +44,9 @@ def map_inventory(
             continue
 
         if add_skus:
-            mapped_inventory.append({"sku": get_sku(desc), **asset, **desc})
+            mapped_inventory.append({"sku": get_sku(desc)} | asset | desc)
         else:
-            mapped_inventory.append({**asset, **desc})
+            mapped_inventory.append(asset | desc)
 
     return mapped_inventory
 
@@ -94,7 +97,7 @@ def get_keys_and_scrap_in_inventory(mapped_inventory: list[dict]) -> tuple[int, 
 
 class Inventory:
     def __init__(
-        self, provider_name: str = "steamcommunity", api_key: str = ""
+        self, provider_name: str = "steamcommunity", api_key: str | None = None
     ) -> None:
         # default to steamcommunity
         self.provider = SteamCommunity()

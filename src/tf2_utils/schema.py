@@ -9,13 +9,12 @@ from tf2_sku import (
 )
 
 from .item_name import (
+    format_item_name,
     get_effect_in_name,
+    get_killstreak_tier_from_name,
     get_quality_from_name,
     has_australium_in_name,
     has_festivized_in_name,
-    has_killstreak_in_name,
-    has_professional_killstreak_in_name,
-    has_specialized_killstreak_in_name,
     has_strange_in_name,
     is_craftable,
 )
@@ -127,27 +126,17 @@ class SchemaItemsUtils(SchemaItems):
         defindex = self.get_defindex_from_name(name)
         effect = get_effect_in_name(name)
         is_australium = False
-        killstreak_tier = -1
 
+        # item must be an unusual if it has an effect
         if effect != -1:
             quality = 5
-
-        if has_killstreak_in_name(name):
-            killstreak_tier = 1
-
-        if has_specialized_killstreak_in_name(name):
-            killstreak_tier = 2
-
-        if has_professional_killstreak_in_name(name):
-            killstreak_tier = 3
 
         # must be strange to be australium
         if has_australium_in_name(name):
             quality = 11
             is_australium = True
 
-        # australium weapons are the second entry in the defindex list, need to
-        # get the defindex again
+        # australium weapons are the second entry in the defindex list, get defindex again
         if is_australium:
             defindex = self.get_defindex_from_name(name, 1)
 
@@ -158,7 +147,7 @@ class SchemaItemsUtils(SchemaItems):
             "strange": has_strange_in_name(name) and quality != 11,
             "festivized": has_festivized_in_name(name),
             "craftable": is_craftable(name),
-            "killstreak_tier": killstreak_tier,
+            "killstreak_tier": get_killstreak_tier_from_name(name),
             "australium": is_australium,
         }
 
@@ -172,49 +161,35 @@ class SchemaItemsUtils(SchemaItems):
         defindex = get_defindex(sku)
         return self.defindex_to_full_name(defindex)
 
-    def format_name(
-        self,
-        item_name: str,
-        quality: str = "",
-        craftable: str = "",
-        effect: str = "",
-        killstreak: str = "",
-        strange: str = "",
-        festivized: str = "",
-    ) -> str:
-        return "".join(
-            [killstreak, strange, effect, craftable, quality, festivized, item_name]
-        )
-
     def sku_to_name(self, sku: str, as_uncraftable: bool = True) -> str:
         name = self.sku_to_base_name(sku)
         quality = sku_to_quality_name(sku)
-        craftable = ""
-        festivized = "Festivized " if has_festive_in_sku(sku) else ""
+        craftable = None
+        festivized = None
         effect = get_effect_name_from_sku(sku)
         killstreak = get_killstreak_name_from_sku(sku)
         is_australium = has_australium_in_sku(sku)
-        strange = ""
+        strange = None
+
+        if has_festive_in_sku(sku):
+            festivized = "Festivized"
 
         if has_strange_in_sku(sku):
-            strange = "Strange "
+            strange = "Strange"
 
-        if quality not in ["Unusual", "Unique"]:
-            quality += " "
-        else:
-            quality = ""
+        # these do not appear in names on marketplace.tf
+        # however, genuine, strange, vintage etc. does
+        if quality in ["Unusual", "Unique"]:
+            quality = None
 
         if is_australium:
-            quality = ""
             name = "Australium " + name
+            quality = None
 
         if is_uncraftable(sku):
-            if as_uncraftable:
-                craftable = "Uncraftable "
-            else:
-                craftable = "Non-Craftable "
+            craftable = "Uncraftable" if as_uncraftable else "Non-Craftable"
 
-        return self.format_name(
+        return format_item_name(
             name,
             quality=quality,
             craftable=craftable,

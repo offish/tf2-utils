@@ -21,11 +21,13 @@ def get_sku_properties(item: Item | dict) -> dict:
         "festivized": item.is_festivized(),
     }
     # "skin": "pk{}",
+    # "killstreak_tier": "kt-{}",
+    # "sheen": "ks-{}",
+    # "killstreaker": "ke-{}",
     # "target_defindex": "td-{}",
     # "crate_number": "c{}",
     # "output_defindex": "od-{}",
     # "output_quality": "oq-{}",
-    # "craft_number": "n{}",
 
     if effect:
         sku_properties["effect"] = EFFECTS[effect]
@@ -35,6 +37,14 @@ def get_sku_properties(item: Item | dict) -> dict:
         sku_properties["strange"] = item.has_strange_in_name()
 
     return sku_properties
+
+
+def get_sku(item: Item | dict) -> str:
+    if isinstance(item, dict):
+        item = Item(item)
+
+    properties = get_sku_properties(item)
+    return to_sku(properties)
 
 
 def get_metal(sku: str) -> int:
@@ -58,35 +68,20 @@ def sku_to_color(sku: str) -> str:
     return COLORS[str(get_quality(sku))]
 
 
-def get_killstreak_name_from_sku(sku: str) -> str:
-    tier = get_killstreak(sku)
-    name = ""
-
-    if tier == 1:
-        name = "Basic Killstreak "
-
-    if tier == 2:
-        name = "Specialized "
-
-    if tier == 3:
-        name = "Professional "
-
-    return name
+def get_killstreak_name_from_sku(sku: str) -> str | None:
+    match get_killstreak(sku):
+        case 1:
+            return "Basic Killstreak"
+        case 2:
+            return "Specialized"
+        case 3:
+            return "Professional"
 
 
-def get_effect_name_from_sku(sku: str) -> str:
+def get_effect_name_from_sku(sku: str) -> str | None:
     effect = get_effect(sku)
-    name = ""
 
-    if effect != -1:
-        name = EFFECTS[str(effect)] + " "
+    if effect == -1:
+        return
 
-    return name
-
-
-def get_sku(item: Item | dict) -> str:
-    if isinstance(item, dict):
-        item = Item(item)
-
-    properties = get_sku_properties(item)
-    return to_sku(properties)
+    return EFFECTS[str(effect)]

@@ -39,8 +39,23 @@ def has_professional_killstreak_in_name(name: str) -> bool:
     return "Professional Killstreak " in name
 
 
+def get_killstreak_tier_from_name(name: str) -> int:
+    killstreak_tier = -1
+
+    if "Killstreak " in name:
+        killstreak_tier = 1
+
+    if "Specialized Killstreak " in name or name.startswith("Specialized "):
+        killstreak_tier = 2
+
+    if "Professional Killstreak " in name or name.startswith("Professional "):
+        killstreak_tier = 3
+
+    return killstreak_tier
+
+
 def is_killstreak(name: str) -> bool:
-    return has_killstreak_in_name(name)
+    return get_killstreak_tier_from_name(name) != -1
 
 
 def get_effect_in_name(name: str) -> int:
@@ -65,3 +80,24 @@ def get_quality_from_name(name: str) -> int:
         break
 
     return quality
+
+
+def format_item_name(
+    item_name: str,
+    quality: str | None = None,
+    craftable: str | None = None,
+    effect: str | None = None,
+    killstreak: str | None = None,
+    strange: str | None = None,
+    festivized: str | None = None,
+) -> str:
+    name_format = [
+        killstreak,
+        strange,
+        effect,
+        craftable,
+        quality,
+        festivized,
+        item_name,
+    ]
+    return " ".join([i for i in name_format if i])

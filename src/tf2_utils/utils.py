@@ -35,6 +35,7 @@ def is_half_scrap_price(metal: float) -> bool:
 
 
 def swap_intent(intent: str) -> str:
+    intent = intent.lower()
     assert intent in ["buy", "sell"]
     return "buy" if intent == "sell" else "sell"
 
