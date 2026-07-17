@@ -8,7 +8,17 @@ from .constants import KEY, REC, REF, SCRAP
 from .conversion import item_data_to_item_object, item_object_to_item_data
 from .currency_exchange import CurrencyExchange
 from .exceptions import InvalidInventory, TF2UtilsError
-from .inventory import Inventory, map_inventory
+from .inventory import (
+    Inventory,
+    get_inventory_stock,
+    get_item_in_inventory,
+    get_keys_and_scrap_in_inventory,
+    get_last_item_in_inventory,
+    get_stock,
+    is_sku_in_inventory,
+    map_inventory,
+    yield_sku,
+)
 from .item import Item
 from .item_name import (
     get_effect_in_name,
@@ -42,8 +52,10 @@ from .utils import (
     get_account_id_from_trade_url,
     get_steam_id_from_trade_url,
     get_token_from_trade_url,
+    is_half_scrap_price,
     refinedify,
     steam_id_to_account_id,
+    swap_intent,
     to_refined,
     to_scrap,
 )

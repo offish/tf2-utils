@@ -30,6 +30,15 @@ def refinedify(value: float) -> float:
     return math.floor((round(value * 9, 0) * 100) / 9) / 100
 
 
+def is_half_scrap_price(metal: float) -> bool:
+    return math.ceil(metal * 18) % 2 == 1
+
+
+def swap_intent(intent: str) -> str:
+    assert intent in ["buy", "sell"]
+    return "buy" if intent == "sell" else "sell"
+
+
 def get_account_id_from_trade_url(trade_url: str) -> str:
     partner_index = trade_url.index("?partner=") + 9
     token_index = trade_url.index("&token=")
