@@ -128,6 +128,7 @@ class SchemaItemsUtils(SchemaItems):
         is_australium = False
 
         # item must be an unusual if it has an effect
+        # TODO: this is not true, if it has an effect and a wear in the name its quality=11
         if effect != -1:
             quality = 5
 

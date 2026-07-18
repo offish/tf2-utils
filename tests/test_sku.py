@@ -13,6 +13,11 @@ def test_ellis_cap_sku_properties(ellis_cap: dict) -> None:
         "killstreak_tier": -1,
         "festivized": False,
         "strange": False,
+        "crate_number": -1,
+        "effect": -1,
+        "killstreaker": -1,
+        "sheen": -1,
+        "skin": -1,
     }
 
 
@@ -26,6 +31,11 @@ def test_strange_part_sku_properties(strange_part: dict) -> None:
         "killstreak_tier": -1,
         "festivized": False,
         "strange": False,
+        "crate_number": -1,
+        "effect": -1,
+        "killstreaker": -1,
+        "sheen": -1,
+        "skin": -1,
     }
 
 
@@ -38,8 +48,8 @@ def test_get_sku_items(
 ) -> None:
     # https://marketplace.tf/items/tf2/263;6
     assert get_sku(ellis_cap) == "263;6"
-    # https://marketplace.tf/items/tf2/305;11;kt-3;festive
-    assert get_sku(crusaders_crossbow) == "305;11;kt-3;festive"
+    # https://marketplace.tf/items/tf2/305;11;kt-3;ks-1;ke-2004;festive
+    assert get_sku(crusaders_crossbow) == "305;11;kt-3;ks-1;ke-2004;festive"
     # https://marketplace.tf/items/tf2/30177;5;u107;strange
     assert get_sku(hong_kong_cone) == "30177;5;u107;strange"
     # https://marketplace.tf/items/tf2/734;6;uncraftable

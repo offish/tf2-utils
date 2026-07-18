@@ -1,10 +1,19 @@
-from tf2_data import EXTERIORS, KILLSTREAKS, QUALITIES
+from tf2_data import (
+    CRATE_SERIES,
+    EFFECTS,
+    KILLSTREAKERS,
+    KILLSTREAKS,
+    QUALITIES,
+    SHEENS,
+    WAR_PAINTS,
+    WEARS,
+)
 
 from .constants import KEY, REC, REF, SCRAP
 from .item_name import (
+    get_killstreak_tier_from_name,
     has_australium_in_name,
     has_festivized_in_name,
-    has_killstreak_in_name,
     has_strange_in_name,
 )
 
@@ -39,7 +48,9 @@ class Item:
 
         return False
 
-    def get_description(self, description: str, color: str | None = "756b5e") -> str:
+    def get_description(
+        self, description: str, color: str | None = "756b5e"
+    ) -> str | None:
         for i in self.descriptions:
             desc = i["value"]
 
@@ -51,12 +62,10 @@ class Item:
 
             return desc
 
-        return ""
-
     def get_description_and_replace(
         self, description: str, color: str | None = "756b5e"
     ) -> str:
-        desc = self.get_description(description, color)
+        desc = self.get_description(description, color) or ""
         return desc.replace(description, "")
 
     def has_tag(self, tag: str, exact: bool = True) -> bool:
@@ -74,33 +83,20 @@ class Item:
     def has_strange_in_name(self) -> bool:
         return has_strange_in_name(self.name)
 
-    def has_killstreak(self, killstreak: str) -> bool:
-        return self.get_killstreak() == killstreak
+    def get_killstreak(self) -> str | None:
+        killstreak = self.get_killstreak_tier()
+        return KILLSTREAKS.get(str(killstreak))
 
-    def get_killstreak(self) -> str:
-        if not self.is_killstreak():
-            return ""
-
-        parts = self.name.split(" ")
-        killstreak_index = parts.index("Killstreak")
-        killstreak = parts[killstreak_index - 1]
-
-        if killstreak not in ["Specialized", "Professional"]:
-            killstreak = "Basic"
-
-        return killstreak
-
-    def get_quality(self) -> str:
+    def get_quality(self) -> str | None:
         for tag in self.tags:
             if tag["localized_category_name"] != "Quality":
                 continue
 
             return tag["localized_tag_name"]
 
-        return ""  # could not find
-
     def get_quality_id(self) -> int:
-        return QUALITIES[self.get_quality()]
+        quality = self.get_quality()
+        return QUALITIES.get(quality, -1)
 
     def get_defindex(self) -> int:
         for action in self.item["actions"]:
@@ -119,31 +115,56 @@ class Item:
     def get_effect(self) -> str:
         return self.get_description_and_replace("\u2605 Unusual Effect: ", "ffd700")
 
+    def get_effect_id(self) -> int:
+        # cases will return an effect
+        if not self.is_unusual():
+            return -1
+
+        effect = self.get_effect()
+        return EFFECTS.get(effect, -1)
+
     def get_paint(self) -> str:
         return self.get_description_and_replace("Paint Color: ")
 
-    def get_killstreak_id(self) -> int:
-        if not self.is_killstreak():
-            return -1
+    def get_killstreak_tier(self) -> int:
+        return get_killstreak_tier_from_name(self.name)
 
-        return KILLSTREAKS[self.get_killstreak()]
-
-    def get_exterior(self) -> str:
+    def get_wear(self) -> str | None:
         for tag in self.tags:
             if tag["category"] != "Exterior":
                 continue
 
             return tag["localized_tag_name"]
 
-        return ""  # could not find
+    def get_wear_id(self) -> int:
+        wear = self.get_wear()
+        return WEARS.get(wear, -1)
 
-    def get_exterior_id(self) -> int:
-        exterior = self.get_exterior()
+    def get_killstreaker(self) -> str:
+        return self.get_description_and_replace("Killstreaker: ", "7ea9d1")
 
-        if not exterior:
-            return -1
+    def get_killstreaker_id(self) -> int:
+        killstreaker = self.get_killstreaker()
+        return KILLSTREAKERS.get(killstreaker, -1)
 
-        return EXTERIORS[exterior]
+    def get_sheen(self) -> str:
+        return self.get_description_and_replace("Sheen: ", "7ea9d1")
+
+    def get_sheen_id(self) -> int:
+        sheen = self.get_sheen()
+        return SHEENS.get(sheen, -1)
+
+    def get_skin(self) -> str | None:
+        for war_paint in WAR_PAINTS:
+            if war_paint in self.name:
+                return war_paint
+
+    def get_skin_id(self) -> int:
+        skin = self.get_skin()
+        return WAR_PAINTS.get(skin, -1)
+
+    def get_crate_series(self) -> int:
+        return CRATE_SERIES.get(self.name, -1)
 
     def is_genuine(self) -> bool:
         return self.has_quality("Genuine")
@@ -230,13 +251,13 @@ class Item:
         return self.is_key()
 
     def is_killstreak(self) -> bool:
-        return has_killstreak_in_name(self.name)
+        return self.get_killstreak_tier() != -1
 
     def is_basic_killstreak(self) -> bool:
-        return self.has_killstreak("Basic")
+        return self.get_killstreak_tier() == 1
 
     def is_specialized_killstreak(self) -> bool:
-        return self.has_killstreak("Specialized")
+        return self.get_killstreak_tier() == 2
 
     def is_professional_killstreak(self) -> bool:
-        return self.has_killstreak("Professional")
+        return self.get_killstreak_tier() == 3

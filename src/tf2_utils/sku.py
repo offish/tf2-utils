@@ -9,28 +9,24 @@ def get_sku_properties(item: Item | dict) -> dict:
         item = Item(item)
 
     quality = item.get_quality_id()
-    effect = item.get_effect()
 
     sku_properties = {
         "defindex": item.get_defindex(),
         "quality": quality,
+        "effect": item.get_effect_id(),
         "australium": item.is_australium(),
         "craftable": item.is_craftable(),
-        "wear": item.get_exterior_id(),
-        "killstreak_tier": item.get_killstreak_id(),
+        "wear": item.get_wear_id(),
+        "skin": item.get_skin_id(),
+        "killstreak_tier": item.get_killstreak_tier(),
+        "sheen": item.get_sheen_id(),
+        "killstreaker": item.get_killstreaker_id(),
         "festivized": item.is_festivized(),
+        "crate_number": item.get_crate_series(),
     }
-    # "skin": "pk{}",
-    # "killstreak_tier": "kt-{}",
-    # "sheen": "ks-{}",
-    # "killstreaker": "ke-{}",
     # "target_defindex": "td-{}",
-    # "crate_number": "c{}",
     # "output_defindex": "od-{}",
     # "output_quality": "oq-{}",
-
-    if effect:
-        sku_properties["effect"] = EFFECTS[effect]
 
     # e.g. strange unusual
     if quality != 11:
