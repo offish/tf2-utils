@@ -4,7 +4,7 @@ from src.tf2_utils import KEY, REC, REF, SCRAP, CurrencyExchange
 from src.tf2_utils.inventory import map_inventory
 from src.tf2_utils.utils import read_json_file
 
-KEY_RATE = 56 * 9
+KEY_PRICES = {"buy": 55.77, "sell": 56}
 
 
 def pure(*names: str) -> list[dict]:
@@ -42,7 +42,7 @@ def run(
     intent: str,
     item_price: int,
     *,
-    item_is_not_pure: bool = True,
+    is_pure_trade: bool = False,
     their_overview: dict | None = None,
     our_overview: dict | None = None,
     their_scrap: int,
@@ -56,8 +56,8 @@ def run(
         our_inventory,
         intent,
         item_price,
-        KEY_RATE,
-        item_is_not_pure,
+        KEY_PRICES,
+        is_pure_trade,
     )
     currency.calculate()
 
@@ -140,7 +140,7 @@ def test_buyer_pays_exact_price() -> None:
         14,
         their_overview=overview(key=1, refined=1, reclaimed=2, scrap=5),
         our_overview=overview(refined=2),
-        their_scrap=KEY_RATE + 20,
+        their_scrap=522,
         our_scrap=18,
         possible=True,
         their_combination=Counter({REF: 1, REC: 1, SCRAP: 2}),
@@ -148,13 +148,13 @@ def test_buyer_pays_exact_price() -> None:
     )
 
 
-def test_pure_for_pure_trade() -> None:
+def test_pure_only_trade() -> None:
     run(
         pure(SCRAP, SCRAP, SCRAP, REC, REC),
         pure(REF, REF),
         "buy",
         9,
-        item_is_not_pure=False,
+        is_pure_trade=True,
         their_overview=overview(reclaimed=2, scrap=3),
         our_overview=overview(refined=2),
         their_scrap=9,
@@ -170,8 +170,8 @@ def test_buyer_uses_one_key() -> None:
         pure(KEY, KEY, REF),
         [],
         "sell",
-        KEY_RATE + 9,
-        their_scrap=KEY_RATE * 2 + 9,
+        511,
+        their_scrap=1013,
         our_scrap=0,
         their_overview=overview(key=2, refined=1),
         our_overview=overview(),
@@ -188,7 +188,7 @@ def test_buy_has_enough_metal_not_keys() -> None:
         pure(*inventory),
         pure(REC, REC, SCRAP, SCRAP),
         "sell",
-        KEY_RATE + 19,
+        523,
         their_overview=overview(refined=58, reclaimed=2, scrap=1),
         our_overview=overview(reclaimed=2, scrap=2),
         their_scrap=529,
@@ -202,7 +202,7 @@ def test_buy_has_enough_metal_not_keys() -> None:
 def test_real_inventory() -> None:
     inventory = read_json_file("./tests/json/inventory.json")
     mapped_inventory = map_inventory(inventory, True)
-    currency = CurrencyExchange(mapped_inventory, [], "sell", 15, KEY_RATE)
+    currency = CurrencyExchange(mapped_inventory, [], "sell", 15, KEY_PRICES)
     currency.calculate()
 
     assert currency.their_overview == overview(refined=65, reclaimed=1, scrap=3)

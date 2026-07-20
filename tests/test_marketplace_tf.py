@@ -1,6 +1,6 @@
 from aiohttp import ClientSession
 
-from src.tf2_utils.marketplace_tf import MarketplaceTF
+from src.tf2_utils import MarketplaceTF
 
 
 async def test_fetch_data(aiohttp_session: ClientSession) -> None:

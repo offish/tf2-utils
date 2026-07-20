@@ -16,7 +16,7 @@ class MarketplaceTF:
         return f"{url}/{quality}/{item_name}/Tradable/{craftable}"
 
     def format_url_sku(self, sku: str) -> str:
-        item_name = schema.sku_to_base_name(sku)
+        item_name = schema.get_base_name_from_sku(sku)
         quality = sku_to_quality_name(sku)
         return self.format_url(item_name, quality, is_craftable(sku))
 

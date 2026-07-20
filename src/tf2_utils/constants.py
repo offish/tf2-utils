@@ -1,4 +1,4 @@
-from tf2_data import EFFECTS
+from tf2_data import EFFECTS, WEARS
 
 KEY = "Mann Co. Supply Crate Key"
 REF = "Refined Metal"
@@ -16,6 +16,7 @@ QUALITY_NAMES = [
     "Decorated Weapon",
 ]
 
+WEAR_NAMES = [wear for wear in WEARS if not wear.isnumeric()]
 EFFECT_NAMES = [
     name
     for name in EFFECTS.keys()

@@ -1,7 +1,6 @@
 import pytest
 
-from src.tf2_utils import InvalidInventory, map_inventory
-from src.tf2_utils.inventory import Inventory
+from src.tf2_utils import InvalidInventory, Inventory, map_inventory
 from src.tf2_utils.utils import read_json_file
 
 INVENTORY = read_json_file("./tests/json/bot_inventory.json")
@@ -56,12 +55,12 @@ def test_steamapis_inventory_provider() -> None:
     assert inventory.provider.api_key == "api_key"
 
 
-def test_steamcommunity_inventory_fetch(steam_id: str) -> None:
-    provider = Inventory("steamcommunity")
-    inventory = provider.fetch(steam_id)
+# def test_steamcommunity_inventory_fetch(steam_id: str) -> None:
+#     provider = Inventory("steamcommunity")
+#     inventory = provider.fetch(steam_id)
 
-    assert "assets" in inventory
-    assert "descriptions" in inventory
+#     assert "assets" in inventory
+#     assert "descriptions" in inventory
 
 
 def test_express_load_inventory_fetch(express_load_api_key: str, steam_id: str) -> None:

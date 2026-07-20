@@ -24,6 +24,13 @@ from .sku import (
     sku_to_quality_name,
 )
 
+DEFINDEX_MAPPING = {
+    "Random Craft Weapon": -50,
+    "Random Craft Hat": -100,
+    "Name Tag": 5020,
+    "Mann Co. Supply Crate Key": 5021,
+}
+
 
 class SchemaItemsUtils(SchemaItems):
     def __init__(
@@ -31,54 +38,62 @@ class SchemaItemsUtils(SchemaItems):
     ) -> None:
         super().__init__(schema_items, defindex_names)
 
-    def defindex_to_name(self, defindex: int) -> str:
-        if defindex == -50:
-            return "Random Craft Weapon"
+    @staticmethod
+    def _get_name_from_defindex_mapping(defindex: int) -> str | None:
+        for name, value in DEFINDEX_MAPPING.items():
+            if value == defindex:
+                return name
 
-        if defindex == -100:
-            return "Random Craft Hat"
+    def _get_name_from_defindex(self, defindex: int, data: dict) -> str | None:
+        name = self._get_name_from_defindex_mapping(defindex)
 
-        return self.defindex_names.get(str(defindex), "")
+        if not name:
+            name = data.get(str(defindex))
 
-    def defindex_to_full_name(self, defindex: int) -> str:
-        if defindex == 5021:
-            return "Mann Co. Supply Crate Key"
+        return name
 
-        return self.defindex_full_names.get(str(defindex), "")
+    def get_base_name_from_defindex(self, defindex: int) -> str | None:
+        return self._get_name_from_defindex(defindex, self.defindex_names)
 
-    def name_to_defindex(self, name: str, index: int = 0) -> int:
-        if name == "Random Craft Weapon":
-            return -50
+    def get_full_name_from_defindex(self, defindex: int) -> str | None:
+        return self._get_name_from_defindex(defindex, self.defindex_full_names)
 
-        if name == "Random Craft Hat":
-            return -100
+    def get_name_from_defindex(self, defindex: int) -> str | None:
+        return self.get_full_name_from_defindex(defindex)
+
+    def get_defindex_from_base_name(self, name: str, index: int = 0) -> int | None:
+        for key, defindex in DEFINDEX_MAPPING.items():
+            if name == key:
+                return defindex
 
         defindexes = self.defindex_names.get(name, [])
 
         if not defindexes:
-            return -1
+            return
 
-        has_multiple_defindexes = len(defindexes) != 1
-
-        if not has_multiple_defindexes:
+        if len(defindexes) == 1:
             return defindexes[0]
-
-        last_index = len(defindexes) - 1
-
-        if name == "Mann Co. Supply Crate Key":
-            return defindexes[0]
-
-        if name == "Name Tag":
-            return defindexes[last_index]
 
         return defindexes[index]
 
-    def defindex_to_image_url(self, defindex: int, large_image: bool = False) -> str:
-        # random craft weapon => shotgun
+    def get_defindex_from_name(self, name: str, entry_index: int = 0) -> int | None:
+        while True:
+            defindex = self.get_defindex_from_base_name(name, entry_index)
+
+            if defindex:
+                return defindex
+
+            index = name.find(" ")
+
+            if index != -1:
+                name = name[index + 1 :]
+
+    def get_image_url(self, defindex: int, large_image: bool = False) -> str | None:
+        # random craft weapon -> shotgun image
         if defindex == -50:
             defindex = 9
 
-        # random craft hat image => ellis' cap
+        # random craft hat -> ellis' cap image
         if defindex == -100:
             defindex = 263
 
@@ -86,49 +101,24 @@ class SchemaItemsUtils(SchemaItems):
             if item["defindex"] != defindex:
                 continue
 
-            return item["image_url_large"] if large_image else item["image_url"]
+            image_url = item["image_url"]
 
-        return ""
+            if large_image:
+                image_url = item["image_url_large"]
 
-    def sku_to_image_url(self, sku: str, large_image: bool = False) -> str:
+            return image_url
+
+    def get_image_url_from_sku(self, sku: str, large_image: bool = False) -> str:
         defindex = get_defindex(sku)
-        return self.defindex_to_image_url(defindex, large_image)
+        return self.get_image_url(defindex, large_image)
 
-    def get_defindex_from_name(self, name: str, entry_index: int = 0) -> int:
-        # try whole name, then remove everything till the
-        # first space for each iteration if defindex
-        # for that name doesnt exist
-
-        # example:
-        # Uncraftable Strange Team Captain => -1
-        # Strange Team Captain => -1
-        # Team Captain => 378 != -1, so break
-        defindex_name = name
-        defindex = -1
-
-        while True:
-            defindex = self.name_to_defindex(defindex_name, entry_index)
-
-            if defindex != -1:
-                break
-
-            try:
-                index = defindex_name.index(" ")
-            except ValueError:
-                break
-
-            defindex_name = defindex_name[index + 1 :]
-
-        return defindex
-
-    def name_to_sku(self, name: str) -> str:
+    def get_sku_from_name(self, name: str) -> str:
+        """This method is not accurate might return a wrong SKU."""
         quality = get_quality_from_name(name)
         defindex = self.get_defindex_from_name(name)
         effect = get_effect_in_name(name)
         is_australium = False
 
-        # item must be an unusual if it has an effect
-        # TODO: this is not true, if it has an effect and a wear in the name its quality=11
         if effect != -1:
             quality = 5
 
@@ -154,16 +144,17 @@ class SchemaItemsUtils(SchemaItems):
 
         return to_sku(sku_properties)
 
-    def sku_to_base_name(self, sku: str) -> str:
+    def get_base_name_from_sku(self, sku: str) -> str:
         defindex = get_defindex(sku)
-        return self.defindex_to_name(defindex)
+        return self.get_base_name_from_defindex(defindex)
 
-    def sku_to_full_name(self, sku: str) -> str:
+    def get_full_name_from_sku(self, sku: str) -> str:
         defindex = get_defindex(sku)
-        return self.defindex_to_full_name(defindex)
+        return self.get_full_name_from_defindex(defindex)
 
-    def sku_to_name(self, sku: str, as_uncraftable: bool = True) -> str:
-        name = self.sku_to_base_name(sku)
+    def get_name_from_sku(self, sku: str, as_uncraftable: bool = True) -> str:
+        """This method is not accurate might return an inaccurate item name."""
+        name = self.get_base_name_from_sku(sku)
         quality = sku_to_quality_name(sku)
         craftable = None
         festivized = None

@@ -1,6 +1,6 @@
 from tf2_data import EFFECTS, QUALITIES
 
-from .constants import EFFECT_NAMES, QUALITY_NAMES
+from .constants import EFFECT_NAMES, QUALITY_NAMES, WEAR_NAMES
 
 
 def has_festivized_in_name(name: str) -> bool:
@@ -37,6 +37,14 @@ def has_specialized_killstreak_in_name(name: str) -> bool:
 
 def has_professional_killstreak_in_name(name: str) -> bool:
     return "Professional Killstreak " in name
+
+
+def has_wear_in_name(name: str) -> bool:
+    for wear in WEAR_NAMES:
+        if f" ({wear})" in name:
+            return True
+
+    return False
 
 
 def get_killstreak_tier_from_name(name: str) -> int:

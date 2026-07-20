@@ -1,5 +1,4 @@
-from src.tf2_utils.providers.express_load import ExpressLoad
-from src.tf2_utils.providers.steamcommunity import SteamCommunity
+from src.tf2_utils import ExpressLoad, SteamCommunity
 
 
 def test_steam_community_inventory(steam_id: str) -> None:

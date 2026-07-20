@@ -1,11 +1,77 @@
+from typing import Iterable
+
 from .constants import KEY, REC, REF, SCRAP
 from .item import Item
+from .utils import to_scrap
 
-METAL_VALUES = {
-    REF: 9,
-    REC: 3,
-    SCRAP: 1,
-}
+
+def get_overview(pure: list[dict]) -> dict:
+    overview = {
+        KEY: 0,
+        REF: 0,
+        REC: 0,
+        SCRAP: 0,
+    }
+
+    for item in pure:
+        name = item["market_hash_name"]
+
+        if name in overview:
+            overview[name] += 1
+
+    return overview
+
+
+def get_inventory_items(combination: list[str], inventory: list[dict]) -> list[dict]:
+    items = []
+
+    for item_name in combination:
+        for item in inventory:
+            if item_name != item["market_hash_name"]:
+                continue
+
+            if item.get("selected"):
+                continue
+
+            items.append(item)
+            item["selected"] = True
+            break
+
+    return items
+
+
+def get_pure_in_inventory(inventory: list[dict]) -> list[dict]:
+    items = []
+
+    for i in inventory:
+        item = Item(i)
+
+        if item.is_tradable() and item.is_pure():
+            items.append(i)
+
+    return items
+
+
+def pick_metal(
+    remaining: int,
+    available_refined: int,
+    available_reclaimed: int,
+    available_scrap: int,
+) -> tuple[int, int, int] | None:
+    if remaining < 0:
+        return
+
+    max_ref = min(available_refined, remaining // 9)
+
+    for num_ref in range(max_ref, -1, -1):
+        after_ref = remaining - num_ref * 9
+        max_rec = min(available_reclaimed, after_ref // 3)
+
+        for num_rec in range(max_rec, -1, -1):
+            after_rec = after_ref - num_rec * 3
+
+            if after_rec <= available_scrap:
+                return num_ref, num_rec, after_rec
 
 
 class CurrencyExchange:
@@ -15,114 +81,73 @@ class CurrencyExchange:
         our_inventory: list[dict],
         intent: str,
         item_price: int,
-        key_price: int,
-        item_is_not_pure: bool = True,
+        key_prices: dict,
+        is_pure_trade: bool = False,
     ) -> None:
-        if intent not in ("buy", "sell"):
+        if intent not in ["buy", "sell"]:
             raise ValueError(f"{intent} is not a valid intent")
+
+        if (
+            not isinstance(key_prices, dict)
+            or "buy" not in key_prices
+            or "sell" not in key_prices
+        ):
+            raise ValueError("key_prices must be a dict with buy and sell prices")
 
         self.their_inventory = their_inventory
         self.our_inventory = our_inventory
-
-        self.is_buying = intent == "buy"
-        self.is_selling = intent == "sell"
-
+        self.intent = intent
         self.item_price = item_price
-        self.scrap_price = item_price
-        self.key_price = key_price
-        self.item_is_not_pure = item_is_not_pure
+        self.key_prices = key_prices
+        self.is_pure_trade = is_pure_trade
 
+        self.scrap_price = item_price
         self._is_possible = False
         self.their_scrap = 0
         self.our_scrap = 0
         self.their_overview: dict[str, int] = {}
         self.our_overview: dict[str, int] = {}
-        self.their_combination: list[str] = []  # list of metal names
-        self.our_combination: list[str] = []  # list of metal names
+        self.their_combination: list[str] = []
+        self.our_combination: list[str] = []
 
-    def get_pure_value(self, name: str) -> int:
-        if name == KEY:
-            return self.key_price
+    def _get_key_value(self, user: str) -> int:
+        key_price = self.key_prices["sell"]
 
-        if name in METAL_VALUES:
-            return METAL_VALUES[name]
+        if user == "them":
+            key_price = self.key_prices["buy"]
 
-        raise ValueError(f"{name} is not pure")
+        return to_scrap(key_price)
 
-    def get_pure_in_inventory(self, inventory: list[dict]) -> tuple[int, list[dict]]:
-        scrap = 0
-        metal = []
+    def _get_value(self, name: str, user: str) -> int:
+        value = 0
 
-        for item in inventory:
-            item_util = Item(item)
-            name = item["market_hash_name"]
+        match name:
+            case "Mann Co. Supply Crate Key":
+                value = self._get_key_value(user)
+            case "Refined Metal":
+                value = 9
+            case "Reclaimed Metal":
+                value = 3
+            case "Scrap Metal":
+                value = 1
 
-            if not item_util.is_tradable():
-                continue
+        if not value:
+            raise ValueError(f"{name} is not pure")
 
-            if not item_util.is_pure():
-                continue
+        return value
 
-            pure_value = self.get_pure_value(name)
-            item["pure_value"] = pure_value
-
-            scrap += pure_value
-            metal.append(item)
-
-        return scrap, metal
-
-    @staticmethod
-    def format_overview(pure: list[dict]) -> dict:
-        overview = {
-            KEY: 0,
-            REF: 0,
-            REC: 0,
-            SCRAP: 0,
-        }
-
-        for item in pure:
-            name = item["market_hash_name"]
-            if name in overview:
-                overview[name] += 1
-
-        return overview
-
-    @staticmethod
-    def _overview_to_items(combination: list[str], inventory: list[dict]) -> list[dict]:
-        items = []
-
-        for metal_name in combination:
-            for item in inventory:
-                if item["market_hash_name"] != metal_name:
-                    continue
-
-                if item.get("picked"):
-                    continue
-
-                items.append(item)
-                item["picked"] = True
-                break
-
-        return items
-
-    def get_currencies(self) -> tuple[list[dict], list[dict]]:
-        assert self._is_possible, "Currencies does not add up"
-
-        their_items = self._overview_to_items(
-            self.their_combination, self.their_inventory
-        )
-        our_items = self._overview_to_items(self.our_combination, self.our_inventory)
-
-        return their_items, our_items
+    def _get_total_value(self, iterable: Iterable, user: str) -> int:
+        values = [i["market_hash_name"] if isinstance(i, dict) else i for i in iterable]
+        return sum(self._get_value(i, user) for i in values)
 
     def _target_for(self, user: str) -> int:
         target = self.scrap_price
 
-        if self.item_is_not_pure:
-            if self.is_buying and user == "them":
+        if not self.is_pure_trade:
+            if self.intent == "buy" and user == "them":
                 target -= self.item_price
 
-            if self.is_selling and user == "us":
+            if self.intent == "sell" and user == "us":
                 target -= self.item_price
 
         return target
@@ -132,30 +157,10 @@ class CurrencyExchange:
             "them"
         ) and self.our_scrap >= self._target_for("us")
 
-    @staticmethod
-    def _make_metal(
-        remaining: int, available_ref: int, available_rec: int, available_scrap: int
-    ) -> tuple[int, int, int] | None:
-        if remaining < 0:
-            return None
-
-        max_ref = min(available_ref, remaining // 9)
-
-        for num_ref in range(max_ref, -1, -1):
-            after_ref = remaining - num_ref * 9
-            max_rec = min(available_rec, after_ref // 3)
-
-            for num_rec in range(max_rec, -1, -1):
-                after_rec = after_ref - num_rec * 3
-
-                if after_rec <= available_scrap:
-                    return num_ref, num_rec, after_rec
-
-        return None
-
     def _pick_currencies(self, user: str) -> tuple[bool, list[str]]:
         overview = self.their_overview if user == "them" else self.our_overview
         target = self._target_for(user)
+        key_price = self._get_key_value(user)
 
         if target < 0:
             return False, []
@@ -164,18 +169,15 @@ class CurrencyExchange:
             return True, []
 
         available_keys = overview[KEY]
-        available_ref = overview[REF]
-        available_rec = overview[REC]
+        available_refined = overview[REF]
+        available_reclaimed = overview[REC]
         available_scrap = overview[SCRAP]
-
-        max_keys = (
-            min(available_keys, target // self.key_price) if self.key_price > 0 else 0
-        )
+        max_keys = min(available_keys, target // key_price)
 
         for num_keys in range(max_keys, -1, -1):
-            remaining = target - num_keys * self.key_price
-            combo = self._make_metal(
-                remaining, available_ref, available_rec, available_scrap
+            remaining = target - num_keys * key_price
+            combo = pick_metal(
+                remaining, available_refined, available_reclaimed, available_scrap
             )
 
             if combo is None:
@@ -205,24 +207,26 @@ class CurrencyExchange:
         return True
 
     def _adds_up(self) -> bool:
-        their_value = sum(self.get_pure_value(name) for name in self.their_combination)
-        our_value = sum(self.get_pure_value(name) for name in self.our_combination)
+        their_value = self._get_total_value(self.their_combination, "them")
+        our_value = self._get_total_value(self.our_combination, "us")
 
-        if self.item_is_not_pure:
-            if self.is_buying:
+        if not self.is_pure_trade:
+            if self.intent == "buy":
                 their_value += self.item_price
 
-            if self.is_selling:
+            if self.intent == "sell":
                 our_value += self.item_price
 
         return their_value == our_value
 
     def calculate(self) -> None:
-        self.their_scrap, their_pure = self.get_pure_in_inventory(self.their_inventory)
-        self.our_scrap, our_pure = self.get_pure_in_inventory(self.our_inventory)
+        their_pure = get_pure_in_inventory(self.their_inventory)
+        our_pure = get_pure_in_inventory(self.our_inventory)
 
-        self.their_overview = self.format_overview(their_pure)
-        self.our_overview = self.format_overview(our_pure)
+        self.their_scrap = self._get_total_value(their_pure, "them")
+        self.our_scrap = self._get_total_value(our_pure, "us")
+        self.their_overview = get_overview(their_pure)
+        self.our_overview = get_overview(our_pure)
 
         while self._has_enough():
             if self._set_combinations():
@@ -232,6 +236,17 @@ class CurrencyExchange:
                 return
 
             self.scrap_price += 1
+
+    def get_their_items(self) -> list[dict]:
+        assert self._is_possible, "Currencies does not add up"
+        return get_inventory_items(self.their_combination, self.their_inventory)
+
+    def get_our_items(self) -> list[dict]:
+        assert self._is_possible, "Currencies does not add up"
+        return get_inventory_items(self.our_combination, self.our_inventory)
+
+    def get_currencies(self) -> tuple[list[dict], list[dict]]:
+        return (self.get_their_items(), self.get_our_items())
 
     @property
     def is_possible(self) -> bool:
