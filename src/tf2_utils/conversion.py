@@ -1,10 +1,11 @@
-import logging
 from typing import Any
 
 from steam.protobufs.econ import Asset, ItemDescription
 from steam.state import ConnectionState
 from steam.trade import Item
 from steam.user import User
+
+from .instances import logger
 
 
 def item_data_to_item_object(
@@ -87,6 +88,6 @@ def item_object_to_item_data(item: Item) -> dict[str, Any] | None:
             ],
         }
     except AttributeError:
-        logging.warning("Failed to convert item")
-    finally:
-        return item_dict
+        logger.warning("Failed to convert item")
+
+    return item_dict

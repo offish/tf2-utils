@@ -41,7 +41,7 @@ def has_professional_killstreak_in_name(name: str) -> bool:
 
 def has_wear_in_name(name: str) -> bool:
     for wear in WEAR_NAMES:
-        if f" ({wear})" in name:
+        if name.endswith(f" ({wear})"):
             return True
 
     return False

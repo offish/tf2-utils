@@ -54,10 +54,7 @@ class Offer:
         )
 
     def is_two_sided(self) -> bool:
-        if self.offer.get("items_to_receive") and self.offer.get("items_to_give"):
-            return True
-
-        return False
+        return self.offer.get("items_to_receive") and self.offer.get("items_to_give")
 
     def is_one_sided(self) -> bool:
         return not self.is_two_sided()

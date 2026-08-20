@@ -37,7 +37,7 @@ from .item_name import (
     is_killstreak,
 )
 from .mafile import get_decrypted_data, get_encryption_values, get_mafile_data
-from .marketplace_tf import MarketplaceTF
+from .marketplace_tf import MarketplaceTF, get_mplc_value_after_fees
 from .offer import Offer
 from .providers import Custom, ExpressLoad, SteamApis, SteamCommunity, SteamSupply
 from .schema import SchemaItemsUtils

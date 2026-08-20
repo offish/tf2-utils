@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 
 import requests
 from tf2_sku import is_key, is_metal
@@ -124,5 +124,5 @@ class Inventory:
 
         try:
             return response.json()
-        except Exception as e:
+        except requests.exceptions.RequestException as e:
             return {"success": False, "error": str(e)}

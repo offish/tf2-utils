@@ -5,6 +5,25 @@ from .instances import schema
 from .sku import sku_to_quality_name
 
 
+def format_price_to_float(price: str | float) -> float:
+    if isinstance(price, float):
+        return price
+
+    return float(price.replace("$", ""))
+
+
+def get_mplc_value_after_fees(price: float) -> float:
+    if price < 0:
+        raise ValueError("Price cannot be negative")
+
+    if price < 0.02:
+        return 0.01
+
+    fee = price * 0.1
+    after_fee = price - max(fee, 0.01)
+    return round(after_fee, 2)
+
+
 class MarketplaceTF:
     def __init__(self, session: ClientSession) -> None:
         self.session = session
@@ -20,13 +39,6 @@ class MarketplaceTF:
         quality = sku_to_quality_name(sku)
         return self.format_url(item_name, quality, is_craftable(sku))
 
-    @staticmethod
-    def format_price_to_float(price: str | float) -> float:
-        if isinstance(price, float):
-            return price
-
-        return float(price.replace("$", ""))
-
     async def fetch_item(self, sku: str) -> dict:
         url = self.format_url_sku(sku)
 
@@ -41,7 +53,7 @@ class MarketplaceTF:
 
         return {
             "sku": prices["sku"],
-            "highest_buy_order": self.format_price_to_float(highest_buy_order),
-            "lowest_price": self.format_price_to_float(lowest_price),
+            "highest_buy_order": format_price_to_float(highest_buy_order),
+            "lowest_price": format_price_to_float(lowest_price),
             "stock": stock,
         }

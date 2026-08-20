@@ -29,11 +29,7 @@ def has_manifest_file(mafile_folder: Path) -> bool:
 
 def is_mafile_unencrypted(mafile: Path) -> bool:
     content = mafile.read_text()
-
-    if "account_name" in content:
-        return True
-
-    return False
+    return "account_name" in content
 
 
 def get_encryption_values(manifest: Path, mafile: Path) -> dict | None:
@@ -61,7 +57,11 @@ def get_decrypted_data(mafile: Path, code: str | None) -> Any:
 
     salt = encryption_values["encryption_salt"]
     iv = encryption_values["encryption_iv"]
-    encrypted_data = open(mafile, "rb").read()
+    encrypted_data = None
+
+    with open(mafile, "rb") as f:
+        encrypted_data = f.read()
+
     decrypted_text = decrypt_data(code, salt, iv, encrypted_data)
 
     if not decrypted_text:

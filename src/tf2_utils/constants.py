@@ -19,6 +19,6 @@ QUALITY_NAMES = [
 WEAR_NAMES = [wear for wear in WEARS if not wear.isnumeric()]
 EFFECT_NAMES = [
     name
-    for name in EFFECTS.keys()
+    for name in EFFECTS
     if not name.isnumeric() and name != "Particle 1" and "Attrib_Particle" not in name
 ]
