@@ -1,3 +1,5 @@
+from unittest.mock import Mock, patch
+
 import pytest
 
 from src.tf2_utils import InvalidInventory, map_inventory
@@ -54,6 +56,33 @@ def test_steamapis_inventory_provider() -> None:
     inventory = Inventory("steamapis", "api_key")
     assert inventory.provider.__class__.__name__ == "SteamApis"
     assert inventory.provider.api_key == "api_key"
+
+
+@pytest.mark.parametrize("app_id,context_id", [(440, 2), (730, 3)])
+def test_steamcommunity_inventory_request(app_id, context_id) -> None:
+    inventory = Inventory()
+    response = Mock()
+    response.json.return_value = INVENTORY
+
+    with patch("src.tf2_utils.inventory.requests.get", return_value=response) as get:
+        for steam_id in ["76561198253325712", "76561198828172881"]:
+            assert inventory.fetch(steam_id, app_id, context_id) is INVENTORY
+            get.assert_called_with(
+                f"https://steamcommunity.com/inventory/"
+                f"{steam_id}/{app_id}/{context_id}",
+                params={"l": "english", "count": 2500},
+                headers=inventory.provider.headers,
+            )
+            headers = get.call_args.kwargs["headers"]
+            assert headers["Referer"] == (
+                f"https://steamcommunity.com/profiles/{steam_id}/inventory"
+            )
+            assert headers["User-Agent"] == (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/130.0.0.0 Safari/537.36"
+            )
+            assert "Origin" not in headers
 
 
 def test_steamcommunity_inventory_fetch(steam_id: str) -> None:

@@ -18,6 +18,10 @@ provider = Inventory("steamcommunity")
 provider = Inventory()  # (the same as above)
 # using steamcommunity will not require an API key and fetches 5000 items at once
 
+# SteamCommunity uses a hardcoded browser-style User-Agent.
+# Referer is set to the target user's profile inventory page for every fetch.
+# These headers do not guarantee that Steam's rate limits will be avoided.
+
 # Get the inventory of a user
 user_inventory = provider.fetch("76561198828172881")
 

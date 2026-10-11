@@ -64,7 +64,7 @@ class Item:
         return self.get_quality() == quality
 
     def has_strange_in_name(self) -> bool:
-        return "Strange" in self.name
+        return "Strange " in self.name and "Strange Part: " not in self.name
 
     def has_vintage_in_name(self) -> bool:
         return "Vintage" in self.name

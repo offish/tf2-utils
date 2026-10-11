@@ -62,11 +62,19 @@ class Inventory:
                 self.provider = i(api_key)
                 break
 
-    def fetch(self, steam_id: str, app_id: int = 440, context_id: int = 2) -> dict:
+    def fetch(
+        self,
+        steam_id: str,
+        app_id: int = 440,
+        context_id: int = 2,
+        start_assetid: str | None = None,
+    ) -> dict:
         url, params = self.provider.get_url_and_params(steam_id, app_id, context_id)
+        if start_assetid is not None:
+            url = f"{url}?start_assetid={start_assetid}"
         response = requests.get(url, params=params, headers=self.provider.headers)
 
         try:
             return response.json()
-        except Exception as e:
+        except ValueError as e:
             return {"success": False, "error": str(e)}
