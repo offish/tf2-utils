@@ -11,7 +11,6 @@ from .instances import logger
 def item_data_to_item_object(
     state: ConnectionState, owner: User, item_data: dict[str, Any]
 ) -> Item:
-    # logging.debug(f"{item_data=}")
     asset_item_data = {
         "assetid": int(item_data["assetid"]),
         "appid": int(item_data["appid"]),

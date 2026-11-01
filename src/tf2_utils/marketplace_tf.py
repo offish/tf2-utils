@@ -5,14 +5,14 @@ from .instances import schema
 from .sku import sku_to_quality_name
 
 
-def format_price_to_float(price: str | float) -> float:
+def format_marketplace_tf_price_to_float(price: str | float) -> float:
     if isinstance(price, float):
         return price
 
     return float(price.replace("$", ""))
 
 
-def get_mplc_value_after_fees(price: float) -> float:
+def get_marketplace_tf_value_after_fees(price: float) -> float:
     if price < 0:
         raise ValueError("Price cannot be negative")
 
@@ -53,7 +53,7 @@ class MarketplaceTF:
 
         return {
             "sku": prices["sku"],
-            "highest_buy_order": format_price_to_float(highest_buy_order),
-            "lowest_price": format_price_to_float(lowest_price),
+            "highest_buy_order": format_marketplace_tf_price_to_float(highest_buy_order),
+            "lowest_price": format_marketplace_tf_price_to_float(lowest_price),
             "stock": stock,
         }
