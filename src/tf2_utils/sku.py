@@ -1,10 +1,12 @@
+from steampie import Item as ItemDict
 from tf2_data import COLORS, EFFECTS, QUALITIES
 from tf2_sku import get_effect, get_killstreak, get_quality, is_metal, to_sku
 
 from .item import Item
+from .types import SKUProperties
 
 
-def get_sku_properties(item: Item | dict) -> dict:
+def get_sku_properties(item: Item | ItemDict) -> SKUProperties:
     if isinstance(item, dict):
         item = Item(item)
 
@@ -35,8 +37,8 @@ def get_sku_properties(item: Item | dict) -> dict:
     return sku_properties
 
 
-def get_sku(item: Item | dict) -> str:
-    if isinstance(item, dict):
+def get_sku(item: Item | ItemDict) -> str:
+    if not isinstance(item, Item):
         item = Item(item)
 
     properties = get_sku_properties(item)

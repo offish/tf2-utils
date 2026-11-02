@@ -1,3 +1,4 @@
+from steampie import Item as ItemDict
 from tf2_data import (
     CRATE_SERIES,
     EFFECTS,
@@ -19,14 +20,14 @@ from .item_name import (
 
 
 class Item:
-    def __init__(self, item: dict) -> None:
+    def __init__(self, item: ItemDict) -> None:
         self.item = item
-        self.name = item["market_hash_name"]
+        self.name = item.get("market_hash_name")
         self.descriptions = item.get("descriptions", [])
         self.tags = item.get("tags", [])
 
     def is_tf2(self) -> bool:
-        return int(self.item["appid"]) == 440
+        return int(self.item.get("appid", -1)) == 440
 
     def is_tradable(self) -> bool:
         return self.item.get("tradable", 1) == 1
@@ -34,23 +35,22 @@ class Item:
     def has_name(self, name: str) -> bool:
         return self.name == name
 
-    def has_description(
-        self, description: str, color: str | None = "756b5e", exact: bool = True
-    ) -> bool:
+    def has_description(self, description: str, color: str | None = "756b5e", exact: bool = True) -> bool:
         for i in self.descriptions:
-            desc = i["value"]
+            value = i.get("value")
 
             if color != i.get("color"):
                 continue
 
-            if (description == desc) or (description in desc and not exact):
+            if description == value:
+                return True
+
+            if not exact and description in value:
                 return True
 
         return False
 
-    def get_description(
-        self, description: str, color: str | None = "756b5e"
-    ) -> str | None:
+    def get_description(self, description: str, color: str | None = "756b5e") -> str | None:
         for i in self.descriptions:
             desc = i["value"]
 
@@ -62,9 +62,7 @@ class Item:
 
             return desc
 
-    def get_description_and_replace(
-        self, description: str, color: str | None = "756b5e"
-    ) -> str:
+    def get_description_and_replace(self, description: str, color: str | None = "756b5e") -> str:
         desc = self.get_description(description, color) or ""
         return desc.replace(description, "")
 
@@ -72,7 +70,10 @@ class Item:
         for i in self.tags:
             item_tag = i["localized_tag_name"]
 
-            if (item_tag == tag) or (tag in item_tag.lower() and not exact):
+            if item_tag == tag:
+                return True
+
+            if not exact and tag in item_tag.lower():
                 return True
 
         return False
@@ -89,10 +90,10 @@ class Item:
 
     def get_quality(self) -> str | None:
         for tag in self.tags:
-            if tag["localized_category_name"] != "Quality":
+            if tag.get("localized_category_name") != "Quality":
                 continue
 
-            return tag["localized_tag_name"]
+            return tag.get("localized_tag_name")
 
     def get_quality_id(self) -> int:
         quality = self.get_quality()
@@ -100,10 +101,14 @@ class Item:
 
     def get_defindex(self) -> int:
         for action in self.item["actions"]:
-            if action["name"] != "Item Wiki Page...":
+            if action.get("name") != "Item Wiki Page...":
                 continue
 
-            wiki_link = action["link"]
+            wiki_link = action.get("link")
+
+            if wiki_link is None:
+                break
+
             start = wiki_link.index("id=")
             end = wiki_link.index("lang=")
             defindex = wiki_link[start + 3 : end - 1]
@@ -216,20 +221,13 @@ class Item:
         return self.has_description("Holiday Restriction: Halloween / Full Moon")
 
     def is_craft_weapon(self) -> bool:
-        return (
-            self.is_unique() and self.is_craftable() and self.has_tag("weapon", False)
-        )
+        return self.is_unique() and self.is_craftable() and self.has_tag("weapon", False)
 
     def is_cosmetic(self) -> bool:
         return self.has_tag("Cosmetic")
 
     def is_craft_hat(self) -> bool:
-        return (
-            self.is_unique()
-            and self.is_craftable()
-            and self.is_cosmetic()
-            and not self.is_halloween()
-        )
+        return self.is_unique() and self.is_craftable() and self.is_cosmetic() and not self.is_halloween()
 
     def is_unusual_cosmetic(self) -> bool:
         return self.is_unusual() and self.is_cosmetic()
@@ -238,11 +236,7 @@ class Item:
         return has_australium_in_name(self.name) and self.is_strange()
 
     def is_pure(self) -> bool:
-        return (
-            self.is_craftable()
-            and self.is_unique()
-            and self.name in [KEY, REF, REC, SCRAP]
-        )
+        return self.is_craftable() and self.is_unique() and self.name in [KEY, REF, REC, SCRAP]
 
     def is_key(self) -> bool:
         return self.has_name(KEY) and self.is_craftable() and self.is_unique()

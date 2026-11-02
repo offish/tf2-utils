@@ -1,16 +1,13 @@
-from typing import Any
-
 from steam.protobufs.econ import Asset, ItemDescription
 from steam.state import ConnectionState
 from steam.trade import Item
 from steam.user import User
+from steampie import Item as ItemDict
 
 from .instances import logger
 
 
-def item_data_to_item_object(
-    state: ConnectionState, owner: User, item_data: dict[str, Any]
-) -> Item:
+def item_data_to_item_object(state: ConnectionState, owner: User, item_data: ItemDict) -> Item:
     asset_item_data = {
         "assetid": int(item_data["assetid"]),
         "appid": int(item_data["appid"]),
@@ -39,7 +36,7 @@ def item_data_to_item_object(
     return Item(state=state, asset=asset, description=description, owner=owner)
 
 
-def item_object_to_item_data(item: Item) -> dict[str, Any] | None:
+def item_object_to_item_data(item: Item) -> ItemDict | None:
     # these are not always present
     is_tradable = item._is_tradable if getattr(item, "_is_tradable", None) else True
     icon = item.icon if getattr(item, "icon", None) else None
@@ -52,29 +49,39 @@ def item_object_to_item_data(item: Item) -> dict[str, Any] | None:
         name = i.name if getattr(i, "name", None) else i["name"]
         actions.append({"link": link, "name": name})
 
-    item_dict = None
-
     try:
-        item_dict = item.to_dict() | {
-            "appid": int(item._app_id),
-            "classid": item.class_id,
-            "instanceid": item.instance_id,
+        return {
+            # asset
+            "appid": str(item._app_id),
+            "contextid": str(item.context_id),
+            "assetid": str(item.id),
+            "classid": str(item.class_id),
+            "instanceid": str(item.instance_id),
+            "amount": str(item.amount),
+            # description
+            "currency": -1,  # no value
+            "background_color": "",  # no value
             "icon_url": icon_url,
-            "tradable": is_tradable,
-            "actions": actions,
-            "name": item.name,
-            "market_hash_name": item.market_hash_name,
-            "type": item.type,
-            "marketable": item._is_marketable,
+            "icon_url_large": "",  # no value
             "descriptions": [
                 {
-                    "type": i.type,
+                    "name": i.label,
                     "value": i.value,
                     "color": i.color,
-                    "label": i.label,
                 }
                 for i in item.descriptions
             ],
+            "tradable": int(is_tradable),
+            "actions": actions,
+            "name": item.name,
+            "name_color": "",  # no value
+            "type": item.type,
+            "market_hash_name": item.market_hash_name,
+            "market_actions": [],  # no value
+            "commodity": -1,  # no value
+            "market_tradable_restriction": -1,  # no value
+            "market_marketable_restriction": -1,  # no value
+            "marketable": int(item._is_marketable),
             "tags": [
                 {
                     "category": i.category,
@@ -85,8 +92,8 @@ def item_object_to_item_data(item: Item) -> dict[str, Any] | None:
                 }
                 for i in item.tags
             ],
+            "sealed": -1,  # no value
+            "sealed_type": -1,  # no value
         }
     except AttributeError:
         logger.warning("Failed to convert item")
-
-    return item_dict

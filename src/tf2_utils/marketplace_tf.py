@@ -3,6 +3,7 @@ from tf2_sku import is_craftable
 
 from .instances import schema
 from .sku import sku_to_quality_name
+from .types import MarketplaceTFItem
 
 
 def format_marketplace_tf_price_to_float(price: str | float) -> float:
@@ -39,7 +40,7 @@ class MarketplaceTF:
         quality = sku_to_quality_name(sku)
         return self.format_url(item_name, quality, is_craftable(sku))
 
-    async def fetch_item(self, sku: str) -> dict:
+    async def fetch_item(self, sku: str) -> MarketplaceTFItem:
         url = self.format_url_sku(sku)
 
         async with self.session.get(url) as resp:

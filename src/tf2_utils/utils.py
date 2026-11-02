@@ -2,6 +2,8 @@ import json
 import math
 from pathlib import Path
 
+from .types import Intent
+
 
 def read_json_file(path: Path | str) -> dict | list:
     data = {}
@@ -33,7 +35,7 @@ def is_half_scrap_price(metal: float) -> bool:
     return math.ceil(metal * 18) % 2 == 1
 
 
-def swap_intent(intent: str) -> str:
+def swap_intent(intent: str) -> Intent:
     intent = intent.lower()
     assert intent in ["buy", "sell"]
     return "buy" if intent == "sell" else "sell"
